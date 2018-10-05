@@ -1,12 +1,13 @@
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
+webui/target/
+webui/pom.xml.tag
+webui/pom.xml.releaseBackup
+webui/pom.xml.versionsBackup
+webui/pom.xml.next
+webui/release.properties
+webui/dependency-reduced-pom.xml
+webui/buildNumber.properties
+webui/.mvn/timing.properties
+webui/.idea/
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
-!/.mvn/wrapper/maven-wrapper.jar
+!/webui/.mvn/wrapper/maven-wrapper.jar
