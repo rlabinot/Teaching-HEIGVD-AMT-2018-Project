@@ -8,6 +8,7 @@ webui/dependency-reduced-pom.xml
 webui/buildNumber.properties
 webui/.mvn/timing.properties
 webui/.idea/
+.idea/
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/webui/.mvn/wrapper/maven-wrapper.jar
