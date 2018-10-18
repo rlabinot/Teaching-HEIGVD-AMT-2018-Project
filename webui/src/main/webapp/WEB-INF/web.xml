@@ -4,4 +4,18 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <filter>
+    <filter-name>SecurityFilter</filter-name>
+    <filter-class>ch.heig.amt.gamification.business.SecurityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>SecurityFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+
 </web-app>
