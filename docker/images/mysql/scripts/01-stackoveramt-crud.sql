@@ -55,24 +55,6 @@ DELIMITER //
 	END //
 DELIMITER ;  
    
-# "TEST"
-call createUser('abc', 'abc', 'abc', 1,1);
-call addApplication(1, 'abc', 'abc', 'abc', 'abc','abc');
-call AddActionLogs(1, 'abc', 'abc', 'abc', 11/02/2017);
-
-select * from Users;
-select * from Applications;
-select * from ActionLogs;
-select * from users inner join applications where users.umail = applications.refumail;
-
-call deleteActionLogs(1);
-call deleteApplication(1);
-call deleteUser('abc');
-
-select * from Users;
-select * from Applications;
-select * from ActionLogs;
-select * from users inner join applications where users.umail = applications.refumail;
 
 
 
