@@ -5,28 +5,20 @@ import java.util.LinkedList;
 
 public class Log {
 
-    private Timestamp date;
     private int id;
+    private Timestamp date;
     private String status;
     private String action;
     private String description;
     private LinkedList<Log> logs;
 
-    public Log(Timestamp date, int id, String status, String action, String description) {
-        this.date = date;
+    public Log(int id, Timestamp date, String status, String action, String description) {
         this.id = id;
+        this.date = date;
         this.status = status;
         this.action = action;
         this.description = description;
-        logs = new LinkedList<>();
-    }
-
-    public Timestamp getDate() {
-        return date;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
+        this.logs = new LinkedList<>();
     }
 
     public int getId() {
@@ -35,6 +27,14 @@ public class Log {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
     public String getStatus() {
@@ -60,4 +60,13 @@ public class Log {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public LinkedList<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(LinkedList<Log> logs) {
+        this.logs = logs;
+    }
+
 }

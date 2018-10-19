@@ -2,17 +2,23 @@ package ch.heig.amt.gamification.model;
 
 public class Application {
 
+    private int id;
     private String name;
     private String description;
     private String apiKey;
     private String apiSecret;
 
-    public Application(String name, String description, String apiKey, String apiSecret) {
+    public Application(int id, String name, String description, String apiKey, String apiSecret) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
     }
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getName() {
         return name;
