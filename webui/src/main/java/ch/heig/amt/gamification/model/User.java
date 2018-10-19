@@ -2,14 +2,14 @@ package ch.heig.amt.gamification.model;
 
 public class User {
     private String name;
-    private String mail;
+    private String email;
     private String password;
     private boolean isAdmin;
     private boolean isActive;
 
-    public User(String name, String mail, String password, boolean isAdmin, boolean isActive) {
+    public User(String name, String email, String password, boolean isAdmin, boolean isActive) {
         this.name = name;
-        this.mail = mail;
+        this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
         this.isActive = isActive;
@@ -23,12 +23,12 @@ public class User {
         this.name = name;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
