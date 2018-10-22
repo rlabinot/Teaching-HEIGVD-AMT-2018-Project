@@ -47,10 +47,10 @@ DELIMITER ;
 
 /* CRUD over an application */
 DELIMITER //
-	CREATE PROCEDURE createApplication(IN Aid INT(10), Aname VARCHAR(50), Adescription VARCHAR(50), AapiKey VARCHAR(50), AapiSecret VARCHAR(50), RefUmail VARCHAR(50))
+	CREATE PROCEDURE createApplication(Aname VARCHAR(50), Adescription VARCHAR(50), AapiKey VARCHAR(50), AapiSecret VARCHAR(50), RefUmail VARCHAR(50))
 	BEGIN
-		INSERT INTO Applications(Aid, Aname, Adescription, AapiKey, AapiSecret, RefUmail) VALUES 
-        (Aid, Aname, Adescription, AapiKey, AapiSecret, RefUmail);
+		INSERT INTO Applications(Aname, Adescription, AapiKey, AapiSecret, RefUmail) VALUES 
+        (Aname, Adescription, AapiKey, AapiSecret, RefUmail);
 	END //
 DELIMITER ; 
 
@@ -79,10 +79,10 @@ DELIMITER ;
 
 /* CRUD over a log */
 DELIMITER //
-	CREATE PROCEDURE createActionLogs(IN Lid INT(10), IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50), Ltimestamp DATETIME)
+	CREATE PROCEDURE createActionLogs(IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50), Ltimestamp DATETIME)
 	BEGIN
-		INSERT INTO ActionLogs(Lid, Lstatus, Laction, Ldescription, Ltimestamp) VALUES 
-        (Lid, Lstatus, Laction, Ldescription, Ltimestamp);
+		INSERT INTO ActionLogs(Lstatus, Laction, Ldescription, Ltimestamp) VALUES 
+        (Lstatus, Laction, Ldescription, Ltimestamp);
 	END //
 DELIMITER ;
 
