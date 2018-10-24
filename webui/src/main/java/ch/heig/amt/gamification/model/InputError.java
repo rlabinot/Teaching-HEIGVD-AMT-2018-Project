@@ -16,12 +16,17 @@ public class InputError {
     private boolean weakPassword;
 
     // Create app
-    private boolean emptyDescritpion;
+    private boolean emptyDescription;
     private boolean emptyApiKey;
     private boolean emptyApiSecret;
 
     // Login
     private boolean wrongLogin;
+
+    public boolean checkErrors() {
+        return emptyName || emptyEmail || wrongFormatEmail ||
+                emptyPassword || weakPassword || emptyDescription || emptyApiKey || emptyApiSecret;
+    }
 
 
     // BOOLEAN SETTEURS AND GETTEURS
@@ -65,12 +70,12 @@ public class InputError {
         this.weakPassword = weakPassword;
     }
 
-    public boolean isEmptyDescritpion() {
-        return emptyDescritpion;
+    public boolean isemptyDescription() {
+        return emptyDescription;
     }
 
-    public void setEmptyDescritpion(boolean emptyDescritpion) {
-        this.emptyDescritpion = emptyDescritpion;
+    public void setemptyDescription(boolean emptyDescription) {
+        this.emptyDescription = emptyDescription;
     }
 
     public boolean isEmptyApiKey() {
