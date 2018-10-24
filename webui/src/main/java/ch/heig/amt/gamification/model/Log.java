@@ -7,12 +7,12 @@ public class Log {
 
     private int id;
     private String user;
-    private Timestamp date;
+    private Long date;
     private String status; // e.g: INFO, SEVERE...
     private String action; // e.g: login, add an application, reset a password...
     private String description;
 
-    public Log(int id, String user, Timestamp date, String status, String action, String description) {
+    public Log(int id, String user, Long date, String status, String action, String description) {
         this.id = id;
         this.user = user;
         this.date = date;
@@ -25,15 +25,13 @@ public class Log {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public void setId(int id) { this.id = id; }
 
-    public Timestamp getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
