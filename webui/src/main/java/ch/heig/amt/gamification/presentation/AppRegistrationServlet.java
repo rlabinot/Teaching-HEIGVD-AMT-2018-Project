@@ -1,12 +1,12 @@
 package ch.heig.amt.gamification.presentation;
 
+import ch.heig.amt.gamification.model.InputError;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AppRegistrationServlet extends HttpServlet {
 
@@ -20,30 +20,32 @@ public class AppRegistrationServlet extends HttpServlet {
         String apiKey = request.getParameter("apiKey");
         String apiSecret = request.getParameter("apiSecret");
 
-        List<String> errors = new ArrayList<>();
+        InputError inputError = new InputError();
         if (name == null || name.trim().equals("")) {
-            errors.add("Name cannot be empty");
+            inputError.setEmptyName(true);
         }
         if (description == null || description.trim().equals("")) {
-            errors.add("Description cannot be empty");
+            inputError.setEmptyDescription(true);
         }
         if (apiKey == null || apiKey.trim().equals("")) {
-            errors.add("ApiKey cannot be empty");
+            inputError.setEmptyApiKey(true);
         }
         if (apiSecret == null || apiSecret.trim().equals("")) {
-            errors.add("ApiSecret cannot be empty");
+            inputError.setEmptyApiSecret(true);
         }
 
         request.setAttribute("name", name);
         request.setAttribute("description", description);
         request.setAttribute("apiKey", apiKey);
         request.setAttribute("apiSecret", apiSecret);
-        if (errors.size() == 0) {
+
+        // Check if no errors during all the registration
+        if (inputError.checkErrors() == false) {
             // Ajout à la DB
             request.setAttribute("name", name + " " + apiKey);
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
         } else {
-            request.setAttribute("errors", errors);
+            request.setAttribute("inputError", inputError);
             request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
         }
     }
