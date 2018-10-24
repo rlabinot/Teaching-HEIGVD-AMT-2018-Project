@@ -120,10 +120,10 @@ public class InputError {
     }
 
     public static String getUserAlreadyRegistred() {
-        return USER_ALREADY_REGISTRED;
+        return USER_ALREADY_REGISTERED;
     }
 
     public static String getAppAlreadyRegistred() {
-        return APP_ALREADY_REGISTRED;
+        return APP_ALREADY_REGISTERED;
     }
 }
