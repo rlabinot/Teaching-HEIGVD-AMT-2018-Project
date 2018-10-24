@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -18,7 +19,7 @@
     <!-- Animation CSS -->
     <link href="vendor/html/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="vendor/html/css/style.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/WEB-INF/pages/vendor/html/css/style.css" rel="stylesheet">
     <link href="css/myStyle.css" rel="stylesheet">
 </head>
 
