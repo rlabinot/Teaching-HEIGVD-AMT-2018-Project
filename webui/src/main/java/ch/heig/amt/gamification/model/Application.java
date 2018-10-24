@@ -7,6 +7,7 @@ public class Application {
     private String description;
     private String apiKey;
     private String apiSecret;
+    private String user;
 
     public Application(int id, String name, String description, String apiKey, String apiSecret) {
         this.id = id;
@@ -52,6 +53,7 @@ public class Application {
         this.apiSecret = apiSecret;
     }
 
+    public String getUser() { return user; }
 
-
+    public void setUser(String user) { this.user = user; }
 }
