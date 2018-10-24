@@ -1,6 +1,8 @@
 package ch.heig.amt.gamification.presentation;
 
+import ch.heig.amt.gamification.business.ToolBoxMySQL;
 import ch.heig.amt.gamification.model.InputError;
+import ch.heig.amt.gamification.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +46,13 @@ public class UserRegistrationServlet extends HttpServlet {
 
         // check if no errors
         if (inputError.checkErrors() == false) {
+
             // Ajout à la DB
+            ToolBoxMySQL toolBoxMySQL = new ToolBoxMySQL();
+            toolBoxMySQL.initConnection();
+            toolBoxMySQL.createUser(new User(name, email, password, false, true));
+            toolBoxMySQL.closeConnection();
+
             request.setAttribute("name", name + " " + password);
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
         } else {

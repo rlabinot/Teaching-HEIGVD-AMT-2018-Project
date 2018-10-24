@@ -19,12 +19,12 @@ public class ToolBoxMySQL{
     /**
      * a MySQL account to access the database
      */
-    private static final String account = "root";
+    private static final String account = "stackoveramt";
 
     /**
      * the password of the MySQL account
      */
-    private static final String password = "root";
+    private static final String password = "stackoveramt";
 
     /**
      * the connexion to perform action on the MySQL database
@@ -69,7 +69,7 @@ public class ToolBoxMySQL{
         }
     }
 
-    private void createUser(User user) {
+    public void createUser(User user) {
 
         ResultSet result;
         PreparedStatement ps;
@@ -128,7 +128,7 @@ public class ToolBoxMySQL{
         return new User(name, email, password, isAdmin, isActive);
     }
 
-    private void createApplication(Application application) {
+    public void createApplication(Application application) {
         PreparedStatement ps;
 
         try (Statement statement = connection.createStatement()) {
@@ -178,8 +178,7 @@ public class ToolBoxMySQL{
         return appList;
     }
 
-    private void createActionLogs(Log log) {
-        //IN Luser VARCHAR(50), IN Ltimestamp DATETIME, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50)
+    public void createActionLogs(Log log) {
         PreparedStatement ps;
 
         try (Statement statement = connection.createStatement()) {

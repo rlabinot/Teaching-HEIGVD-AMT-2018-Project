@@ -18,6 +18,14 @@ public class Application {
         this.user = user;
     }
 
+    public Application(String name, String description, String apiKey, String apiSecret, String user) {
+        this.name = name;
+        this.description = description;
+        this.apiKey = apiKey;
+        this.apiSecret = apiSecret;
+        this.user = user;
+    }
+
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
