@@ -38,15 +38,15 @@ public class SecurityFilter implements Filter {
              * we need to save the target URL
              */
             request.setAttribute("targetUrl", path);
-
         }
 
         /*
          * If the user has been authenticated before, then the AuthenticationServlet has placed
          * an object (in this case a String) in the HTTP session. We can retrieve it.
          */
-        String principal = (String) httpRequest.getSession().getAttribute("principal");
-        if (principal == null && isTargetUrlProtected) {
+        String email = (String) httpRequest.getSession().getAttribute("email");
+        boolean isActive = (boolean) httpRequest.getSession().getAttribute("isActive");
+        if ((email == null || isActive == false) && isTargetUrlProtected) {
             /*
              * The user has not been authenticated and tries to access a protected resource,
              * we display the login page (and interrupt the request processing pipeline).
