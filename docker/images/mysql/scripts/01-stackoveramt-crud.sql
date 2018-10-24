@@ -15,7 +15,7 @@ DROP PROCEDURE IF EXISTS deleteActionLogs;
 
 /* CRUD over a user */
 DELIMITER //
-	CREATE PROCEDURE createUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), UisActive INT(1))
+	CREATE PROCEDURE createUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1))
 	BEGIN
 		INSERT INTO Users(Umail, Uname, Upassword, UisAdmin, UisActive) VALUES 
         (Umail, Uname, Upassword, UisAdmin, UisActive);
@@ -30,7 +30,7 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE updateUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), UisActive INT(1))
+	CREATE PROCEDURE updateUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1))
 	BEGIN
 		UPDATE Users
         SET Users.Uname=Uname, Users.Upassword=Upassword, Users.UisAdmin=UisAdmin, Users.UisActive=UisActive
@@ -47,7 +47,7 @@ DELIMITER ;
 
 /* CRUD over an application */
 DELIMITER //
-	CREATE PROCEDURE createApplication(Aname VARCHAR(50), Adescription VARCHAR(50), AapiKey VARCHAR(50), AapiSecret VARCHAR(50), RefUmail VARCHAR(50))
+	CREATE PROCEDURE createApplication(IN Aname VARCHAR(50), IN Adescription VARCHAR(50), IN AapiKey VARCHAR(50), IN AapiSecret VARCHAR(50), IN RefUmail VARCHAR(50))
 	BEGIN
 		INSERT INTO Applications(Aname, Adescription, AapiKey, AapiSecret, RefUmail) VALUES 
         (Aname, Adescription, AapiKey, AapiSecret, RefUmail);
@@ -62,7 +62,7 @@ DELIMITER //
 DELIMITER ; 
 
 DELIMITER //
-	CREATE PROCEDURE updateApplication(IN Aid INT(10), Aname VARCHAR(50), Adescription VARCHAR(50))
+	CREATE PROCEDURE updateApplication(IN Aid INT(10), IN Aname VARCHAR(50), IN Adescription VARCHAR(50))
 	BEGIN
 		UPDATE Applications
         SET Applications.Aname=Aname, Applications.Adescription=Adescription
@@ -79,10 +79,10 @@ DELIMITER ;
 
 /* CRUD over a log */
 DELIMITER //
-	CREATE PROCEDURE createActionLogs(IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50), Ltimestamp DATETIME)
+	CREATE PROCEDURE createActionLogs(IN Luser VARCHAR(50), IN Ltimestamp DATETIME, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50))
 	BEGIN
-		INSERT INTO ActionLogs(Lstatus, Laction, Ldescription, Ltimestamp) VALUES 
-        (Lstatus, Laction, Ldescription, Ltimestamp);
+		INSERT INTO ActionLogs(Luser, Ltimestamp, Lstatus, Laction, Ldescription) VALUES 
+        (Luser, Ltimestamp, Lstatus, Laction, Ldescription);
 	END //
 DELIMITER ;
 
@@ -94,11 +94,11 @@ DELIMITER //
 DELIMITER ;      
 
 DELIMITER //
-	CREATE PROCEDURE updateActionLogs(IN Lid INT(10), IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50), Ltimestamp DATETIME)
+	CREATE PROCEDURE updateActionLogs(IN Lid INT(10), IN Luser VARCHAR(50), IN Ltimestamp DATETIME, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50))
 	BEGIN
 		UPDATE ActionLogs
-        SET ActionLogs.Lstatus=Lstatus, ActionLogs.Laction=Laction, ActionLogs.Ldescription=Ldescription, ActionLogs.Ltimestamp=Ltimestamp
-        WHERE Lid LIKE Lid; 
+        SET ActionLogs.Luser=Luser, ActionLogs.Ltimestamp=Ltimestamp, ActionLogs.Lstatus=Lstatus, ActionLogs.Laction=Laction, ActionLogs.Ldescription=Ldescription
+        WHERE ActionLogs.Lid LIKE Lid; 
 	END //
 DELIMITER ;  
 
