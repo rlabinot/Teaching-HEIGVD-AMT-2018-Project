@@ -1,12 +1,12 @@
 package ch.heig.amt.gamification.presentation;
 
+import ch.heig.amt.gamification.model.InputError;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserRegistrationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,35 +17,47 @@ public class UserRegistrationServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
 
-        List<String> errors = new ArrayList<>();
+
+        InputError inputError = new InputError();
         if (name == null || name.trim().equals("")) {
-            errors.add("Name cannot be empty");
+            inputError.setEmptyName(true);
         }
         if (email == null || email.trim().equals("")) {
-            errors.add("Email cannot be empty");
+            inputError.setEmptyEmail(true);
         }
         if (password == null || password.trim().equals("")) {
-            errors.add("Password cannot be empty");
-        } else {
+            inputError.setEmptyPassword(true);
+        }
+        if (checkPassword(password) == false) {
+            inputError.setWeakPassword(true);
+        }
+        else {
             if (email.indexOf('@') == -1) {
-                errors.add("Invalid format for email.");
+                inputError.setWrongFormatEmail(true);
             }
         }
 
         request.setAttribute("name", name);
         request.setAttribute("password", password);
         request.setAttribute("email", email);
-        if (errors.size() == 0) {
+
+        // check if no errors
+        if (inputError.checkErrors() == false) {
             // Ajout à la DB
             request.setAttribute("name", name + " " + password);
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
         } else {
-            request.setAttribute("errors", errors);
+            request.setAttribute("inputError", inputError);
             request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
         }
 
+    }
+
+    private boolean checkPassword(String password) {
+        // define a password complexity (one number, eight characters, one upper case, without blanks)
+        String pattern = "(?=.*[0-9])(?=.*[A-Z])(?=\\S+$).{8,}";
+        return password.matches(pattern);
     }
 
 }
