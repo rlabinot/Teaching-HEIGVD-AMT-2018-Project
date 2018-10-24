@@ -9,12 +9,13 @@ public class Application {
     private String apiSecret;
     private String user;
 
-    public Application(int id, String name, String description, String apiKey, String apiSecret) {
+    public Application(int id, String name, String description, String apiKey, String apiSecret, String user) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.apiKey = apiKey;
         this.apiSecret = apiSecret;
+        this.user = user;
     }
 
     public int getId() { return id; }

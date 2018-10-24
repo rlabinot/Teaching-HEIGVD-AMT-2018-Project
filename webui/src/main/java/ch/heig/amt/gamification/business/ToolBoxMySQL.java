@@ -2,6 +2,7 @@ package ch.heig.amt.gamification.business;
 
 import ch.heig.amt.gamification.model.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * A class to connect and perform actions on a MySQL database
@@ -99,6 +100,34 @@ public class ToolBoxMySQL{
         }
     }
 
+    public User readUser(String emailToRead) {
+        String name = "";
+        String email = "";
+        String password = "";
+        boolean isAdmin = false;
+        boolean isActive = false;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result;
+            PreparedStatement ps;
+            sql = "CALL readUser(?)";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, emailToRead);
+            result = ps.executeQuery();
+
+            name = result.getString("Uname");
+            email = result.getString("Umail");
+            password = result.getString("Upassword");
+            isAdmin = result.getBoolean("UisAdmin");
+            isActive = result.getBoolean("UisActive");
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return new User(name, email, password, isAdmin, isActive);
+    }
+
     private void createApplication(Application application) {
         PreparedStatement ps;
 
@@ -115,6 +144,38 @@ public class ToolBoxMySQL{
             e.printStackTrace();
             closeConnection();
         }
+    }
+
+    public ArrayList<Application> readApplicationFromUser(String userToRead) {
+        ArrayList<Application> appList = new ArrayList<>();
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result;
+            PreparedStatement ps;
+            sql = "CALL readApplicationFromUser(?)";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, userToRead);
+            result = ps.executeQuery();
+
+            if(result == null){
+                return appList;
+            }
+            while (result.next()){
+                int id = result.getInt("Aid");
+                String name = result.getString("Aname");
+                String description = result.getString("Adescription");
+                String apiKey = result.getString("AapiKey");
+                String apiSecret = result.getString("AapiSecret");
+                String user = result.getString("RefUmail");
+
+                appList.add(new Application(id,name,description,apiKey,apiSecret,user));
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return appList;
     }
 
     private void createActionLogs(Log log) {
