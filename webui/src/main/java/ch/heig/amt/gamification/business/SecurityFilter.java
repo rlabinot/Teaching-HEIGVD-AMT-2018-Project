@@ -24,6 +24,8 @@ public class SecurityFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
+        System.out.println("path = " + path);
+
         boolean isTargetUrlProtected = true;
         if (path == "/") {
             isTargetUrlProtected = false;
@@ -46,8 +48,8 @@ public class SecurityFilter implements Filter {
          * an object (in this case a String) in the HTTP session. We can retrieve it.
          */
         String email = (String) httpRequest.getSession().getAttribute("email");
-        boolean isActive = (boolean) httpRequest.getSession().getAttribute("isActive");
-        if ((email == null || isActive == false) && isTargetUrlProtected) {
+
+        if (email == null && isTargetUrlProtected) {
             /*
              * The user has not been authenticated and tries to access a protected resource,
              * we display the login page (and interrupt the request processing pipeline).
