@@ -24,8 +24,8 @@ public class InputError {
     private boolean wrongLogin;
 
     public boolean checkErrors() {
-        return emptyName || emptyEmail || wrongFormatEmail ||
-                emptyPassword || weakPassword || emptyDescription || emptyApiKey || emptyApiSecret;
+        return emptyName || emptyEmail || wrongFormatEmail || emptyPassword || weakPassword || emptyDescription ||
+                emptyApiKey || emptyApiSecret || wrongLogin;
     }
 
 
@@ -108,15 +108,15 @@ public class InputError {
     }
 
     public static String getWrongFormatEmailMessage() {
-        return WRONG_FORMAT_EMAIL;
+        return WRONG_FORMAT_EMAIL_MESSAGE;
     }
 
     public static String getWeakPasswordMessage() {
-        return WEAK_PASSWORD;
+        return WEAK_PASSWORD_MESSAGE;
     }
 
     public static String getWrongLoginMessage() {
-        return WRONG_LOGIN;
+        return WRONG_LOGIN_MESSAGE;
     }
 
     public static String getUserAlreadyRegistred() {
