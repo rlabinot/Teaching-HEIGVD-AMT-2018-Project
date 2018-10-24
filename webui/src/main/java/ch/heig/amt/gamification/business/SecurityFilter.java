@@ -25,8 +25,9 @@ public class SecurityFilter implements Filter {
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
         boolean isTargetUrlProtected = true;
-
-        if (path.startsWith("/login/")) {
+        if (path == "/") {
+            isTargetUrlProtected = false;
+        } if (path.startsWith("/login/")) {
             isTargetUrlProtected = false;
         } if (path.startsWith("/register/")) {
             isTargetUrlProtected = false;
