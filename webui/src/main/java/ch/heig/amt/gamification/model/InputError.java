@@ -5,8 +5,8 @@ public class InputError {
     private static final String WRONG_FORMAT_EMAIL = "Invalid format for email";
     private static final String WEAK_PASSWORD = "Password doesn't contain a number, an uppercase and 8 characters without blanks";
     private static final String WRONG_LOGIN = "Wrong login or password";
-    private static final String USER_ALREADY_REGISTRED = "User already registered";
-    private static final String APP_ALREADY_REGISTRED = "App already registered";
+    private static final String USER_ALREADY_REGISTERED = "User already registered";
+    private static final String APP_ALREADY_REGISTERED = "App already registered";
 
     // Create user
     private boolean emptyName;
@@ -70,11 +70,11 @@ public class InputError {
         this.weakPassword = weakPassword;
     }
 
-    public boolean isemptyDescription() {
+    public boolean isEmptyDescription() {
         return emptyDescription;
     }
 
-    public void setemptyDescription(boolean emptyDescription) {
+    public void setEmptyDescription(boolean emptyDescription) {
         this.emptyDescription = emptyDescription;
     }
 
