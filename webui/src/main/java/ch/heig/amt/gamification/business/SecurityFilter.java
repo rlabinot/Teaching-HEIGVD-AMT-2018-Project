@@ -1,5 +1,7 @@
 package ch.heig.amt.gamification.business;
 
+import ch.heig.amt.gamification.model.User;
+
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -26,8 +28,17 @@ public class SecurityFilter implements Filter {
 
         System.out.println("path = " + path);
 
+        ToolBoxMySQL toolBoxMySQL = new ToolBoxMySQL();
+        toolBoxMySQL.initConnection();
+        toolBoxMySQL.createUser(new User("DDejviDD", "lol@dd.com", "123456", false, true));
+        toolBoxMySQL.closeConnection();
+
         boolean isTargetUrlProtected = true;
         if (path == "/") {
+            isTargetUrlProtected = false;
+        } if(path.startsWith("/vendor")) {
+            isTargetUrlProtected = false;
+        } if (path.startsWith("/css")) {
             isTargetUrlProtected = false;
         } if (path.startsWith("/login/")) {
             isTargetUrlProtected = false;
@@ -48,6 +59,7 @@ public class SecurityFilter implements Filter {
          * an object (in this case a String) in the HTTP session. We can retrieve it.
          */
         String email = (String) httpRequest.getSession().getAttribute("email");
+        // Boolean isAdmin = (Boolean) httpRequest.getSession().getAttribute("isAdmin");
 
         if (email == null && isTargetUrlProtected) {
             /*
@@ -56,6 +68,9 @@ public class SecurityFilter implements Filter {
              */
             request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
         } else {
+
+            // CHECK IF USER OR ADMIN AND WHERE HE IS GOING TO
+
             /*
              * We authorize the access, so we can tell the request processing pipeline to
              * continue its work.
