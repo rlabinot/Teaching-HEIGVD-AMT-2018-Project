@@ -46,7 +46,7 @@ public class ToolBoxMySQL{
      */
     public void initConnection() {
         try {
-            String server = "127.0.0.1";
+            String server = "192.168.99.100";
 
             String url = "jdbc:mysql://"+server+":3306/" + database + "?user=" + account + "&password=" + password;
             connection = DriverManager.getConnection(url);

@@ -49,6 +49,7 @@ public class LoginServlet extends HttpServlet {
         toolBoxMySQL.initConnection();
         User user = toolBoxMySQL.readUser(email);
         toolBoxMySQL.closeConnection();
+
         if (user != null) {
             if (user.isActive()) {
                 // login ok with active user
