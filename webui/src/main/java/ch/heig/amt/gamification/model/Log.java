@@ -12,6 +12,13 @@ public class Log {
     private String action; // e.g: login, add an application, reset a password...
     private String description;
 
+    public Log(String user, Long date, String status, String action, String description) {
+        this.user = user;
+        this.date = date;
+        this.status = status;
+        this.action = action;
+        this.description = description;
+    }
     public Log(int id, String user, Long date, String status, String action, String description) {
         this.id = id;
         this.user = user;

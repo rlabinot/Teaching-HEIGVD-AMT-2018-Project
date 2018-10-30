@@ -28,13 +28,13 @@ public class SecurityFilter implements Filter {
 
         System.out.println("path = " + path);
 
-        ToolBoxMySQL toolBoxMySQL = new ToolBoxMySQL();
-        toolBoxMySQL.initConnection();
-        toolBoxMySQL.createUser(new User("DDejviDD", "lol@dd.com", "123456", false, true));
-        toolBoxMySQL.closeConnection();
+
+        User user = new User("DDejviDD", "lol@dd.com", "123456", false, true);
+        UserDAO userDAO = new UserDAO();
+        userDAO.createUser(user);
 
         boolean isTargetUrlProtected = true;
-        if (path == "/") {
+        if (path.equals("/")) {
             isTargetUrlProtected = false;
         } if(path.startsWith("/vendor")) {
             isTargetUrlProtected = false;

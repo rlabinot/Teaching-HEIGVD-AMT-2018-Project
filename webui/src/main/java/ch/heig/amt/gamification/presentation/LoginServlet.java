@@ -1,6 +1,6 @@
 package ch.heig.amt.gamification.presentation;
 
-import ch.heig.amt.gamification.business.ToolBoxMySQL;
+import ch.heig.amt.gamification.business.UserDAO;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
@@ -45,10 +45,9 @@ public class LoginServlet extends HttpServlet {
         // get the user via DB
         //User user = new User("admin","admin@gmail.com","12345", true,true);
 
-        ToolBoxMySQL toolBoxMySQL = new ToolBoxMySQL();
-        toolBoxMySQL.initConnection();
-        User user = toolBoxMySQL.readUser(email);
-        toolBoxMySQL.closeConnection();
+
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.readUser(email);
 
         if (user != null) {
             if (user.isActive()) {

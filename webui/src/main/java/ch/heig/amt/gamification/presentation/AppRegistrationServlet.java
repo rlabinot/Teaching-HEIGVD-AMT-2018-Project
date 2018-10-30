@@ -1,6 +1,6 @@
 package ch.heig.amt.gamification.presentation;
 
-import ch.heig.amt.gamification.business.ToolBoxMySQL;
+import ch.heig.amt.gamification.business.ApplicationDAO;
 import ch.heig.amt.gamification.model.Application;
 import ch.heig.amt.gamification.model.InputError;
 
@@ -45,10 +45,9 @@ public class AppRegistrationServlet extends HttpServlet {
         // Check if no errors during all the registration
         if (inputError.checkErrors() == false) {
             // Add the app to the db.
-            ToolBoxMySQL toolBoxMySQL = new ToolBoxMySQL();
-            toolBoxMySQL.initConnection();
-            toolBoxMySQL.createApplication(new Application(name,description,apiKey,apiSecret,(String) request.getSession().getAttribute("email")));
-            toolBoxMySQL.closeConnection();
+            Application appToAdd = new Application(name,description,apiKey,apiSecret,(String) request.getSession().getAttribute("email"));
+            ApplicationDAO applicationDAO= new ApplicationDAO();
+            applicationDAO.createApplication(appToAdd);
 
             request.setAttribute("name", name + " " + apiKey);
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
