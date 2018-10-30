@@ -1,15 +1,19 @@
 package ch.heig.amt.gamification.presentation;
 
-import ch.heig.amt.gamification.business.UserDAO;
+import ch.heig.amt.gamification.business.UserDAOLocal;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class LoginServlet extends HttpServlet {
+
+    @EJB
+    UserDAOLocal userDAO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,7 +50,7 @@ public class LoginServlet extends HttpServlet {
         //User user = new User("admin","admin@gmail.com","12345", true,true);
 
 
-        UserDAO userDAO = new UserDAO();
+
         User user = userDAO.readUser(email);
 
         if (user != null) {
