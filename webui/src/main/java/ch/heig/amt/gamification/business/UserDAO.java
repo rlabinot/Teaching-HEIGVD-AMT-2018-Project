@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-@Stateless
+//@Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class UserDAO implements UserDAOLocal {
     private final String CREATE = "CALL createUser(?,?,?,?,?)";

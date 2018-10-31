@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 
 public class SecurityFilter implements Filter {
 
-    @EJB
-    UserDAOLocal userDAO;
+    //@EJB
+    //UserDAOLocal userDAO;
 
     /**
      * @param request The servlet request we are processing
@@ -35,7 +35,7 @@ public class SecurityFilter implements Filter {
 
         User user = new User("DDejviDD", "lol@dd.com", "123456", false, true);
 
-        userDAO.createUser(user);
+        //userDAO.createUser(user);
 
         boolean isTargetUrlProtected = true;
         if (path.equals("/")) {

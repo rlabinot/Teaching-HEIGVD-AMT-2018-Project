@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-@Stateless
+//@Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class ApplicationDAO implements ApplicationDAOLocal {
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";

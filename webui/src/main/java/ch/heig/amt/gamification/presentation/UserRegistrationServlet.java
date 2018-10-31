@@ -12,8 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class UserRegistrationServlet extends HttpServlet {
-    @EJB
-    UserDAOLocal userDAO;
+
+    //@EJB
+    //UserDAOLocal userDAO;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
@@ -54,7 +55,7 @@ public class UserRegistrationServlet extends HttpServlet {
             // Ajout à la DB
             User userToAdd = new User(name, email, password, false, true);
 
-            userDAO.createUser(userToAdd);
+            //userDAO.createUser(userToAdd);
 
             request.setAttribute("name", name + " " + password);
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);

@@ -13,8 +13,8 @@ import java.io.IOException;
 
 
 public class AppRegistrationServlet extends HttpServlet {
-    @EJB
-    ApplicationDAOLocal applicationDAO;
+    //@EJB
+    //ApplicationDAOLocal applicationDAO;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
@@ -50,7 +50,7 @@ public class AppRegistrationServlet extends HttpServlet {
             // Add the app to the db.
             Application appToAdd = new Application(name,description,apiKey,apiSecret,(String) request.getSession().getAttribute("email"));
 
-            applicationDAO.createApplication(appToAdd);
+            //applicationDAO.createApplication(appToAdd);
 
             request.setAttribute("name", name + " " + apiKey);
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);

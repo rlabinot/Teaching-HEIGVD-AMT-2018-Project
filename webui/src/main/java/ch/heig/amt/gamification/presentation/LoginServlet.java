@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class LoginServlet extends HttpServlet {
 
-    @EJB
+    //@EJB
     UserDAOLocal userDAO;
 
     @Override
@@ -47,24 +47,31 @@ public class LoginServlet extends HttpServlet {
 
         // check with db isConnected()
         // get the user via DB
-        //User user = new User("admin","admin@gmail.com","12345", true,true);
+        User user = new User("admin","admin@gmail.com","12345", true,true);
 
+        try {
+            //User user = userDAO.readUser(email);
 
-
-        User user = userDAO.readUser(email);
-
-        if (user != null) {
-            if (user.isActive()) {
-                // login ok with active user
-                response.sendRedirect("/pages/home");
+            if (user != null) {
+                if (user.isActive()) {
+                    // login ok with active user
+                    response.sendRedirect("/pages/home");
+                } else {
+                    // login not ok because inactive user
+                    request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+                }
             } else {
-                // login not ok because inactive user
+                // login is not ok
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             }
-        } else {
-            // login is not ok
-            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+
+        } catch (Exception e){
+
+            System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOON");
         }
+
+
+
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-@Stateless
+//@Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class LogDAO implements LogDAOLocal{
 
