@@ -20,7 +20,10 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        if (action.equals("logout")) {
+
+        if(action == null) {
+            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+        } else if (action.equals("logout")) {
             // LOGOUT part
             request.getSession().invalidate();
         } else if (action.equals("login")) {
