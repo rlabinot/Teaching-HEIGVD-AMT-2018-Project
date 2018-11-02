@@ -40,13 +40,11 @@ public class SecurityFilter implements Filter {
         boolean isTargetUrlProtected = true;
         if (path.equals("/")) {
             isTargetUrlProtected = false;
-        } if(path.startsWith("/vendor")) {
-            isTargetUrlProtected = false;
-        } if (path.startsWith("/css")) {
+        } if(path.startsWith("/static")) {
             isTargetUrlProtected = false;
         } if (path.startsWith("/login/")) {
             isTargetUrlProtected = false;
-        } if (path.startsWith("/register/")) {
+        } if (path.startsWith("/registeruser/")) {
             isTargetUrlProtected = false;
         } else {
             /*

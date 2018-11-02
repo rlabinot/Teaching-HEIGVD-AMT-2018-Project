@@ -11,27 +11,27 @@
     <meta name="author" content="">
     <title>Pixel Admin - About</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="vendor/plugins/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/vendor/plugins/images/favicon.png">
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/html/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendor/html/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
-    <link href="vendor/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="/static/vendor/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
     <!-- Animation CSS -->
-    <link href="vendor/html/css/animate.css" rel="stylesheet">
+    <link href="/static/vendor/html/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="${pageContext.request.contextPath}/WEB-INF/pages/vendor/html/css/style.css" rel="stylesheet">
-    <link href="css/myStyle.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/static/vendor/html/css/style.css" rel="stylesheet">
+    <link href="/static/css/myStyle.css" rel="stylesheet">
 </head>
 
 <body>
 <div id="wrapper">
     <!-- Navigation Header -->
-    <nav class="navbar navbar-default navbar-static-top m-b-0">
+    <nav class="navbar navbar-default navbar-/static-top m-b-0">
         <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></a>
             <div class="top-left-part">
                 <a class="logo" href="index.html">
-                    <b><img src="vendor/plugins/images/pixeladmin-logo.png" alt="home" /></b>
-                    <span class="hidden-xs"><img src="vendor/plugins/images/pixeladmin-text.png" alt="home" /></span>
+                    <b><img src="/static/vendor/plugins/images/pixeladmin-logo.png" alt="home" /></b>
+                    <span class="hidden-xs"><img src="/static/vendor/plugins/images/pixeladmin-text.png" alt="home" /></span>
                 </a>
             </div>
         </div>
@@ -64,17 +64,17 @@
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
-<script src="vendor/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendor/plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="vendor/html/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/vendor/html/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Menu Plugin JavaScript -->
-<script src="vendor/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<script src="/static/vendor/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
 <!--slimscroll JavaScript -->
-<script src="vendor/html/js/jquery.slimscroll.js"></script>
+<script src="/static/vendor/html/js/jquery.slimscroll.js"></script>
 <!--Wave Effects -->
-<script src="vendor/html/js/waves.js"></script>
+<script src="/static/vendor/html/js/waves.js"></script>
 <!-- Custom Theme JavaScript -->
-<script src="vendor/html/js/custom.min.js"></script>
+<script src="/static/vendor/html/js/custom.min.js"></script>
 </body>
 
 </html>
