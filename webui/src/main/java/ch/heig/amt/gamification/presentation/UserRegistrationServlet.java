@@ -1,6 +1,6 @@
 package ch.heig.amt.gamification.presentation;
 
-import ch.heig.amt.gamification.business.UserDAOLocal;
+import ch.heig.amt.gamification.business.dao.UserDAOLocal;
 import ch.heig.amt.gamification.model.InputError;
 import ch.heig.amt.gamification.model.User;
 
@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public class UserRegistrationServlet extends HttpServlet {
 
-    //@EJB
-    //UserDAOLocal userDAO;
+    @EJB
+    UserDAOLocal userDAO;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
@@ -55,7 +55,7 @@ public class UserRegistrationServlet extends HttpServlet {
             // Ajout à la DB
             User userToAdd = new User(name, email, password, false, true);
 
-            //userDAO.createUser(userToAdd);
+            userDAO.createUser(userToAdd);
 
             request.setAttribute("name", name + " " + password);
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);

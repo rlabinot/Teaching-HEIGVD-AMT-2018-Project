@@ -1,4 +1,4 @@
-package ch.heig.amt.gamification.business;
+package ch.heig.amt.gamification.business.dao;
 
 import ch.heig.amt.gamification.model.Log;
 

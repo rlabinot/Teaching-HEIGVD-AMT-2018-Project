@@ -1,4 +1,4 @@
-package ch.heig.amt.gamification.business;
+package ch.heig.amt.gamification.business.dao;
 import ch.heig.amt.gamification.model.Log;
 
 import javax.annotation.Resource;
@@ -8,11 +8,9 @@ import javax.ejb.TransactionAttributeType;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.UUID;
 
-//@Stateless
+@Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class LogDAO implements LogDAOLocal{
 

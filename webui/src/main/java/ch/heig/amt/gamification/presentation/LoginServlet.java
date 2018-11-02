@@ -1,6 +1,6 @@
 package ch.heig.amt.gamification.presentation;
 
-import ch.heig.amt.gamification.business.UserDAOLocal;
+import ch.heig.amt.gamification.business.dao.UserDAOLocal;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class LoginServlet extends HttpServlet {
 
-    //@EJB
+    @EJB
     UserDAOLocal userDAO;
 
     @Override
@@ -47,10 +47,10 @@ public class LoginServlet extends HttpServlet {
 
         // check with db isConnected()
         // get the user via DB
-        User user = new User("admin","admin@gmail.com","12345", true,true);
+        // User user = new User("admin","admin@gmail.com","12345", true,true);
 
         try {
-            //User user = userDAO.readUser(email);
+            User user = userDAO.readUser(email);
 
             if (user != null) {
                 if (user.isActive()) {

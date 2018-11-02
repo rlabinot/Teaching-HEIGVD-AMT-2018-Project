@@ -1,4 +1,4 @@
-package ch.heig.amt.gamification.business;
+package ch.heig.amt.gamification.business.dao;
 
 import ch.heig.amt.gamification.model.User;
 
@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-//@Stateless
+@Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class UserDAO implements UserDAOLocal {
     private final String CREATE = "CALL createUser(?,?,?,?,?)";

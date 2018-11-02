@@ -3,7 +3,6 @@ package ch.heig.amt.gamification.business;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
-import javax.ejb.EJB;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -13,9 +12,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 public class SecurityFilter implements Filter {
-
-    //@EJB
-    //UserDAOLocal userDAO;
 
     /**
      * @param request The servlet request we are processing
@@ -31,11 +27,6 @@ public class SecurityFilter implements Filter {
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
         System.out.println("path = " + path);
-
-
-        User user = new User("DDejviDD", "lol@dd.com", "123456", false, true);
-
-        //userDAO.createUser(user);
 
         boolean isTargetUrlProtected = true;
         if (path.equals("/")) {
