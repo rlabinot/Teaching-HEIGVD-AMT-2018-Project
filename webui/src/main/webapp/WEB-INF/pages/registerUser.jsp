@@ -1,55 +1,62 @@
 <%@include file="includes/header.jsp" %>
 
 
+
     <!-- Page Content -->
     <div id="page-wrapper" class="index">
         <div class="container-fluid">
-
-            <!-- Top line nav -->
             <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Login </h4>
-                </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb login">
                         <li><a href="/webui">About</a></li>
-                        <li class="active">Login</li>
+                        <li class="active">Register</li>
                     </ol>
                 </div>
             </div>
-            <!-- ./line -->
-
             <div class="row">
                 <div class="center-page col-md-8 col-xs-12">
                     <div class="white-box">
-
-                        <!-- Login Form -->
-                        <form method="post" action="webui/login" class="form-horizontal form-material">
+                        <form method="post" action="/webui/registeruser" class="form-horizontal form-material">
+                            <div class="form-group">
+                                <label class="col-md-12">Name</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control form-control-line">
+                                    <c:if test="${inputError.emptyName}">
+                                        <span>${inputError.emptyFieldMessage}</span>
+                                    </c:if>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-md-12">E-mail</label>
                                 <div class="col-md-12">
                                     <input type="email" class="form-control form-control-line">
+                                    <c:if test="${inputError.emptyEmail}">
+                                        <span>${inputError.emptyFieldMessage}</span>
+                                    </c:if>
+                                    <c:if test="${inputError.wrongFormatEmail}">
+                                        <span>${inputError.wrongFormatEmailMessage}</span>
+                                    </c:if>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-md-12">Password</label>
                                 <div class="col-md-12">
                                     <input type="password" class="form-control form-control-line" name="password" id="password">
-                                    <c:if test="${inputError.wrongLogin}">
-                                        <span>${inputError.wrongLoginMessage}</span>
+                                    <c:if test="${inputError.emptyPassword}">
+                                        <span>${inputError.emptyFieldMessage}</span>
+                                    </c:if>
+                                    <c:if test="${inputError.weakPassword}">
+                                        <span>${inputError.weakPasswordMessage}</span>
                                     </c:if>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="submit" value="Login" class="btn btn-success"/>
-                                    <a class="gap" href="/webui/registeruser">Register</a>
+                                    <input type="submit" value="Register" class="btn btn-success"/>
                                 </div>
                             </div>
                         </form>
-                        <!-- ./form -->
-
                     </div>
                 </div>
             </div>
