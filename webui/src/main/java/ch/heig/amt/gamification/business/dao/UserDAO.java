@@ -47,12 +47,14 @@ public class UserDAO implements UserDAOLocal {
             PreparedStatement preparedStatement = connection.prepareStatement(READ);
             preparedStatement.setString(1, emailToRead);
             ResultSet rs =  preparedStatement.executeQuery();
-            rs.next();
-            return new  User(rs.getString("Uname"),
-                             rs.getString("Umail"),
-                             rs.getString("Upassword"),
-                             rs.getBoolean("UisAdmin"),
-                             rs.getBoolean("UisActive"));
+            if(rs.next()) {
+                return new User(rs.getString("Uname"),
+                        rs.getString("Umail"),
+                        rs.getString("Upassword"),
+                        rs.getBoolean("UisAdmin"),
+                        rs.getBoolean("UisActive"));
+            }
+            return null;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
