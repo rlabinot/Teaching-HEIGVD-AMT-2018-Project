@@ -3,8 +3,6 @@
 <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-<!-- jQuery -->
-<script src="static/vendor/plugins/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="static/vendor/html/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Menu Plugin JavaScript -->
@@ -15,6 +13,17 @@
 <script src="static/vendor/html/js/waves.js"></script>
 <!-- Custom Theme JavaScript -->
 <script src="static/vendor/html/js/custom.min.js"></script>
+
+<script>
+    $(document).ready( function () {
+        $('#table').DataTable(
+
+            {
+                "ordering": false
+            }
+        );
+    } );
+</script>
 </body>
 
 </html>

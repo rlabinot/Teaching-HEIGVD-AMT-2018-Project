@@ -10,6 +10,10 @@
     <meta name="author" content="">
     <base href="${pageContext.request.contextPath}/"/>
     <title>${pageTitle}</title>
+    <!-- jQuery -->
+    <script src="static/vendor/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="static/vendor/plugins/images/favicon.png">
     <!-- Bootstrap Core CSS -->

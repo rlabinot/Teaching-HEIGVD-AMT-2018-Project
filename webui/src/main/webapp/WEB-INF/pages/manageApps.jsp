@@ -25,13 +25,14 @@
 
                         <!-- App Tab -->
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="table">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>API Key</th>
                                     <th>Actions</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
