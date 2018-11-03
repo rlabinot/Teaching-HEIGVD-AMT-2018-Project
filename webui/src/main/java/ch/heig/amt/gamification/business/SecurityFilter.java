@@ -3,6 +3,8 @@ package ch.heig.amt.gamification.business;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
+import javax.ejb.EJB;
+import javax.mail.MessagingException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,6 +14,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 public class SecurityFilter implements Filter {
+
+    @EJB EmailSenderLocal emailSender;
 
     /**
      * @param request The servlet request we are processing
@@ -25,6 +29,15 @@ public class SecurityFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
+
+        // TEST Email
+        try {
+            emailSender = new EmailSender("r.labinot@gmail.com", "titre", "corps");
+            emailSender.send();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
 
         System.out.println("path = " + path);
 
