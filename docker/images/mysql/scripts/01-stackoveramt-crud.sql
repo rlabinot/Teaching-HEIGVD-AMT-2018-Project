@@ -4,6 +4,9 @@ DROP PROCEDURE IF EXISTS createUser;
 DROP PROCEDURE IF EXISTS readUser;
 DROP PROCEDURE IF EXISTS updateUser;
 DROP PROCEDURE IF EXISTS deleteUser;
+DROP PROCEDURE IF EXISTS createOldPassword;
+DROP PROCEDURE IF EXISTS readOldPasswordFromUser;
+DROP PROCEDURE IF EXISTS deleteOldPasswordFromUser;
 DROP PROCEDURE IF EXISTS createApplication;
 DROP PROCEDURE IF EXISTS readApplication;
 DROP PROCEDURE IF EXISTS readApplicationFromUser;
@@ -11,6 +14,7 @@ DROP PROCEDURE IF EXISTS updateApplication;
 DROP PROCEDURE IF EXISTS deleteApplication;
 DROP PROCEDURE IF EXISTS createActionLogs;
 DROP PROCEDURE IF EXISTS readActionLogs;
+DROP PROCEDURE IF EXISTS readAllActionLogs;
 DROP PROCEDURE IF EXISTS updateActionLogs;
 DROP PROCEDURE IF EXISTS deleteActionLogs;
 
@@ -43,6 +47,29 @@ DELIMITER //
 	CREATE PROCEDURE deleteUser(IN Umail VARCHAR(50))
 	BEGIN
 		DELETE FROM Users WHERE Users.Umail LIKE Umail;
+	END //
+DELIMITER ;
+
+/* CRUD over an old password */
+DELIMITER //
+	CREATE PROCEDURE createOldPassword(IN OPref VARCHAR(50), IN OPpassword VARCHAR(50))
+	BEGIN
+		INSERT INTO OldPasswords(OPref, OPpassword) VALUES 
+        (OPref, OPpassword);
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE readOldPasswordFromUser(IN OPref VARCHAR(50))
+	BEGIN
+		SELECT * FROM OldPasswords WHERE OPref LIKE OPref;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE deleteOldPasswordFromUser(IN OPref VARCHAR(50))
+	BEGIN
+		DELETE FROM OldPasswords WHERE OldPasswords.OPref LIKE OPref;
 	END //
 DELIMITER ;
 
@@ -87,7 +114,7 @@ DELIMITER ;
 
 /* CRUD over a log */
 DELIMITER //
-	CREATE PROCEDURE createActionLogs(IN Luser VARCHAR(50), IN Ltimestamp DATETIME, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50))
+	CREATE PROCEDURE createActionLogs(IN Luser VARCHAR(50), IN Ltimestamp BIGINT, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(150))
 	BEGIN
 		INSERT INTO ActionLogs(Luser, Ltimestamp, Lstatus, Laction, Ldescription) VALUES 
         (Luser, Ltimestamp, Lstatus, Laction, Ldescription);
@@ -99,10 +126,17 @@ DELIMITER //
 	BEGIN
 		SELECT * FROM ActionLogs WHERE ActionLogs.Lid LIKE Lid;
 	END //
-DELIMITER ;      
+DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE updateActionLogs(IN Lid INT(10), IN Luser VARCHAR(50), IN Ltimestamp DATETIME, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50))
+	CREATE PROCEDURE readAllActionLogs()
+	BEGIN
+		SELECT * FROM ActionLogs ORDER BY Ltimestamp DESC;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE updateActionLogs(IN Lid INT(10), IN Luser VARCHAR(50), IN Ltimestamp BIGINT, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(150))
 	BEGIN
 		UPDATE ActionLogs
         SET ActionLogs.Luser=Luser, ActionLogs.Ltimestamp=Ltimestamp, ActionLogs.Lstatus=Lstatus, ActionLogs.Laction=Laction, ActionLogs.Ldescription=Ldescription

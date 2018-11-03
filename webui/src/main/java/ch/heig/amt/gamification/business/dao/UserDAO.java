@@ -18,8 +18,8 @@ import java.sql.SQLException;
 public class UserDAO implements UserDAOLocal {
     private final String CREATE = "CALL createUser(?,?,?,?,?)";
     private final String READ   = "CALL readUser(?)";
-    private final String UPDATE = "";
-    private final String DELETE = "";
+    private final String UPDATE = "CALL updateUser(?,?, ?, ?, ?)";
+    private final String DELETE = "CALL deleteUser(?)";
 
     @Resource(name = "jdbc/stackoveramt")
     DataSource dataSource;
@@ -63,10 +63,32 @@ public class UserDAO implements UserDAOLocal {
 
     @Override
     public void updateUser(String userToUpdate, User values) {
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
+            preparedStatement.setString(1, userToUpdate);
+            preparedStatement.setString(2, values.getName());
+            preparedStatement.setString(3, values.getPassword());
+            preparedStatement.setBoolean(4, values.isAdmin());
+            preparedStatement.setBoolean(5, values.isActive());
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void deleteUser(String userToDelete) {
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
+            preparedStatement.setString(1,userToDelete);
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
     }
 }

@@ -15,6 +15,14 @@ CREATE TABLE Users(
   PRIMARY KEY (Umail)
 );
 
+CREATE TABLE OldPasswords(
+  OPref VARCHAR(50) NOT NULL,
+  OPpassword VARCHAR(50) NOT NULL,
+  
+  PRIMARY KEY (OPref, OPpassword),
+  FOREIGN KEY (OPref) REFERENCES Users(Umail)
+);
+
 CREATE TABLE Applications(
   Aid INT(10) AUTO_INCREMENT UNIQUE NOT NULL,
   Aname VARCHAR(50) NOT NULL,
@@ -30,10 +38,10 @@ CREATE TABLE Applications(
 CREATE TABLE ActionLogs(
   Lid INT(10) AUTO_INCREMENT UNIQUE NOT NULL,
   Luser VARCHAR(50) NOT NULL,
-  Ltimestamp DATETIME NOT NULL,
+  Ltimestamp BIGINT NOT NULL,
   Lstatus VARCHAR(50) NOT NULL,
   Laction VARCHAR(50) NOT NULL,
-  Ldescription VARCHAR(50) NOT NULL,
+  Ldescription VARCHAR(150) NOT NULL,
   PRIMARY KEY (Lid)
 );
 
