@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
 
@@ -47,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        HttpSession httpSession;
 
         // check with db isConnected()
         // get the user via DB
@@ -56,6 +58,14 @@ public class LoginServlet extends HttpServlet {
             User user = userDAO.readUser(email);
 
             if (user != null) {
+                // set session parameters
+                httpSession = request.getSession();
+                httpSession.setAttribute("name", user.getName());
+                httpSession.setAttribute("email", email);
+                httpSession.setAttribute("password", password);
+                httpSession.setAttribute("isActive", user.isActive());
+                httpSession.setAttribute("isAdmin", user.isAdmin());
+
                 if (user.isActive()) {
                     // login ok with active user
                     response.sendRedirect("/pages/home");
