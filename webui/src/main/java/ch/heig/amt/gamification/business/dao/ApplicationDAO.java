@@ -17,9 +17,10 @@ import java.util.ArrayList;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class ApplicationDAO implements ApplicationDAOLocal {
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";
-    private final String READ   = "CALL readApplicationFromUser(?)";
-    private final String UPDATE = "";
-    private final String DELETE = "";
+    private final String READ = "CALL readApplication(?)";
+    private final String READ_FROM_USER = "CALL readApplicationFromUser(?)";
+    private final String UPDATE = "CALL updateApplication(?, ?, ?)";
+    private final String DELETE = "CALL deleteApplication(?)";
 
     @Resource(name = "jdbc/stackoveramt")
     DataSource dataSource;
@@ -42,11 +43,35 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
+    public Application readApplication(int appID) {
+
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(READ);
+            preparedStatement.setInt(1, appID);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()) {
+                return new Application(
+                        rs.getInt("Aid"),
+                        rs.getString("Aname"),
+                        rs.getString("Adescription"),
+                        rs.getString("AapiKey"),
+                        rs.getString("AapiSecret"),
+                        rs.getString("RefUmail")
+                );
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public ArrayList<Application> readApplicationFromUser(String email) {
         ArrayList<Application> appList = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(READ);
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_FROM_USER);
             preparedStatement.setString(1, email);
             ResultSet rs =  preparedStatement.executeQuery();
             while(rs.next()){
@@ -67,11 +92,30 @@ public class ApplicationDAO implements ApplicationDAOLocal {
 
     @Override
     public void updateApplication(int appId, Application values) {
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
+            preparedStatement.setInt(1, appId);
+            preparedStatement.setString(2, values.getName());
+            preparedStatement.setString(3, values.getDescription());
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
 
     }
 
     @Override
     public void deleteApplication(int appId) {
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
+            preparedStatement.setInt(1, appId);
+            preparedStatement.execute();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }
