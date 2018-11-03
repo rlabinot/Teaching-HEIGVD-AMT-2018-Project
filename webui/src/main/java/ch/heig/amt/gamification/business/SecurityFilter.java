@@ -14,9 +14,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 public class SecurityFilter implements Filter {
-
-    @EJB EmailSenderLocal emailSender;
-
     /**
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating
@@ -29,15 +26,6 @@ public class SecurityFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
-
-        // TEST Email
-        try {
-            emailSender = new EmailSender("r.labinot@gmail.com", "titre", "corps");
-            emailSender.send();
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-
 
         System.out.println("path = " + path);
 
