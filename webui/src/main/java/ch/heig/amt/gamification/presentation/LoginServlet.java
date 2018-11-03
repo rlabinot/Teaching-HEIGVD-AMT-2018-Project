@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
         // User user = new User("admin","admin@gmail.com","12345", true,true);
 
         try {
-            User user = userDAO.readUser(email);
+            User user = userDAO.userLogin(email, password);
 
             if (user != null) {
                 // set session parameters
