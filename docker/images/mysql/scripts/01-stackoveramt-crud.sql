@@ -4,6 +4,10 @@ DROP PROCEDURE IF EXISTS createUser;
 DROP PROCEDURE IF EXISTS readUser;
 DROP PROCEDURE IF EXISTS updateUser;
 DROP PROCEDURE IF EXISTS deleteUser;
+
+DROP PROCEDURE IF EXISTS createOldPassord;
+DROP PROCEDURE IF EXISTS readOldPassordFromUser;
+
 DROP PROCEDURE IF EXISTS createApplication;
 DROP PROCEDURE IF EXISTS readApplication;
 DROP PROCEDURE IF EXISTS readApplicationFromUser;
@@ -44,6 +48,30 @@ DELIMITER //
 	CREATE PROCEDURE deleteUser(IN Umail VARCHAR(50))
 	BEGIN
 		DELETE FROM Users WHERE Users.Umail LIKE Umail;
+	END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS readOldPassordFromUser;
+/* CRUD over an old password */
+DELIMITER //
+	CREATE PROCEDURE createOldPassords(IN OPref VARCHAR(50), IN OPpassword VARCHAR(50))
+	BEGIN
+		INSERT INTO OldPasswords(OPref, OPpassword) VALUES 
+        (OPref, OPpassword);
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE readOldPassordFromUser(IN OPref VARCHAR(50))
+	BEGIN
+		SELECT * FROM OldPasswords WHERE OPref LIKE OPref;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE deleteOldPassordFromUser(IN OPref VARCHAR(50))
+	BEGIN
+		DELETE FROM OldPasswords WHERE OPref LIKE OPref;
 	END //
 DELIMITER ;
 
