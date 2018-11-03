@@ -11,6 +11,7 @@ DROP PROCEDURE IF EXISTS updateApplication;
 DROP PROCEDURE IF EXISTS deleteApplication;
 DROP PROCEDURE IF EXISTS createActionLogs;
 DROP PROCEDURE IF EXISTS readActionLogs;
+DROP PROCEDURE IF EXISTS readAllActionLogs;
 DROP PROCEDURE IF EXISTS updateActionLogs;
 DROP PROCEDURE IF EXISTS deleteActionLogs;
 
@@ -87,7 +88,7 @@ DELIMITER ;
 
 /* CRUD over a log */
 DELIMITER //
-	CREATE PROCEDURE createActionLogs(IN Luser VARCHAR(50), IN Ltimestamp DATETIME, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50))
+	CREATE PROCEDURE createActionLogs(IN Luser VARCHAR(50), IN Ltimestamp BIGINT, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(150))
 	BEGIN
 		INSERT INTO ActionLogs(Luser, Ltimestamp, Lstatus, Laction, Ldescription) VALUES 
         (Luser, Ltimestamp, Lstatus, Laction, Ldescription);
@@ -99,10 +100,17 @@ DELIMITER //
 	BEGIN
 		SELECT * FROM ActionLogs WHERE ActionLogs.Lid LIKE Lid;
 	END //
-DELIMITER ;      
+DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE updateActionLogs(IN Lid INT(10), IN Luser VARCHAR(50), IN Ltimestamp DATETIME, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50))
+	CREATE PROCEDURE readAllActionLogs()
+	BEGIN
+		SELECT * FROM ActionLogs ORDER BY Ltimestamp DESC;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE updateActionLogs(IN Lid INT(10), IN Luser VARCHAR(50), IN Ltimestamp BIGINT, IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(150))
 	BEGIN
 		UPDATE ActionLogs
         SET ActionLogs.Luser=Luser, ActionLogs.Ltimestamp=Ltimestamp, ActionLogs.Lstatus=Lstatus, ActionLogs.Laction=Laction, ActionLogs.Ldescription=Ldescription
