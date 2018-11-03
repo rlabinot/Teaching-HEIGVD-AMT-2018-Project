@@ -3,6 +3,8 @@
     <!-- Page Content -->
     <div id="page-wrapper" class="index">
         <div class="container-fluid">
+
+            <!-- Top line nav -->
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <h4 class="page-title">About </h4> </div>
@@ -13,6 +15,9 @@
                     </ol>
                 </div>
             </div>
+            <!-- ./top-line -->
+
+            <!-- About content -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="white-box">
@@ -21,6 +26,8 @@
                     </div>
                 </div>
             </div>
+            <!-- ./content -->
+
         </div>
 
 <%@include file="/WEB-INF/pages/includes/footer.jsp" %>

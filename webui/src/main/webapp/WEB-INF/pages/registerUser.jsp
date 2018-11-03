@@ -5,9 +5,11 @@
     <!-- Page Content -->
     <div id="page-wrapper" class="index">
         <div class="container-fluid">
+
+            <!-- Top line nav -->
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Register </h4>
+                    <h4 class="page-title">Register</h4>
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
@@ -16,23 +18,29 @@
                     </ol>
                 </div>
             </div>
+            <!-- ./top line -->
+
             <div class="row">
                 <div class="center-page col-md-8 col-xs-12">
                     <div class="white-box">
-                        <form method="post" action="/webui/registeruser" class="form-horizontal form-material">
+
+                        <!-- Register Form -->
+                        <form method="post" class="form-horizontal form-material">
+
                             <div class="form-group">
                                 <label class="col-md-12">Name</label>
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control form-control-line">
+                                    <input type="text" name="name" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyName}">
                                         <span>${inputError.emptyFieldMessage}</span>
                                     </c:if>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label class="col-md-12">E-mail</label>
                                 <div class="col-md-12">
-                                    <input type="email" class="form-control form-control-line">
+                                    <input type="email" name="email" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyEmail}">
                                         <span>${inputError.emptyFieldMessage}</span>
                                     </c:if>
@@ -41,6 +49,7 @@
                                     </c:if>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="password" class="col-md-12">Password</label>
                                 <div class="col-md-12">
@@ -60,11 +69,11 @@
                                 </div>
                             </div>
                         </form>
+                        <!-- ./form -->
+
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
 
 <%@include file="includes/footer.jsp" %>
