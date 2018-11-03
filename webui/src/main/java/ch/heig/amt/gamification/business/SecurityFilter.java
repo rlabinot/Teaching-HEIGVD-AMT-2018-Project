@@ -3,6 +3,8 @@ package ch.heig.amt.gamification.business;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
+import javax.ejb.EJB;
+import javax.mail.MessagingException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,7 +14,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 public class SecurityFilter implements Filter {
-
     /**
      * @param request The servlet request we are processing
      * @param response The servlet response we are creating

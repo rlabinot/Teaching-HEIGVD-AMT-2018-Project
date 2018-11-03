@@ -24,11 +24,11 @@
                     <div class="white-box">
 
                         <!-- Login Form -->
-                        <form method="post" action="webui/login" class="form-horizontal form-material">
+                        <form method="post" class="form-horizontal form-material">
                             <div class="form-group">
                                 <label class="col-md-12">E-mail</label>
                                 <div class="col-md-12">
-                                    <input type="email" class="form-control form-control-line">
+                                    <input type="email" class="form-control form-control-line" name="email">
                                 </div>
                             </div>
                             <div class="form-group">
