@@ -68,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 
                 if (user.isActive()) {
                     // login ok with active user
-                    response.sendRedirect("/pages/home");
+                    response.sendRedirect("/webui/home");
                 } else {
                     // login not ok because inactive user
                     request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
