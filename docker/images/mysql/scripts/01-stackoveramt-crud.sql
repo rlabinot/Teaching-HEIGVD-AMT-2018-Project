@@ -4,9 +4,9 @@ DROP PROCEDURE IF EXISTS createUser;
 DROP PROCEDURE IF EXISTS readUser;
 DROP PROCEDURE IF EXISTS updateUser;
 DROP PROCEDURE IF EXISTS deleteUser;
-DROP PROCEDURE IF EXISTS createOldPassord;
-DROP PROCEDURE IF EXISTS readOldPassordFromUser;
-DROP PROCEDURE IF EXISTS deleteOldPassordFromUser;
+DROP PROCEDURE IF EXISTS createOldPassword;
+DROP PROCEDURE IF EXISTS readOldPasswordFromUser;
+DROP PROCEDURE IF EXISTS deleteOldPasswordFromUser;
 DROP PROCEDURE IF EXISTS createApplication;
 DROP PROCEDURE IF EXISTS readApplication;
 DROP PROCEDURE IF EXISTS readApplicationFromUser;
@@ -52,7 +52,7 @@ DELIMITER ;
 
 /* CRUD over an old password */
 DELIMITER //
-	CREATE PROCEDURE createOldPassord(IN OPref VARCHAR(50), IN OPpassword VARCHAR(50))
+	CREATE PROCEDURE createOldPassword(IN OPref VARCHAR(50), IN OPpassword VARCHAR(50))
 	BEGIN
 		INSERT INTO OldPasswords(OPref, OPpassword) VALUES 
         (OPref, OPpassword);
@@ -60,14 +60,14 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE readOldPassordFromUser(IN OPref VARCHAR(50))
+	CREATE PROCEDURE readOldPasswordFromUser(IN OPref VARCHAR(50))
 	BEGIN
 		SELECT * FROM OldPasswords WHERE OPref LIKE OPref;
 	END //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE deleteOldPassordFromUser(IN OPref VARCHAR(50))
+	CREATE PROCEDURE deleteOldPasswordFromUser(IN OPref VARCHAR(50))
 	BEGIN
 		DELETE FROM OldPasswords WHERE OldPasswords.OPref LIKE OPref;
 	END //
