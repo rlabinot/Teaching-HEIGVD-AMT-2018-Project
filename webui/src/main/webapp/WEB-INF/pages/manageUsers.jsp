@@ -21,7 +21,7 @@
 
                         <!-- User tab -->
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" id="table">
                                 <thead>
                                 <tr>
                                     <th>Name</th>
@@ -29,6 +29,9 @@
                                     <th>Role</th>
                                     <th>State</th>
                                     <th>Actions</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
