@@ -48,7 +48,7 @@ DELIMITER ;
 
 /* CRUD over an application */
 DELIMITER //
-	CREATE PROCEDURE createApplication(IN Aname VARCHAR(50), IN Adescription VARCHAR(50), IN AapiKey VARCHAR(50), IN AapiSecret VARCHAR(50), IN RefUmail VARCHAR(50))
+	CREATE PROCEDURE createApplication(IN Aname VARCHAR(50), IN Adescription VARCHAR(150), IN AapiKey VARCHAR(50), IN AapiSecret VARCHAR(50), IN RefUmail VARCHAR(50))
 	BEGIN
 		INSERT INTO Applications(Aname, Adescription, AapiKey, AapiSecret, RefUmail) VALUES 
         (Aname, Adescription, AapiKey, AapiSecret, RefUmail);
@@ -70,7 +70,7 @@ DELIMITER //
 DELIMITER ; 
 
 DELIMITER //
-	CREATE PROCEDURE updateApplication(IN Aid INT(10), IN Aname VARCHAR(50), IN Adescription VARCHAR(50))
+	CREATE PROCEDURE updateApplication(IN Aid INT(10), IN Aname VARCHAR(50), IN Adescription VARCHAR(150))
 	BEGIN
 		UPDATE Applications
         SET Applications.Aname=Aname, Applications.Adescription=Adescription
