@@ -17,11 +17,11 @@ import java.util.ArrayList;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class UserDAO implements UserDAOLocal {
-    private final String CREATE = "CALL createUser(?,?,?,?,?)";
+    private final String CREATE = "CALL createUser(?, ?, ?, ?, ?, ?)";
     private final String READ   = "CALL readUser(?)";
     private final String READ_ALL   = "CALL readAllUser()";
-    private final String LOGIN   = "CALL userLogin(?,?)";
-    private final String UPDATE = "CALL updateUser(?,?, ?, ?, ?)";
+    private final String LOGIN   = "CALL userLogin(?, ?)";
+    private final String UPDATE = "CALL updateUser(?, ?, ?, ?, ?, ?)";
     private final String DELETE = "CALL deleteUser(?)";
 
     @Resource(name = "jdbc/stackoveramt")
@@ -36,6 +36,7 @@ public class UserDAO implements UserDAOLocal {
             preparedStatement.setString(3, userToCreate.getPassword());
             preparedStatement.setBoolean(4, userToCreate.isAdmin());
             preparedStatement.setBoolean(5, userToCreate.isActive());
+            preparedStatement.setBoolean(6, userToCreate.isUserMustChangePassword());
             preparedStatement.execute();
 
         } catch (SQLException e) {
@@ -55,7 +56,9 @@ public class UserDAO implements UserDAOLocal {
                         rs.getString("Umail"),
                         rs.getString("Upassword"),
                         rs.getBoolean("UisAdmin"),
-                        rs.getBoolean("UisActive"));
+                        rs.getBoolean("UisActive"),
+                        rs.getBoolean("UmustChangePassword")
+                );
             }
             return null;
         } catch (SQLException e) {
@@ -76,7 +79,8 @@ public class UserDAO implements UserDAOLocal {
                         rs.getString("Umail"),
                         rs.getString("Upassword"),
                         rs.getBoolean("UisAdmin"),
-                        rs.getBoolean("UisActive")
+                        rs.getBoolean("UisActive"),
+                        rs.getBoolean("UmustChangePassword")
                 ));
             }
             return users;
@@ -98,7 +102,8 @@ public class UserDAO implements UserDAOLocal {
                         rs.getString("Umail"),
                         rs.getString("Upassword"),
                         rs.getBoolean("UisAdmin"),
-                        rs.getBoolean("UisActive"));
+                        rs.getBoolean("UisActive"),
+                        rs.getBoolean("UmustChangePassword"));
             }
             return null;
         } catch (SQLException e) {
@@ -116,6 +121,7 @@ public class UserDAO implements UserDAOLocal {
             preparedStatement.setString(3, values.getPassword());
             preparedStatement.setBoolean(4, values.isAdmin());
             preparedStatement.setBoolean(5, values.isActive());
+            preparedStatement.setBoolean(6, values.isUserMustChangePassword());
             preparedStatement.execute();
 
         } catch (SQLException e) {

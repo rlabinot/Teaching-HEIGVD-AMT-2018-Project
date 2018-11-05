@@ -22,10 +22,10 @@ DROP PROCEDURE IF EXISTS deleteActionLogs;
 
 /* CRUD over a user */
 DELIMITER //
-	CREATE PROCEDURE createUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1))
+	CREATE PROCEDURE createUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1), IN UmustChangePassword INT(1))
 	BEGIN
-		INSERT INTO Users(Umail, Uname, Upassword, UisAdmin, UisActive) VALUES 
-        (Umail, Uname, Upassword, UisAdmin, UisActive);
+		INSERT INTO Users(Umail, Uname, Upassword, UisAdmin, UisActive, UmustChangePassword) VALUES 
+        (Umail, Uname, Upassword, UisAdmin, UisActive, UmustChangePassword);
 	END //
 DELIMITER ;
 
@@ -51,10 +51,10 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE updateUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1))
+	CREATE PROCEDURE updateUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1), IN UmustChangePassword INT(1))
 	BEGIN
 		UPDATE Users
-        SET Users.Uname=Uname, Users.Upassword=Upassword, Users.UisAdmin=UisAdmin, Users.UisActive=UisActive
+        SET Users.Uname=Uname, Users.Upassword=Upassword, Users.UisAdmin=UisAdmin, Users.UisActive=UisActive, Users.UmustChangePassword=UmustChangePassword
         WHERE Users.Umail LIKE Umail;
 	END //
 DELIMITER ;
