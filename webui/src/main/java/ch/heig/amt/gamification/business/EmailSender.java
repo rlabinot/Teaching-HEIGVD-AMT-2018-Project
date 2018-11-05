@@ -11,13 +11,11 @@ public class EmailSender implements EmailSenderLocal {
     @Resource(name = "java/mailapp")
     private Session session;
 
-    private Message message;
-
     public void send(String to, String subject, String body) throws MessagingException {
-        this.message = new MimeMessage(session);
-        this.message.setSubject(subject);
-        this.message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-        this.message.setText(body);
-        Transport.send(this.message);
+        MimeMessage message = new MimeMessage(session);
+        message.setSubject(subject);
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+        message.setText(body);
+        Transport.send(message);
     }
 }
