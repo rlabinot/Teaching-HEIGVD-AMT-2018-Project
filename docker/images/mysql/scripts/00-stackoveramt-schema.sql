@@ -12,6 +12,7 @@ CREATE TABLE Users(
   Upassword VARCHAR(50) NOT NULL,
   UisAdmin INT(1) NOT NULL,
   UisActive INT(1) NOT NULL,
+  UmustChangePassword INT(1) NOT NULL,
   PRIMARY KEY (Umail)
 );
 

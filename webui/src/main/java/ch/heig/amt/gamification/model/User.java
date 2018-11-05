@@ -57,12 +57,11 @@ public class User {
         isActive = active;
     }
 
-    public boolean isMustChangePassword() {
+    public boolean getMustChangePassword() {
         return mustChangePassword;
     }
 
     public void setMustChangePassword(boolean mustChangePassword) {
         this.mustChangePassword = mustChangePassword;
     }
-
 }
