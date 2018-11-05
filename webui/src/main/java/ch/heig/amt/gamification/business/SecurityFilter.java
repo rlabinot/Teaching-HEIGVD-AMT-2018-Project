@@ -64,6 +64,7 @@ public class SecurityFilter implements Filter {
         } else {
 
             // CHECK IF USER OR ADMIN AND WHERE HE IS GOING TO
+            // TODO : check if mustChangePassword == true, in this case redirect to chngPassword.jsp
 
             /*
              * We authorize the access, so we can tell the request processing pipeline to

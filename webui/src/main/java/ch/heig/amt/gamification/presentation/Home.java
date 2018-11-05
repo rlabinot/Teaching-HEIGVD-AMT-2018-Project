@@ -1,7 +1,6 @@
 package ch.heig.amt.gamification.presentation;
 
 import ch.heig.amt.gamification.business.dao.ApplicationDAOLocal;
-import ch.heig.amt.gamification.business.dao.UserDAO;
 import ch.heig.amt.gamification.business.dao.UserDAOLocal;
 
 import javax.ejb.EJB;
@@ -10,14 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Home extends HttpServlet {
     @EJB
     ApplicationDAOLocal appDAO;
+
     @EJB
-    UserDAO userDAO;
+    UserDAOLocal userDAO;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,7 +24,6 @@ public class Home extends HttpServlet {
         String email = (String) request.getSession().getAttribute("email");
 
         if (isAdmin == true) {
-
             // retrieve all users from database and add them to the request
             request.setAttribute("users", userDAO.readAllUser());
             request.getRequestDispatcher("/WEB-INF/pages/manageUsers.jsp").forward(request, response);

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class AppRegistrationServlet extends HttpServlet {
+public class AppServlet extends HttpServlet {
 
     @EJB
     ApplicationDAOLocal applicationDAO;

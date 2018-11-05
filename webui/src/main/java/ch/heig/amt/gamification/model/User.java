@@ -6,13 +6,15 @@ public class User {
     private String password;
     private boolean isAdmin;
     private boolean isActive;
+    private boolean mustChangePassword;
 
-    public User(String name, String email, String password, boolean isAdmin, boolean isActive) {
+    public User(String name, String email, String password, boolean isAdmin, boolean isActive, boolean mustChangePassword) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.isAdmin = isAdmin;
         this.isActive = isActive;
+        this.mustChangePassword = mustChangePassword;
     }
 
     public String getName() {
@@ -54,4 +56,13 @@ public class User {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+    public boolean isMustChangePassword() {
+        return mustChangePassword;
+    }
+
+    public void setMustChangePassword(boolean mustChangePassword) {
+        this.mustChangePassword = mustChangePassword;
+    }
+
 }

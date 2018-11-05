@@ -35,20 +35,20 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>UserRegistrationServlet</servlet-name>
-    <servlet-class>ch.heig.amt.gamification.presentation.UserRegistrationServlet</servlet-class>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>ch.heig.amt.gamification.presentation.UserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UserRegistrationServlet</servlet-name>
+    <servlet-name>UserServlet</servlet-name>
     <url-pattern>/registeruser</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>AppRegistrationServlet</servlet-name>
-    <servlet-class>ch.heig.amt.gamification.presentation.AppRegistrationServlet</servlet-class>
+    <servlet-name>AppServlet</servlet-name>
+    <servlet-class>ch.heig.amt.gamification.presentation.AppServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>AppRegistrationServlet</servlet-name>
+    <servlet-name>AppServlet</servlet-name>
     <url-pattern>/registerapp</url-pattern>
   </servlet-mapping>
 
