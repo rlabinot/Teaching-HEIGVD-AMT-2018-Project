@@ -36,7 +36,7 @@ public class UserDAO implements UserDAOLocal {
             preparedStatement.setString(3, userToCreate.getPassword());
             preparedStatement.setBoolean(4, userToCreate.isAdmin());
             preparedStatement.setBoolean(5, userToCreate.isActive());
-            preparedStatement.setBoolean(6, userToCreate.isUserMustChangePassword());
+            preparedStatement.setBoolean(6, userToCreate.getMustChangePassword());
             preparedStatement.execute();
 
         } catch (SQLException e) {
@@ -121,7 +121,7 @@ public class UserDAO implements UserDAOLocal {
             preparedStatement.setString(3, values.getPassword());
             preparedStatement.setBoolean(4, values.isAdmin());
             preparedStatement.setBoolean(5, values.isActive());
-            preparedStatement.setBoolean(6, values.isUserMustChangePassword());
+            preparedStatement.setBoolean(6, values.getMustChangePassword());
             preparedStatement.execute();
 
         } catch (SQLException e) {

@@ -65,19 +65,24 @@ public class LoginServlet extends HttpServlet {
                 httpSession.setAttribute("password", password);
                 httpSession.setAttribute("isActive", user.isActive());
                 httpSession.setAttribute("isAdmin", user.isAdmin());
+                httpSession.setAttribute("mustChangePassword", user.getMustChangePassword());
 
                 if (user.isActive()) {
-                    // login ok with active user
-                    response.sendRedirect("/webui/home");
+                    if (!user.getMustChangePassword()){
+                        // login ok with active user
+                        response.sendRedirect("/webui/home");
+                    } else {
+                        // user must change his password
+                        request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
+                    }
                 } else {
                     // login not ok because inactive user
                     request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
                 }
             } else {
-                // login is not ok
+                // login is not ok because wrong credentials, db result is null
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             }
-
         } catch (Exception e){
 
             System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOON");

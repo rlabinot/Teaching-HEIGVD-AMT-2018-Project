@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +70,36 @@ public class UserServlet extends HttpServlet {
                 request.setAttribute("inputError", inputError);
                 request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
             }
-        } else if (action == "changePassword") {
 
+        } else if (action == "changePassword") {
+            HttpSession httpSession = request.getSession();
+
+            // define the user parameters
+            String name = httpSession.getAttribute("name").toString();
+            String email = httpSession.getAttribute("email").toString();
+            boolean isAdmin = (boolean) httpSession.getAttribute("isAdmin");
+            boolean isActive = (boolean) httpSession.getAttribute("isActive");
+            String password = httpSession.getAttribute("password").toString();
+
+            // both new given passwords, should be equal
+            String password1 = request.getParameter("password");
+            String password2 = request.getParameter("password2");
+
+            if (password1.equals(password2)){
+
+                // TODO : check if its not an old password
+                // create the user with a new password to update the db
+                User updatedUser = new User(name, email, password1, isAdmin, isActive, false);
+                
+                // update the database
+                userDAO.updateUser(email, updatedUser);
+                httpSession.setAttribute("mustChangePassword", false);
+                response.sendRedirect("/webui/home");
+
+            } else { // both passwords are different
+                request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
+                // TODO : should I send an error ?
+            }
         }
 
     }
