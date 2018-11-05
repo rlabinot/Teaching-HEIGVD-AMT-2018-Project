@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 @Stateless
@@ -18,6 +19,8 @@ import java.sql.SQLException;
 public class UserDAO implements UserDAOLocal {
     private final String CREATE = "CALL createUser(?,?,?,?,?)";
     private final String READ   = "CALL readUser(?)";
+    private final String READ_ALL   = "CALL readAllUser()";
+    private final String LOGIN   = "CALL userLogin(?,?)";
     private final String UPDATE = "CALL updateUser(?,?, ?, ?, ?)";
     private final String DELETE = "CALL deleteUser(?)";
 
@@ -46,6 +49,49 @@ public class UserDAO implements UserDAOLocal {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(READ);
             preparedStatement.setString(1, emailToRead);
+            ResultSet rs =  preparedStatement.executeQuery();
+            if(rs.next()) {
+                return new User(rs.getString("Uname"),
+                        rs.getString("Umail"),
+                        rs.getString("Upassword"),
+                        rs.getBoolean("UisAdmin"),
+                        rs.getBoolean("UisActive"));
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<User> readAllUser() {
+        ArrayList<User> users = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_ALL);
+            ResultSet rs =  preparedStatement.executeQuery();
+            while (rs.next()) {
+                users.add( new User(rs.getString("Uname"),
+                        rs.getString("Umail"),
+                        rs.getString("Upassword"),
+                        rs.getBoolean("UisAdmin"),
+                        rs.getBoolean("UisActive")
+                ));
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public User userLogin(String emailToRead, String password) {
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(LOGIN);
+            preparedStatement.setString(1, emailToRead);
+            preparedStatement.setString(2, password);
             ResultSet rs =  preparedStatement.executeQuery();
             if(rs.next()) {
                 return new User(rs.getString("Uname"),
