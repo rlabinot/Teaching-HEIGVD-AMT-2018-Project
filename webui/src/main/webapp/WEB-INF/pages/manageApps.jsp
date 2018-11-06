@@ -20,7 +20,7 @@
                     <div class="white-box">
                         <div class="clearfix">
                             <h3 class="box-title pull-left  ">Your applications</h3>
-                            <a href="/webui/registerapp" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success white">Add an application</a>
+                            <a href="/webui/registerapp" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Add an application</a>
                         </div>
 
                         <!-- App Tab -->
@@ -36,13 +36,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Chrome</td>
-                                    <td>Web browser</td>
-                                    <td>123hrekn#lkjlkjad:==nkandjknbhj**</td>
-                                    <td><a href="#">Edit</a></td>
-                                    <td><a href="#">Delete</a></td>
-                                </tr>
 
                                 <c:forEach items="${apps}" var="app">
                                     <tr>

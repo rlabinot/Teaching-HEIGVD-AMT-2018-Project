@@ -1,6 +1,7 @@
 package ch.heig.amt.gamification.presentation;
 
 import ch.heig.amt.gamification.business.dao.UserDAOLocal;
+import ch.heig.amt.gamification.model.InputError;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
@@ -23,22 +24,20 @@ public class LoginServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if(action == null) {
-            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
-        } else if (action.equals("logout")) {
-            // LOGOUT part
-            request.getSession().invalidate();
-        } else if (action.equals("login")) {
-            // LOGIN part
-            // get an attribute of the session to know if it is active
             String email = (String) request.getSession().getAttribute("email");
             if (email == null) {
                 // there is no session, so we redirect to the login page
-                // don't forget to add errors in list
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             } else {
-                // there is a session so we redirect to the user's home
-                response.sendRedirect("/pages/home");
+                // there is a session so we redirect to the user's home (home servlet)
+                response.sendRedirect("/webui/home");
             }
+        } else if (action.equals("logout")) {
+            request.getSession().invalidate();
+            response.sendRedirect("/webui/login");
+
+        } else {
+            response.sendRedirect("/webui/login");
         }
     }
 
@@ -81,6 +80,9 @@ public class LoginServlet extends HttpServlet {
                 }
             } else {
                 // login is not ok because wrong credentials, db result is null
+                InputError error = new InputError();
+                error.setWrongLogin(true);
+                request.setAttribute("inputError", error);
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             }
         } catch (Exception e){

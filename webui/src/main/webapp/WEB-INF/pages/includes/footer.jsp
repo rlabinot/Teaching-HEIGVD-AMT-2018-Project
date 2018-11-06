@@ -1,4 +1,4 @@
-<footer class="footer index text-center"> 2017 &copy; Pixel Admin brought to you by wrappixel.com </footer>
+<footer class="footer index text-center"> 2018 &copy; Appadmin </footer>
 </div>
 <!-- /#page-wrapper -->
 </div>

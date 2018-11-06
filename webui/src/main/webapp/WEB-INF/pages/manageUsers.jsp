@@ -34,15 +34,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Ludwig</td>
-                                    <td>loic,frueh@gmail.com</td>
-                                    <td>Admin</td>
-                                    <td>Active</td>
-                                    <td><a href="#">Suspend</a></td>
-                                    <td><a href="#">Reset password</a></td>
-                                    <td><a href="#">Delete</a></td>
-                                </tr>
 
                                 <c:forEach items="${users}" var="user">
                                     <tr>
@@ -50,19 +41,19 @@
                                         <td>${user.email}</td>
                                         <td>
                                             <c:choose>
-                                                <c:when test="${user.isAdmin}">Admin</c:when>
+                                                <c:when test="${user.admin}">Admin</c:when>
                                                 <c:otherwise>User</c:otherwise>
                                             </c:choose>
                                         </td>
                                         <td>
                                             <c:choose>
-                                                <c:when test="${user.isActive}">Active</c:when>
+                                                <c:when test="${user.active}">Active</c:when>
                                                 <c:otherwise>Inactive</c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td><a href="/webui/suspenduser?id=${user.id}">Suspend</a></td>
-                                        <td><a href="/webui/resetpassword?id=${user.id}">Reset password</a></td>
-                                        <td><a href="/webui/deleteuser?id=${user.id}">Delete</a></td>
+                                        <td><a href="/webui/suspenduser?id=${user.email}">Suspend</a></td>
+                                        <td><a href="/webui/resetpassword?id=${user.email}">Reset password</a></td>
+                                        <td><a href="/webui/deleteuser?id=${user.email}">Delete</a></td>
                                     </tr>
                                 </c:forEach>
 

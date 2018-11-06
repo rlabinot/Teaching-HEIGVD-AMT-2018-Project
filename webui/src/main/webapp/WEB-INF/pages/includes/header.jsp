@@ -31,13 +31,26 @@
 <div id="wrapper">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top m-b-0">
-        <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="/webui" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></a>
+        <div class="navbar-header">
+            <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="/webui" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </a>
             <div class="top-left-part">
                 <a class="logo" href="/webui">
                     <b><img src="static/vendor/plugins/images/pixeladmin-logo.png" alt="home" /></b>
-                    <span class="hidden-xs"><img src="static/vendor/plugins/images/pixeladmin-text.png" alt="home" /></span>
+                    <span class="title">
+                        <span class="bold">App</span>admin
+                    </span>
                 </a>
             </div>
+            <c:if test="${isActive}">
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li>
+                        <a href="/webui/home"> <b class="hidden-xs white">${name}</b> </a>
+                    </li>
+                </ul>
+            </c:if>
+
         </div>
     </nav>
 

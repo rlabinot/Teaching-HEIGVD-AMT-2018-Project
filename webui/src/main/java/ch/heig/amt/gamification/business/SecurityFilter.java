@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class SecurityFilter implements Filter {
     /**
@@ -25,6 +26,7 @@ public class SecurityFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
         System.out.println("path = " + path);
@@ -60,7 +62,7 @@ public class SecurityFilter implements Filter {
              * The user has not been authenticated and tries to access a protected resource,
              * we display the login page (and interrupt the request processing pipeline).
              */
-            request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+            httpResponse.sendRedirect("/webui/login");
         } else {
 
             // CHECK IF USER OR ADMIN AND WHERE HE IS GOING TO

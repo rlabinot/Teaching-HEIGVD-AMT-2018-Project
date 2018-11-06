@@ -103,27 +103,27 @@ public class InputError {
     }
 
     // MESSAGES ERRORS GETTEURS
-    public static String getEmptyFieldMessage() {
+    public String getEmptyFieldMessage() {
         return EMPTY_FIELD_MESSAGE;
     }
 
-    public static String getWrongFormatEmailMessage() {
+    public String getWrongFormatEmailMessage() {
         return WRONG_FORMAT_EMAIL_MESSAGE;
     }
 
-    public static String getWeakPasswordMessage() {
+    public String getWeakPasswordMessage() {
         return WEAK_PASSWORD_MESSAGE;
     }
 
-    public static String getWrongLoginMessage() {
+    public String getWrongLoginMessage() {
         return WRONG_LOGIN_MESSAGE;
     }
 
-    public static String getUserAlreadyRegistred() {
+    public String getUserAlreadyRegistred() {
         return USER_ALREADY_REGISTERED;
     }
 
-    public static String getAppAlreadyRegistred() {
+    public String getAppAlreadyRegistred() {
         return APP_ALREADY_REGISTERED;
     }
 }

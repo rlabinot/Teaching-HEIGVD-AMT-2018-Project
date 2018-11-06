@@ -36,7 +36,7 @@
                                 <div class="col-md-12">
                                     <input type="password" class="form-control form-control-line" name="password" id="password">
                                     <c:if test="${inputError.wrongLogin}">
-                                        <span>${inputError.wrongLoginMessage}</span>
+                                        <span class="errors">${inputError.wrongLoginMessage}</span>
                                     </c:if>
                                 </div>
                             </div>
