@@ -38,7 +38,7 @@ public class SecurityFilter implements Filter {
             isTargetUrlProtected = false;
         } if (path.startsWith("/login")) {
             isTargetUrlProtected = false;
-        } if (path.startsWith("/registeruser")) {
+        } if (path.startsWith("/user")) {
             isTargetUrlProtected = false;
         } else {
             /*

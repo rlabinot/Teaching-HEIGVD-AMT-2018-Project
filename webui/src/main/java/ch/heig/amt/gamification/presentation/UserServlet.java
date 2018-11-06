@@ -20,7 +20,15 @@ public class UserServlet extends HttpServlet {
     UserDAOLocal userDAO;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
+        String action = request.getParameter("action");
+
+        if(action == null) {
+            if (request.getSession().getAttribute("email") != null) {
+                request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("/webui/home");
+            }
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,11 +37,13 @@ public class UserServlet extends HttpServlet {
 
         // base action is registration of the user
         if(action == null) {
+            // Get posted parameter
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
 
 
+            // Check for errors
             InputError inputError = new InputError();
             if (name == null || name.trim().equals("")) {
                 inputError.setEmptyName(true);
@@ -52,19 +62,16 @@ public class UserServlet extends HttpServlet {
                 }
             }
 
-            request.setAttribute("name", name);
-            request.setAttribute("password", password);
-            request.setAttribute("email", email);
+            // TODO: Check if the email is not already in use !IMPORTANT
 
             // check if no errors
             if (inputError.checkErrors() == false) {
 
                 // Ajout à la DB
                 User userToAdd = new User(name, email, password, false, true, false);
-
                 userDAO.createUser(userToAdd);
 
-                request.setAttribute("name", name + " " + password);
+                //
                 request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
             } else {
                 request.setAttribute("inputError", inputError);

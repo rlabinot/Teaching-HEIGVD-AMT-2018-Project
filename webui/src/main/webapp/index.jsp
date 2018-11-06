@@ -11,7 +11,7 @@
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <ol class="breadcrumb">
                         <li><a href="/webui/login">Login</a></li>
-                        <li><a href="/webui/registeruser">Register</a></li>
+                        <li><a href="/webui/user">Register</a></li>
                     </ol>
                 </div>
             </div>
