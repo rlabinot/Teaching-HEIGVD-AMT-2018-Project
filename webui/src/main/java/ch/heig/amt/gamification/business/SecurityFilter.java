@@ -66,7 +66,13 @@ public class SecurityFilter implements Filter {
         } else {
 
             // CHECK IF USER OR ADMIN AND WHERE HE IS GOING TO
+            boolean isAdmin = Boolean.TRUE == httpRequest.getSession().getAttribute("isAdmin");
+
             // TODO : check if mustChangePassword == true, in this case redirect to chngPassword.jsp
+            boolean mustChangePassword = Boolean.TRUE == httpRequest.getSession().getAttribute("mustChangePassword");
+            if (mustChangePassword) {
+                request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
+            }
 
             /*
              * We authorize the access, so we can tell the request processing pipeline to
