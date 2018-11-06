@@ -64,9 +64,17 @@ public class SecurityFilter implements Filter {
              */
             httpResponse.sendRedirect("/webui/login");
         } else {
-
-            // CHECK IF USER OR ADMIN AND WHERE HE IS GOING TO
+            
             boolean isAdmin = Boolean.TRUE == httpRequest.getSession().getAttribute("isAdmin");
+            // CHECK IF ADMIN AND GOING TO USER PAGE
+            if (isAdmin && path.startsWith("/manageapps")) {
+                httpResponse.sendRedirect("/webui/manageusers");
+            }
+
+            // CHECK IF USER AND GOING TO ADMIN PAGE
+            if (!isAdmin && path.startsWith("/manageusers")) {
+                httpResponse.sendRedirect("/webui/manageapps");
+            }
 
             // TODO : check if mustChangePassword == true, in this case redirect to chngPassword.jsp
             boolean mustChangePassword = Boolean.TRUE == httpRequest.getSession().getAttribute("mustChangePassword");
