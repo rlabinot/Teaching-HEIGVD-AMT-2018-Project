@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.UUID;
 
 
 public class AppServlet extends HttpServlet {
@@ -24,8 +25,8 @@ public class AppServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        String apiKey = request.getParameter("apiKey");
-        String apiSecret = request.getParameter("apiSecret");
+        String apiKey = UUID.randomUUID().toString();
+        String apiSecret = UUID.randomUUID().toString();
 
         InputError inputError = new InputError();
         if (name == null || name.trim().equals("")) {
