@@ -12,4 +12,5 @@ public interface ApplicationDAOLocal {
     public ArrayList<Application> readApplicationFromUser(String email);
     public void updateApplication(int appId, Application values);
     public void deleteApplication(int appId);
+    public void deleteAllApplicationFromUser(String email);
 }

@@ -21,6 +21,7 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     private final String READ_FROM_USER = "CALL readApplicationFromUser(?)";
     private final String UPDATE = "CALL updateApplication(?, ?, ?)";
     private final String DELETE = "CALL deleteApplication(?)";
+    private final String DELETE_All_APPLICATION_FROM_USER = "CALL deleteAllApplicationFromUser(?)";
 
     @Resource(name = "jdbc/stackoveramt")
     DataSource dataSource;
@@ -111,6 +112,19 @@ public class ApplicationDAO implements ApplicationDAOLocal {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
             preparedStatement.setInt(1, appId);
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteAllApplicationFromUser(String email) {
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_All_APPLICATION_FROM_USER);
+            preparedStatement.setString(1, email);
             preparedStatement.execute();
 
         } catch (SQLException e) {

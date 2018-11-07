@@ -20,6 +20,7 @@ services:
     restart: always
     ports:
      - 8888:80
+     
   payara:
     build: ../../images/payara
     environment:

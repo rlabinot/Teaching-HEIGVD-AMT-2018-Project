@@ -14,6 +14,7 @@ DROP PROCEDURE IF EXISTS readApplication;
 DROP PROCEDURE IF EXISTS readApplicationFromUser;
 DROP PROCEDURE IF EXISTS updateApplication;
 DROP PROCEDURE IF EXISTS deleteApplication;
+DROP PROCEDURE IF EXISTS deleteAllApplicationFromUser;
 DROP PROCEDURE IF EXISTS createActionLogs;
 DROP PROCEDURE IF EXISTS readActionLogs;
 DROP PROCEDURE IF EXISTS readAllActionLogs;
@@ -125,6 +126,13 @@ DELIMITER //
 	CREATE PROCEDURE deleteApplication(IN id INT(10))
 	BEGIN
 		DELETE FROM Applications WHERE Applications.Aid LIKE id;
+	END //
+DELIMITER ; 
+
+DELIMITER //
+	CREATE PROCEDURE deleteAllApplicationFromUser(IN RefUmail VARCHAR(50))
+	BEGIN
+		DELETE FROM Applications WHERE Applications.RefUmail LIKE RefUmail;
 	END //
 DELIMITER ; 
 
