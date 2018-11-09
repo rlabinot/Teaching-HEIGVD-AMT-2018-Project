@@ -28,6 +28,7 @@
                                     <th>Mail</th>
                                     <th>Role</th>
                                     <th>State</th>
+                                    <th>Password</th>
                                     <th>Actions</th>
                                     <th></th>
                                     <th></th>
@@ -51,9 +52,16 @@
                                                 <c:otherwise>Inactive</c:otherwise>
                                             </c:choose>
                                         </td>
-                                        <td><a href="/webui/suspenduser?id=${user.email}">Suspend</a></td>
-                                        <td><a href="/webui/resetpassword?id=${user.email}">Reset password</a></td>
-                                        <td><a href="/webui/deleteuser?id=${user.email}">Delete</a></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${user.mustChangePassword}">Resetting</c:when>
+                                                <c:otherwise>Ok</c:otherwise>
+                                            </c:choose>
+
+                                        </td>
+                                        <td><a href="/webui/user?action=suspend&id=${user.email}">Suspend</a></td>
+                                        <td><a href="/webui/user?action=changePassword&id=${user.email}">Reset password</a></td>
+                                        <td><a href="/webui/user?action=delete&id=${user.email}">Delete</a></td>
                                     </tr>
                                 </c:forEach>
 

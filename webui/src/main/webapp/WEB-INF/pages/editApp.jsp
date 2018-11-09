@@ -19,12 +19,12 @@
                 <div class="white-box">
 
                     <!-- App Registration Form -->
-                    <form method="post" class="form-horizontal form-material">
+                    <form method="post" action="/app?action=edit&id=${app.id}" class="form-horizontal form-material">
 
                         <div class="form-group">
                             <label class="col-md-12">Name</label>
                             <div class="col-md-12">
-                                <input type="text" name="name" class="form-control form-control-line">
+                                <input type="text" name="name" value="${app.name}" class="form-control form-control-line">
                                 <c:if test="${inputError.emptyName}">
                                     <span>${inputError.emptyFieldMessage}</span>
                                 </c:if>
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label class="col-md-12">Description</label>
                             <div class="col-md-12">
-                                <input type="text" name="description" class="form-control form-control-line">
+                                <input type="text" value="${app.description}" name="description" class="form-control form-control-line">
                                 <c:if test="${inputError.emptyDescription}">
                                     <span>${inputError.emptyFieldMessage}</span>
                                 </c:if>
@@ -43,7 +43,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="submit" value="Register" class="btn btn-success"/>
+                                <input type="submit" value="Edit" class="btn btn-success"/>
                             </div>
                         </div>
 
