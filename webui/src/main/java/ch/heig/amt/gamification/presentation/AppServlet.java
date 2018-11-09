@@ -19,7 +19,36 @@ public class AppServlet extends HttpServlet {
     ApplicationDAOLocal applicationDAO;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
+        String action = request.getParameter("action");
+        String appId = request.getParameter("id");
+        action = action == null ? "" : action;
+        switch (action) {
+            case "":
+                request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
+
+            case "delete":
+                applicationDAO.deleteApplication(Integer.valueOf(appId).intValue());
+                response.sendRedirect("/webui/home");
+                break;
+
+            case "edit":
+                Application appToEdit = null; //TODO: delete that as soon as possible
+                // Application appToEdit = applicationDAO.getApp(appId); TODO: Implement this instead
+                request.setAttribute("app", appToEdit);
+                request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
+                break;
+
+            case "show":
+                Application appToShow = null; //TODO: delete that as soon as possible
+                // Application appToShow = applicationDAO.getApp(appId); TODO: Implement this instead
+                request.setAttribute("app", appToShow);
+                request.getRequestDispatcher("/WEB-INF/pages/showApp.jsp").forward(request, response);
+                break;
+
+            default:
+                response.sendRedirect("/webui/aksdjlakjd");
+        }
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,9 +82,7 @@ public class AppServlet extends HttpServlet {
             Application appToAdd = new Application(name,description,apiKey,apiSecret,(String) request.getSession().getAttribute("email"));
 
             applicationDAO.createApplication(appToAdd);
-
-            request.setAttribute("name", name + " " + apiKey);
-            request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
+            response.sendRedirect("/webui/home");
         } else {
             request.setAttribute("inputError", inputError);
             request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);

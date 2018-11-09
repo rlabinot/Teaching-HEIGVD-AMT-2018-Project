@@ -32,7 +32,7 @@
                                 <div class="col-md-12">
                                     <input type="text" name="name" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyName}">
-                                        <span>${inputError.emptyFieldMessage}</span>
+                                        <span class="errors">${inputError.emptyFieldMessage}</span>
                                     </c:if>
                                 </div>
                             </div>
@@ -42,10 +42,10 @@
                                 <div class="col-md-12">
                                     <input type="email" name="email" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyEmail}">
-                                        <span>${inputError.emptyFieldMessage}</span>
+                                        <span class="errors">${inputError.emptyFieldMessage}</span>
                                     </c:if>
                                     <c:if test="${inputError.wrongFormatEmail}">
-                                        <span>${inputError.wrongFormatEmailMessage}</span>
+                                        <span class="errors">${inputError.wrongFormatEmailMessage}</span>
                                     </c:if>
                                 </div>
                             </div>
@@ -55,10 +55,10 @@
                                 <div class="col-md-12">
                                     <input type="password" class="form-control form-control-line" name="password" id="password">
                                     <c:if test="${inputError.emptyPassword}">
-                                        <span>${inputError.emptyFieldMessage}</span>
+                                        <span class="errors">${inputError.emptyFieldMessage}</span>
                                     </c:if>
                                     <c:if test="${inputError.weakPassword}">
-                                        <span>${inputError.weakPasswordMessage}</span>
+                                        <span class="errors">${inputError.weakPasswordMessage}</span>
                                     </c:if>
                                 </div>
                             </div>

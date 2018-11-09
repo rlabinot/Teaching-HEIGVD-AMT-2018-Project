@@ -18,13 +18,25 @@
                 <div class="col-sm-12">
                     <div class="white-box">
 
+                        <c:choose>
+                            <c:when test="${app.id}">
+                                <c:set var="path" value="/app?id=${app.id}" />
+                                <c:set var="action" value="Edit" />
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="path" value="" />
+                                <c:set var="action" value="Register" />
+
+                            </c:otherwise>
+                        </c:choose>
+
                         <!-- App Registration Form -->
-                        <form method="post" class="form-horizontal form-material">
+                        <form method="post" action="${path}" class="form-horizontal form-material">
 
                             <div class="form-group">
                                 <label class="col-md-12">Name</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="name" class="form-control form-control-line">
+                                    <input type="text" name="name" value="${app.name}" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyName}">
                                         <span>${inputError.emptyFieldMessage}</span>
                                     </c:if>
@@ -34,36 +46,18 @@
                             <div class="form-group">
                                 <label class="col-md-12">Description</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="description" class="form-control form-control-line">
+                                    <input type="text" name="description" value="${app.description}" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyDescription}">
                                         <span>${inputError.emptyFieldMessage}</span>
                                     </c:if>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-md-12">API Key</label>
-                                <div class="col-md-12">
-                                    <input type="text" name="apiKey" class="form-control form-control-line">
-                                    <c:if test="${inputError.emptyApiKey}">
-                                        <span>${inputError.emptyFieldMessage}</span>
-                                    </c:if>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-12">API Secret</label>
-                                <div class="col-md-12">
-                                    <input type="password" name="apiSecret" class="form-control form-control-line">
-                                    <c:if test="${inputError.emptyApiSecret}">
-                                        <span>${inputError.emptyFieldMessage}</span>
-                                    </c:if>
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="submit" value="Register" class="btn btn-success"/>
+                                    <input type="submit" value="${action}" class="btn btn-success"/>
                                 </div>
                             </div>
 
