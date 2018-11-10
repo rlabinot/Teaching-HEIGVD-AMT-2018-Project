@@ -155,7 +155,7 @@ public class UserServlet extends HttpServlet {
                         httpSession.setAttribute("mustChangePassword", false);
                         httpSession.setAttribute("password", password1);
                         response.sendRedirect("/webui/home");
-                        //request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
+
                     } else {
                         // send error
                         request.setAttribute("inputError", inputError);
@@ -169,7 +169,7 @@ public class UserServlet extends HttpServlet {
 
             default:
                 // redirect to 404 page
-                response.sendRedirect("/webui/aksdjlakjd");
+                //response.sendRedirect("/webui/aksdjlakjd");
         }
 
         /*

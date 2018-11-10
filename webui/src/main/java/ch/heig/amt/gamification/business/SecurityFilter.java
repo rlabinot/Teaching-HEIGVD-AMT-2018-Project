@@ -67,18 +67,22 @@ public class SecurityFilter implements Filter {
             // CHECK IF ADMIN AND GOING TO USER PAGE
             if (isAdmin && path.startsWith("/manageapps")) {
                 httpResponse.sendRedirect("/webui/manageusers");
+                return;
             }
 
             // CHECK IF USER AND GOING TO ADMIN PAGE
             if (!isAdmin && path.startsWith("/manageusers")) {
                 httpResponse.sendRedirect("/webui/manageapps");
+                return;
             }
 
+            /*
             // TODO : check if mustChangePassword == true, in this case redirect to chngPassword.jsp
             boolean mustChangePassword = Boolean.TRUE == httpRequest.getSession().getAttribute("mustChangePassword");
             if (mustChangePassword) {
                 request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
-            }
+                return;
+            }*/
 
             /*
              * We authorize the access, so we can tell the request processing pipeline to
