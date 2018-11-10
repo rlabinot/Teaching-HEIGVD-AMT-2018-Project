@@ -37,7 +37,7 @@ public class UserServlet extends HttpServlet {
                 break;
 
             case "suspend":
-                userDAO.changeUserState(userEmail);
+                userDAO.changeUserState(userEmail, false);
                 response.sendRedirect("/webui/home");
                 break;
 
