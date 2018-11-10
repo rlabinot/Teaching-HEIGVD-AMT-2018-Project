@@ -36,14 +36,14 @@ public class AppServlet extends HttpServlet {
 
             case "edit":
                 //Application appToEdit = null; //TODO: delete that as soon as possible
-                Application appToEdit = applicationDAO.readApplication(userEmail, Integer.parseInt(appId));
+                Application appToEdit = applicationDAO.readApplication(Integer.parseInt(appId), userEmail);
                 request.setAttribute("app", appToEdit);
                 request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
                 break;
 
             case "show":
                 //Application appToShow = null; //TODO: delete that as soon as possible
-                Application appToShow = applicationDAO.readApplication(userEmail, Integer.parseInt(appId));
+                Application appToShow = applicationDAO.readApplication(Integer.parseInt(appId), userEmail);
                 request.setAttribute("app", appToShow);
                 request.getRequestDispatcher("/WEB-INF/pages/showApp.jsp").forward(request, response);
                 break;
