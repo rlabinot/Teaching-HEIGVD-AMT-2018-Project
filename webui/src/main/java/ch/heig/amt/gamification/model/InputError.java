@@ -7,7 +7,9 @@ public class InputError {
     private static final String WRONG_LOGIN_MESSAGE = "Wrong login or password";
     private static final String USER_ALREADY_REGISTERED = "Email already registered";
     private static final String APP_ALREADY_REGISTERED = "Application already registered";
-    private static final String USER_MUST_CHANGE_PASSWORD = "Your password has been reset, please change it";
+    private static final String USER_MUST_CHANGE_PASSWORD = "Your password has been reset, please enter a new password";
+    private static final String BOTH_PASSWORD_DIFFERENT = "Both passwords should be equal";
+    private static final String PASSWORD_REUSED = "You have already used this password, please enter a new password";
 
     // Create user
     private boolean emptyName;
@@ -17,6 +19,8 @@ public class InputError {
     private boolean weakPassword;
     private boolean emailAlreadyInUse;
     private boolean mustChangePassword;
+    private boolean bothPasswordDifferent;
+    private boolean passwordReused;
 
     // Create app
     private boolean emptyDescription;
@@ -62,6 +66,21 @@ public class InputError {
     public boolean isMustChangePassword() { return mustChangePassword; }
     public void setMustChangePassword(boolean mustChangePassword) { this.mustChangePassword = mustChangePassword; }
 
+    public boolean isBothPasswordDifferent() {
+        return bothPasswordDifferent;
+    }
+
+    public void setBothPasswordDifferent(boolean bothPasswordDifferent) {
+        this.bothPasswordDifferent = bothPasswordDifferent;
+    }
+
+    public boolean isPasswordReused() {
+        return passwordReused;
+    }
+
+    public void setPasswordReused(boolean passwordReused) {
+        this.passwordReused = passwordReused;
+    }
 
     // MESSAGES ERRORS GETTEURS
     public String getEmptyFieldMessage() { return EMPTY_FIELD_MESSAGE; }
@@ -73,5 +92,6 @@ public class InputError {
     public String getUserAlreadyRegistered() { return USER_ALREADY_REGISTERED; }
     public String getAppAlreadyRegistered() { return APP_ALREADY_REGISTERED; }
     public String getUserMustChangePassword() { return USER_MUST_CHANGE_PASSWORD; }
-
+    public static String getBothPasswordDifferent() { return BOTH_PASSWORD_DIFFERENT; }
+    public static String getPasswordReused() { return PASSWORD_REUSED; }
 }
