@@ -1,6 +1,7 @@
 package ch.heig.amt.gamification.business.dao;
 
 import ch.heig.amt.gamification.model.OldPassword;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -29,7 +30,7 @@ public class OldPasswordDAO implements OldPasswordDAOLocal {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE);
             preparedStatement.setString(1, oldPasswordToAdd.getEmail());
-            preparedStatement.setString(2, oldPasswordToAdd.getPassword());
+            preparedStatement.setString(2, DigestUtils.sha256Hex(oldPasswordToAdd.getPassword()));
 
             preparedStatement.execute();
 

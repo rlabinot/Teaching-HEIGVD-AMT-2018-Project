@@ -9,7 +9,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE Users(
   Umail VARCHAR(50) UNIQUE NOT NULL,
   Uname VARCHAR(50) NOT NULL,
-  Upassword VARCHAR(50) NOT NULL,
+  Upassword CHAR(64) NOT NULL,
   UisAdmin INT(1) NOT NULL,
   UisActive INT(1) NOT NULL,
   UmustChangePassword INT(1) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE Users(
 
 CREATE TABLE OldPasswords(
   OPref VARCHAR(50) NOT NULL,
-  OPpassword VARCHAR(50) NOT NULL,
+  OPpassword CHAR(64) NOT NULL,
   
   PRIMARY KEY (OPref, OPpassword),
   FOREIGN KEY (OPref) REFERENCES Users(Umail)

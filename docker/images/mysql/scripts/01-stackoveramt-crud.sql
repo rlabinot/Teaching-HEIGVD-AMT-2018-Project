@@ -27,7 +27,7 @@ DROP PROCEDURE IF EXISTS deleteActionLogs;
 
 /* CRUD over a user */
 DELIMITER //
-	CREATE PROCEDURE createUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1), IN UmustChangePassword INT(1))
+	CREATE PROCEDURE createUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword CHAR(64), IN UisAdmin INT(1), IN UisActive INT(1), IN UmustChangePassword INT(1))
 	BEGIN
 		INSERT INTO Users(Umail, Uname, Upassword, UisAdmin, UisActive, UmustChangePassword) VALUES 
         (Umail, Uname, Upassword, UisAdmin, UisActive, UmustChangePassword);
@@ -49,14 +49,14 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE userLogin(IN Umail VARCHAR(50), IN Upassword VARCHAR(50))
+	CREATE PROCEDURE userLogin(IN Umail VARCHAR(50), IN Upassword CHAR(64))
 	BEGIN
 		SELECT * FROM Users WHERE Users.Umail LIKE BINARY Umail AND Users.Upassword LIKE BINARY Upassword;
 	END //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE updateUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword VARCHAR(50), IN UisAdmin INT(1), IN UisActive INT(1), IN UmustChangePassword INT(1))
+	CREATE PROCEDURE updateUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword CHAR(64), IN UisAdmin INT(1), IN UisActive INT(1), IN UmustChangePassword INT(1))
 	BEGIN
 		UPDATE Users
         SET Users.Uname=Uname, Users.Upassword=Upassword, Users.UisAdmin=UisAdmin, Users.UisActive=UisActive, Users.UmustChangePassword=UmustChangePassword
@@ -65,7 +65,7 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE changeUserPassword(IN Umail VARCHAR(50), IN Upassword VARCHAR(50))
+	CREATE PROCEDURE changeUserPassword(IN Umail VARCHAR(50), IN Upassword CHAR(64))
 	BEGIN
 		UPDATE Users
         SET Users.Upassword=Upassword, Users.UmustChangePassword=0
@@ -100,7 +100,7 @@ DELIMITER ;
 
 /* CRUD over an old password */
 DELIMITER //
-	CREATE PROCEDURE createOldPassword(IN OPref VARCHAR(50), IN OPpassword VARCHAR(50))
+	CREATE PROCEDURE createOldPassword(IN OPref VARCHAR(50), IN OPpassword CHAR(64))
 	BEGIN
 		INSERT INTO OldPasswords(OPref, OPpassword) VALUES 
         (OPref, OPpassword);
