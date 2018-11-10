@@ -23,8 +23,10 @@ public class UserDAO implements UserDAOLocal {
     private final String LOGIN   = "CALL userLogin(?, ?)";
     private final String UPDATE = "CALL updateUser(?, ?, ?, ?, ?, ?)";
     private final String DELETE = "CALL deleteUser(?)";
-    private final String SUSPEND = "CALL suspendUser(?)";
+    private final String CHANGE_STATE = "CALL suspendUser(?, ?)";
     private final String RESET = "CALL resetUserPassword(?)";
+    private final String CHANGE_USER_PASSWORD = "CALL changeUserPassword(?, ?, ?)";
+
 
     @Resource(name = "jdbc/stackoveramt")
     DataSource dataSource;
@@ -147,10 +149,11 @@ public class UserDAO implements UserDAOLocal {
     }
 
     @Override
-    public void suspendUser(String userEmail) {
+    public void changeUserState(String userEmail, boolean state) {
         try(Connection connection = dataSource.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(SUSPEND);
+            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_STATE);
             preparedStatement.setString(1,userEmail);
+            preparedStatement.setBoolean(2, state);
             preparedStatement.execute();
 
         } catch (SQLException e) {
@@ -164,6 +167,20 @@ public class UserDAO implements UserDAOLocal {
         try(Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(RESET);
             preparedStatement.setString(1,userEmail);
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void changeUserPassword(String mail, String password) {
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_USER_PASSWORD);
+            preparedStatement.setString(1,mail);
+            preparedStatement.setString(2, password);
             preparedStatement.execute();
 
         } catch (SQLException e) {

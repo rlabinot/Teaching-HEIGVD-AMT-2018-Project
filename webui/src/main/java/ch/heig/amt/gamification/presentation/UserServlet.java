@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserServlet extends HttpServlet {
 
@@ -39,7 +37,7 @@ public class UserServlet extends HttpServlet {
                 break;
 
             case "suspend":
-                userDAO.suspendUser(userEmail);
+                userDAO.changeUserState(userEmail);
                 response.sendRedirect("/webui/home");
                 break;
 

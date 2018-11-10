@@ -61,6 +61,15 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
+	CREATE PROCEDURE changeUserPassword(IN Umail VARCHAR(50), IN Upassword VARCHAR(50))
+	BEGIN
+		UPDATE Users
+        SET Users.Upassword=Upassword, Users.UmustChangePassword=0
+        WHERE Users.Umail LIKE Umail;
+	END //
+DELIMITER ;
+
+DELIMITER //
 	CREATE PROCEDURE deleteUser(IN Umail VARCHAR(50))
 	BEGIN
 		DELETE FROM Users WHERE Users.Umail LIKE Umail;
@@ -68,10 +77,10 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE suspendUser(IN Umail VARCHAR(50))
+	CREATE PROCEDURE changeUserState(IN Umail VARCHAR(50), IN UisActive INT(1))
 	BEGIN
 		UPDATE Users
-        SET Users.UisActive=1
+        SET Users.UisActive=UisActive
         WHERE Users.Umail LIKE Umail;
 	END //
 DELIMITER ;
