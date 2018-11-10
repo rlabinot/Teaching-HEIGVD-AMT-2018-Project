@@ -92,12 +92,12 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
-    public void updateApplication(int appId, Application values) {
+    public void updateApplication(int appId, String name, String description) {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setInt(1, appId);
-            preparedStatement.setString(2, values.getName());
-            preparedStatement.setString(3, values.getDescription());
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, description);
             preparedStatement.execute();
 
         } catch (SQLException e) {
