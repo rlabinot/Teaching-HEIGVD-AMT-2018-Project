@@ -29,8 +29,6 @@ public class SecurityFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
-        System.out.println("path = " + path);
-
         boolean isTargetUrlProtected = true;
         if (path.equals("/")) {
             isTargetUrlProtected = false;
@@ -38,7 +36,7 @@ public class SecurityFilter implements Filter {
             isTargetUrlProtected = false;
         } if (path.startsWith("/login")) {
             isTargetUrlProtected = false;
-        } if (path.startsWith("/user")) {
+        } if (path.startsWith("/user") && !path.contains("action")) {
             isTargetUrlProtected = false;
         } else {
             /*
