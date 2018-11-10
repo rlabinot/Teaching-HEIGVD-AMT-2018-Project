@@ -12,6 +12,7 @@ public class InputError {
     private static final String BOTH_PASSWORD_DIFFERENT = "Both passwords should be equal";
     private static final String PASSWORD_REUSED = "You have already used this password, please enter a new password";
     private static final String INACTIVE_USER_MESSAGE = "Your account has been suspended";
+    private static final String USER_PASSWORD_RESET = "Your password has been reset, please check your mails";
 
 
     // Create user
@@ -32,10 +33,13 @@ public class InputError {
     // Login
     private boolean wrongLogin;
     private boolean inactiveUser;
+    private boolean passwordReset;
+
 
     public boolean checkErrors() {
-        return emptyName || emptyEmail || wrongFormatEmail || emptyPassword || weakPassword || emptyDescription ||
-                wrongLogin || emailAlreadyInUse || appAlreadyInUse;
+        return emptyName || emptyEmail ||wrongFormatEmail || emptyPassword || weakPassword || emailAlreadyInUse ||
+                mustChangePassword || bothPasswordDifferent || passwordReused || emptyDescription || appAlreadyInUse ||
+                wrongLogin || inactiveUser || passwordReset;
     }
 
 
@@ -73,15 +77,9 @@ public class InputError {
     public boolean isBothPasswordDifferent() {
         return bothPasswordDifferent;
     }
+    public void setBothPasswordDifferent(boolean bothPasswordDifferent) {this.bothPasswordDifferent = bothPasswordDifferent;}
 
-    public void setBothPasswordDifferent(boolean bothPasswordDifferent) {
-        this.bothPasswordDifferent = bothPasswordDifferent;
-    }
-
-    public boolean isPasswordReused() {
-        return passwordReused;
-    }
-
+    public boolean isPasswordReused() {return passwordReused;}
     public void setPasswordReused(boolean passwordReused) {
         this.passwordReused = passwordReused;
     }
@@ -89,10 +87,12 @@ public class InputError {
     public boolean isInactiveUser() {
         return inactiveUser;
     }
-
     public void setInactiveUser(boolean inactiveUser) {
         this.inactiveUser = inactiveUser;
     }
+
+    public boolean isPasswordReset() {return passwordReset;}
+    public void setPasswordReset(boolean passwordReset) {this.passwordReset = passwordReset;}
 
     // MESSAGES ERRORS GETTEURS
     public String getEmptyFieldMessage() { return EMPTY_FIELD_MESSAGE; }
@@ -107,5 +107,5 @@ public class InputError {
     public String getBothPasswordDifferent() { return BOTH_PASSWORD_DIFFERENT; }
     public String getPasswordReused() { return PASSWORD_REUSED; }
     public String getInactiveUserMessage() { return INACTIVE_USER_MESSAGE; }
-
+    public String getUserPasswordReset() {return USER_PASSWORD_RESET;}
 }
