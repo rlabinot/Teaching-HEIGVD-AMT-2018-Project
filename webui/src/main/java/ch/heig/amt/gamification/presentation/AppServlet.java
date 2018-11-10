@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -19,6 +20,8 @@ public class AppServlet extends HttpServlet {
     ApplicationDAOLocal applicationDAO;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession userSession = request.getSession();
+        String userEmail = userSession.getAttribute("email").toString();
         String action = request.getParameter("action");
         String appId = request.getParameter("id");
         action = action == null ? "" : action;
@@ -27,20 +30,20 @@ public class AppServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
 
             case "delete":
-                applicationDAO.deleteApplication(Integer.valueOf(appId).intValue());
+                applicationDAO.deleteApplication(Integer.valueOf(appId).intValue(), userEmail);
                 response.sendRedirect("/webui/home");
                 break;
 
             case "edit":
                 //Application appToEdit = null; //TODO: delete that as soon as possible
-                Application appToEdit = applicationDAO.readApplication(Integer.parseInt(appId));
+                Application appToEdit = applicationDAO.readApplication(userEmail, Integer.parseInt(appId));
                 request.setAttribute("app", appToEdit);
                 request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
                 break;
 
             case "show":
                 //Application appToShow = null; //TODO: delete that as soon as possible
-                Application appToShow = applicationDAO.readApplication(Integer.parseInt(appId));
+                Application appToShow = applicationDAO.readApplication(userEmail, Integer.parseInt(appId));
                 request.setAttribute("app", appToShow);
                 request.getRequestDispatcher("/WEB-INF/pages/showApp.jsp").forward(request, response);
                 break;
@@ -52,6 +55,8 @@ public class AppServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession userSession = request.getSession();
+        String userEmail = userSession.getAttribute("email").toString();
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
@@ -73,7 +78,7 @@ public class AppServlet extends HttpServlet {
                 applicationDAO.createApplication(appToAdd);
             } else {
                 // Edit the app in the db.
-                applicationDAO.updateApplication(Integer.parseInt(id), name, description);
+                applicationDAO.updateApplication(Integer.parseInt(id), name, description, userEmail);
             }
 
             response.sendRedirect("/webui/home");
