@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
 
     @EJB
     UserDAOLocal userDAO;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -39,12 +39,12 @@ public class UserServlet extends HttpServlet {
                 break;
 
             case "suspend":
-                // userDAO.suspendUser(userEmail); TODO: Implement this
+                userDAO.suspendUser(userEmail);
                 response.sendRedirect("/webui/home");
                 break;
 
             case "changePassword":
-                // userDAO.resetUserPassword(userEmail); TODO: Implement this
+                userDAO.resetUserPassword(userEmail);
                 response.sendRedirect("/webui/home");
                 break;
 

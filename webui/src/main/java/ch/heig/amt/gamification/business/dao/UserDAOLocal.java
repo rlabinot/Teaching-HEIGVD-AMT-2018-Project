@@ -13,4 +13,6 @@ public interface UserDAOLocal {
     public User userLogin(String emailToRead, String password);
     public void updateUser(String userToUpdate, User values);
     public void deleteUser(String userToDelete);
+    public void suspendUser(String userEmail);
+    public void resetUserPassword(String userEmail);
 }

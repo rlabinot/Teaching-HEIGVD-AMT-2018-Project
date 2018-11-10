@@ -23,6 +23,8 @@ public class UserDAO implements UserDAOLocal {
     private final String LOGIN   = "CALL userLogin(?, ?)";
     private final String UPDATE = "CALL updateUser(?, ?, ?, ?, ?, ?)";
     private final String DELETE = "CALL deleteUser(?)";
+    private final String SUSPEND = "CALL suspendUser(?)";
+    private final String RESET = "CALL resetUserPassword(?)";
 
     @Resource(name = "jdbc/stackoveramt")
     DataSource dataSource;
@@ -142,5 +144,31 @@ public class UserDAO implements UserDAOLocal {
             throw new RuntimeException(e);
         }
 
+    }
+
+    @Override
+    public void suspendUser(String userEmail) {
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(SUSPEND);
+            preparedStatement.setString(1,userEmail);
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void resetUserPassword(String userEmail) {
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(RESET);
+            preparedStatement.setString(1,userEmail);
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 }

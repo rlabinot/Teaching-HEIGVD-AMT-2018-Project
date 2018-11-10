@@ -67,6 +67,24 @@ DELIMITER //
 	END //
 DELIMITER ;
 
+DELIMITER //
+	CREATE PROCEDURE suspendUser(IN Umail VARCHAR(50))
+	BEGIN
+		UPDATE Users
+        SET Users.UisActive=1
+        WHERE Users.Umail LIKE Umail;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE resetUserPassword(IN Umail VARCHAR(50))
+	BEGIN
+		UPDATE Users
+        SET Users.UmustChangePassword=1
+        WHERE Users.Umail LIKE Umail;
+	END //
+DELIMITER ;
+
 /* CRUD over an old password */
 DELIMITER //
 	CREATE PROCEDURE createOldPassword(IN OPref VARCHAR(50), IN OPpassword VARCHAR(50))
