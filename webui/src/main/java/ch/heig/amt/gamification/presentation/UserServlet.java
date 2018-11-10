@@ -93,84 +93,84 @@ public class UserServlet extends HttpServlet {
      */
     }
 
-        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action");
 
-            action = action == null ? "" : action;
-            InputError inputError = new InputError();
-            // TODO: Declare variable here --> certainly there is a crash when changing password action
-            switch (action) {
-                case "":
-                    // Get posted parameter
-                    String name = request.getParameter("name");
-                    String email = request.getParameter("email");
-                    String password = request.getParameter("password");
+        action = action == null ? "" : action;
+        InputError inputError = new InputError();
+        // TODO: Declare variable here --> certainly there is a crash when changing password action
+        switch (action) {
+            case "":
+                // Get posted parameter
+                String name = request.getParameter("name");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
 
-                    // Check for errors
-                    inputError.setEmptyName( name == null || name.trim().equals("") );
-                    inputError.setEmptyEmail( email == null || email.trim().equals("") );
-                    inputError.setEmptyPassword( password == null || password.trim().equals("") );
-                    inputError.setWeakPassword( checkPassword(password) == false && !inputError.isEmptyPassword() );
-                    inputError.setWrongFormatEmail( email.indexOf('@') == -1 && !inputError.isEmptyEmail() );
+                // Check for errors
+                inputError.setEmptyName(name == null || name.trim().equals(""));
+                inputError.setEmptyEmail(email == null || email.trim().equals(""));
+                inputError.setEmptyPassword(password == null || password.trim().equals(""));
+                inputError.setWeakPassword(checkPassword(password) == false && !inputError.isEmptyPassword());
+                inputError.setWrongFormatEmail(email.indexOf('@') == -1 && !inputError.isEmptyEmail());
 
-                    // check if no errors // TODO: Check if the email is not already in use !IMPORTANT
-                    if (inputError.checkErrors() == false) {
-                        // Ajout à la DB
-                        User userToAdd = new User(name, email, password, false, true, false);
-                        userDAO.createUser(userToAdd);
-                        response.sendRedirect("/webui/login");
+                // check if no errors // TODO: Check if the email is not already in use !IMPORTANT
+                if (inputError.checkErrors() == false) {
+                    // Ajout à la DB
+                    User userToAdd = new User(name, email, password, false, true, false);
+                    userDAO.createUser(userToAdd);
+                    response.sendRedirect("/webui/login");
+                } else {
+                    request.setAttribute("inputError", inputError);
+                    request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
+                }
+                break;
+
+            case "changePassword":
+                HttpSession httpSession = request.getSession();
+
+                // define the user parameters
+                email = httpSession.getAttribute("email").toString();
+                password = httpSession.getAttribute("password").toString();
+
+                // both new given passwords, should be equal
+                String password1 = request.getParameter("password");
+                String password2 = request.getParameter("password2");
+
+                inputError.setBothPasswordDifferent(!password1.equals(password2));
+                inputError.setWeakPassword(!checkPassword(password1));
+
+                if (!inputError.checkErrors()) {
+
+                    List oldPasswords = oldPasswordDAO.readAllOldPasswordFromUser(email);
+                    // add UUID password in the old pwd list
+                    oldPasswords.add(DigestUtils.sha256Hex(password));
+                    inputError.setPasswordReused(oldPasswords.contains(DigestUtils.sha256Hex(password1)));
+
+                    // check if the new password is not in the old password list, not in the 1st check for better performance
+                    if (!inputError.checkErrors()) {
+
+                        // set the new password
+                        userDAO.changeUserPassword(email, password1, false);
+                        httpSession.setAttribute("mustChangePassword", false);
+                        httpSession.setAttribute("password", password1);
+                        response.sendRedirect("/webui/home");
+                        //request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
                     } else {
-                        request.setAttribute("inputError", inputError);
-                        request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
-                    }
-                    break;
-
-                case "changePassword":
-                    HttpSession httpSession = request.getSession();
-
-                    // define the user parameters
-                    email = httpSession.getAttribute("email").toString();
-                    password = httpSession.getAttribute("password").toString();
-
-                    // both new given passwords, should be equal
-                    String password1 = request.getParameter("password");
-                    String password2 = request.getParameter("password2");
-
-                    inputError.setBothPasswordDifferent(!password1.equals(password2));
-                    inputError.setWeakPassword(!checkPassword(password1));
-
-                    if (!inputError.checkErrors()){
-
-                        List oldPasswords = oldPasswordDAO.readAllOldPasswordFromUser(email);
-                        // add UUID password in the old pwd list
-                        oldPasswords.add(DigestUtils.sha256Hex(password));
-                        inputError.setPasswordReused(oldPasswords.contains(DigestUtils.sha256Hex(password1)));
-
-                        // check if the new password is not in the old password list, not in the 1st check for better performance
-                        if (!inputError.checkErrors()){
-
-                            // set the new password
-                            userDAO.changeUserPassword(email, password1, false);
-                            httpSession.setAttribute("mustChangePassword", false);
-                            httpSession.setAttribute("password", password1);
-                            response.sendRedirect("/webui/home");
-                            //request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
-                        } else {
-                            // send error
-                            request.setAttribute("inputError", inputError);
-                            request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
-                        }
-                    } else {
+                        // send error
                         request.setAttribute("inputError", inputError);
                         request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
                     }
-                    break;
+                } else {
+                    request.setAttribute("inputError", inputError);
+                    request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
+                }
+                break;
 
-                default:
-                    // redirect to 404 page
-                    response.sendRedirect("/webui/aksdjlakjd");
-            }
+            default:
+                // redirect to 404 page
+                response.sendRedirect("/webui/aksdjlakjd");
+        }
 
         /*
         // base action is registration of the user
