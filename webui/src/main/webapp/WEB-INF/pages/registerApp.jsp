@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">Name</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="name" value="${app.name}" class="form-control form-control-line">
+                                    <input id="inputName" type="text" name="name" value="${app.name}" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyName}">
                                         <span>${inputError.emptyFieldMessage}</span>
                                     </c:if>
@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">Description</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="description" value="${app.description}" class="form-control form-control-line">
+                                    <input id="inputDescription" type="text" name="description" value="${app.description}" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyDescription}">
                                         <span>${inputError.emptyFieldMessage}</span>
                                     </c:if>
@@ -57,7 +57,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="submit" value="${action}" class="btn btn-success"/>
+                                    <input id="buttonRegister" type="submit" value="${action}" class="btn btn-success"/>
                                 </div>
                             </div>
 

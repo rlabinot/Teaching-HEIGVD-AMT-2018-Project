@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">Name</label>
                                 <div class="col-md-12">
-                                    <input type="text" name="name" class="form-control form-control-line">
+                                    <input id="inputName" type="text" name="name" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyName}">
                                         <span class="errors">${inputError.emptyFieldMessage}</span>
                                     </c:if>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="col-md-12">E-mail</label>
                                 <div class="col-md-12">
-                                    <input type="email" name="email" class="form-control form-control-line">
+                                    <input id="inputEmail" type="email" name="email" class="form-control form-control-line">
                                     <c:if test="${inputError.emptyEmail}">
                                         <span class="errors">${inputError.emptyFieldMessage}</span>
                                     </c:if>
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label for="password" class="col-md-12">Password</label>
                                 <div class="col-md-12">
-                                    <input type="password" class="form-control form-control-line" name="password" id="password">
+                                    <input id="inputPassword" type="password" class="form-control form-control-line" name="password">
                                     <c:if test="${inputError.emptyPassword}">
                                         <span class="errors">${inputError.emptyFieldMessage}</span>
                                     </c:if>

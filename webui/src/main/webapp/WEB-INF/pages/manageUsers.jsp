@@ -61,15 +61,15 @@
                                         </td>
                                         <c:choose>
                                             <c:when test="${user.active}">
-                                                <td><a href="/webui/user?action=suspend&id=${user.email}">Suspend</a></td>
+                                                <td><a id="buttonSuspend" href="/webui/user?action=suspend&id=${user.email}">Suspend</a></td>
                                             </c:when>
                                             <c:otherwise>
-                                                <td><a href="/webui/user?action=activate&id=${user.email}">Activate</a></td>
+                                                <td><a id="buttonActivate" href="/webui/user?action=activate&id=${user.email}">Activate</a></td>
                                             </c:otherwise>
                                         </c:choose>
 
-                                        <td><a href="/webui/user?action=changePassword&id=${user.email}">Reset password</a></td>
-                                        <td><a href="/webui/user?action=delete&id=${user.email}">Delete</a></td>
+                                        <td><a id="buttonResetPassword" href="/webui/user?action=changePassword&id=${user.email}">Reset password</a></td>
+                                        <td><a id="buttonDelete" href="/webui/user?action=delete&id=${user.email}">Delete</a></td>
                                     </tr>
                                 </c:forEach>
 

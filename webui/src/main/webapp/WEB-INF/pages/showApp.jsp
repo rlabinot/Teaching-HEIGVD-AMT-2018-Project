@@ -66,8 +66,8 @@
 
                         </table>
                     </div>
-                    <a href="/webui/app?action=edit&id=${app.id}" class="btn btn-success link">Edit</a>
-                    <a href="/webui/app?action=delete&id=${app.id}" class="btn-danger btn link">Delete</a>
+                    <a id="buttonEdit" href="/webui/app?action=edit&id=${app.id}" class="btn btn-success link">Edit</a>
+                    <a id="buttonDelete" href="/webui/app?action=delete&id=${app.id}" class="btn-danger btn link">Delete</a>
                 </div>
             </div>
         </div>

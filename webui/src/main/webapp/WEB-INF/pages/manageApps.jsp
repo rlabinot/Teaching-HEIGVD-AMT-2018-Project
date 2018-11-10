@@ -20,7 +20,7 @@
                     <div class="white-box">
                         <div class="clearfix">
                             <h3 class="box-title pull-left  ">Your applications</h3>
-                            <a href="/webui/app" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Add an application</a>
+                            <a id="buttonAdd" href="/webui/app" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Add an application</a>
                         </div>
 
                         <!-- App Tab -->
@@ -45,9 +45,9 @@
                                         <td>${app.description}</td>
                                         <td>${app.apiKey}</td>
                                         <td>${app.apiSecret}</td>
-                                        <td><a href="/webui/app?action=show&id=${app.id}">Show</a></td>
-                                        <td><a href="/webui/app?action=edit&id=${app.id}">Edit</a></td>
-                                        <td><a href="/webui/app?action=delete&id=${app.id}">Delete</a></td>
+                                        <td><a id="buttonShow" href="/webui/app?action=show&id=${app.id}">Show</a></td>
+                                        <td><a id="buttonEdit" href="/webui/app?action=edit&id=${app.id}">Edit</a></td>
+                                        <td><a id="buttonDelete" href="/webui/app?action=delete&id=${app.id}">Delete</a></td>
                                     </tr>
                                 </c:forEach>
 
