@@ -84,8 +84,7 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             }
         } catch (Exception e){
-
-            System.out.println("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOON");
+            e.printStackTrace();
         }
 
 
