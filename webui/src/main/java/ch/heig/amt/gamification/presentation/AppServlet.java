@@ -35,21 +35,27 @@ public class AppServlet extends HttpServlet {
                 break;
 
             case "edit":
-                //Application appToEdit = null; //TODO: delete that as soon as possible
                 Application appToEdit = applicationDAO.readApplication(Integer.parseInt(appId), userEmail);
-                request.setAttribute("app", appToEdit);
-                request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
+                if (appToEdit == null) {
+                    response.sendRedirect("/webui/home");
+                } else {
+                    request.setAttribute("app", appToEdit);
+                    request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
+                }
                 break;
 
             case "show":
-                //Application appToShow = null; //TODO: delete that as soon as possible
                 Application appToShow = applicationDAO.readApplication(Integer.parseInt(appId), userEmail);
                 request.setAttribute("app", appToShow);
-                request.getRequestDispatcher("/WEB-INF/pages/showApp.jsp").forward(request, response);
+                if (appToShow == null) {
+                    response.sendRedirect("/webui/home");
+                } else {
+                    request.getRequestDispatcher("/WEB-INF/pages/showApp.jsp").forward(request, response);
+                }
                 break;
 
             default:
-                response.sendRedirect("/webui/aksdjlakjd");
+                request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
         }
 
     }

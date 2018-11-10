@@ -28,6 +28,10 @@ public abstract class AbstractWebuiFluentPage extends FluentPage {
   private final static String menuItemBeers = "menuItemBeers";
   private final static String menuItemAJAXPage = "menuItemAJAXPage";
 
+  private final static String menuItemUsers = "menuItemUsers";
+  private final static String menuItemApps = "menuItemApps";
+  private final static String menuItemLogout = "menuItemLogout";
+
   /**
    * This method illustrates two aspects of the Page Object pattern.
    *
@@ -56,6 +60,18 @@ public abstract class AbstractWebuiFluentPage extends FluentPage {
   public void goToCorporateInformationPageViaMenu() {
     click(menuExamples);
     click(menuItemShowCorporateInformation);
+  }
+
+  public void goToManageUsersPageViaMenu() {
+    click(menuItemUsers);
+  }
+
+  public void goToManageAppsPageViaMenu() {
+    click(menuItemApps);
+  }
+
+  public void goToLogoutPageViaMenu() {
+    click(menuItemLogout);
   }
 
 }
