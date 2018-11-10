@@ -18,17 +18,7 @@
                 <div class="white-box">
 
                     <!-- Login Form -->
-                    <form method="post" class="form-horizontal form-material">
-
-                        <div class="form-group">
-                            <label class="col-md-12">Change password token</label>
-                            <div class="col-md-12">
-                                <input type="password" class="form-control form-control-line" name="token">
-                                <c:if test="${inputError.wrongLogin}">
-                                    <span>${inputError.wrongLoginMessage}</span>
-                                </c:if>
-                            </div>
-                        </div>
+                    <form method="post" action="/user?action=changePassword" class="form-horizontal form-material">
 
                         <div class="form-group">
                             <label for="password" class="col-md-12">New password</label>
