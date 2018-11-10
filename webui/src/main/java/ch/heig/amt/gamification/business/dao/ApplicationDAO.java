@@ -44,12 +44,12 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
-    public Application readApplication(String email, int appID) {
+    public Application readApplication(int appID, String email) {
 
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(READ);
-            preparedStatement.setString(1, email);
-            preparedStatement.setInt(2, appID);
+            preparedStatement.setInt(1, appID);
+            preparedStatement.setString(2, email);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()) {
                 return new Application(

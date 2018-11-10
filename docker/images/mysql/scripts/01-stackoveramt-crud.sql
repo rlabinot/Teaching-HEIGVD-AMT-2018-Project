@@ -131,9 +131,9 @@ DELIMITER //
 DELIMITER ; 
 
 DELIMITER //
-	CREATE PROCEDURE readApplication(IN id INT(10))
+	CREATE PROCEDURE readApplication(IN id INT(10), IN RefUmail VARCHAR(50))
 	BEGIN
-		SELECT * FROM Applications WHERE Applications.Aid LIKE id;
+		SELECT * FROM Applications WHERE Applications.Aid LIKE id AND Applications.RefUmail LIKE RefUmail;
 	END //
 DELIMITER ; 
 
