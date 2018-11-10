@@ -25,7 +25,7 @@ public class UserDAO implements UserDAOLocal {
     private final String DELETE = "CALL deleteUser(?)";
     private final String CHANGE_STATE = "CALL changeUserState(?, ?)";
     private final String RESET = "CALL resetUserPassword(?)";
-    private final String CHANGE_USER_PASSWORD = "CALL changeUserPassword(?, ?, ?)";
+    private final String CHANGE_USER_PASSWORD = "CALL changeUserPassword(?, ?)";
 
 
     @Resource(name = "jdbc/stackoveramt")
