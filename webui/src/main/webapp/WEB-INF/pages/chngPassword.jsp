@@ -18,7 +18,7 @@
                 <div class="white-box">
 
                     <!-- Login Form -->
-                    <form method="post" action="/user?action=changePassword" class="form-horizontal form-material">
+                    <form method="post" action="webui/user?action=changePassword" class="form-horizontal form-material">
 
                         <div class="form-group">
                             <label for="password" class="col-md-12">New password</label>
