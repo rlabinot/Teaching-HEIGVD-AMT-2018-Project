@@ -2,9 +2,11 @@ package ch.heig.amt.gamification.presentation;
 
 import ch.heig.amt.gamification.business.EmailSender;
 import ch.heig.amt.gamification.business.EmailSenderLocal;
+import ch.heig.amt.gamification.business.dao.ApplicationDAOLocal;
 import ch.heig.amt.gamification.business.dao.OldPasswordDAO;
 import ch.heig.amt.gamification.business.dao.OldPasswordDAOLocal;
 import ch.heig.amt.gamification.business.dao.UserDAOLocal;
+import ch.heig.amt.gamification.model.Application;
 import ch.heig.amt.gamification.model.InputError;
 import ch.heig.amt.gamification.model.User;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -31,6 +33,9 @@ public class UserServlet extends HttpServlet {
     @EJB
     EmailSenderLocal emailSender;
 
+    @EJB
+    ApplicationDAOLocal appDAO;
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         String userEmail = request.getParameter("id");
@@ -43,6 +48,14 @@ public class UserServlet extends HttpServlet {
                 } else {
                     response.sendRedirect("/webui/home");
                 }
+                break;
+
+            case "listapp":
+                User user = userDAO.readUser(userEmail);
+                List<Application> apps = appDAO.readApplicationFromUser(userEmail);
+                request.setAttribute("user", user);
+                request.setAttribute("apps", apps);
+                request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
                 break;
 
             case "delete":

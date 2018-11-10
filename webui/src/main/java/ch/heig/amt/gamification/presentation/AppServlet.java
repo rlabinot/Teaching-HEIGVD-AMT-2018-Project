@@ -30,7 +30,7 @@ public class AppServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
 
             case "delete":
-                applicationDAO.deleteApplication(Integer.valueOf(appId).intValue(), userEmail);
+                applicationDAO.deleteApplication(Integer.parseInt(appId), userEmail);
                 response.sendRedirect("/webui/home");
                 break;
 

@@ -38,7 +38,15 @@
 
                                 <c:forEach items="${users}" var="user">
                                     <tr>
-                                        <td><a href="/webui/user?action=listapp&id=${user.email}">${user.name}</a></td>
+                                        <c:choose>
+                                            <c:when test="${user.admin}">
+                                                <td>${user.name}</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><a href="/webui/user?action=listapp&id=${user.email}">${user.name}</a></td>
+                                            </c:otherwise>
+                                        </c:choose>
+
                                         <td>${user.email}</td>
                                         <td>
                                             <c:choose>
