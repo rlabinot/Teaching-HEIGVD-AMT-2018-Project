@@ -28,13 +28,13 @@
                             <div class="form-group">
                                 <label class="col-md-12">E-mail</label>
                                 <div class="col-md-12">
-                                    <input type="email" class="form-control form-control-line" name="email">
+                                    <input id="inputEmail" type="email" class="form-control form-control-line" name="email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="col-md-12">Password</label>
                                 <div class="col-md-12">
-                                    <input type="password" class="form-control form-control-line" name="password" id="password">
+                                    <input id="inputPassword" type="password" class="form-control form-control-line" name="password">
                                     <c:if test="${inputError.wrongLogin}">
                                         <span class="errors">${inputError.wrongLoginMessage}</span>
                                     </c:if>
@@ -46,7 +46,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="submit" value="Login" class="btn btn-success"/>
+                                    <input id="buttonSignIn" type="submit" value="Login" class="btn btn-success"/>
                                     <a class="gap" href="/webui/user">Register</a>
                                 </div>
                             </div>
