@@ -55,6 +55,11 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect("/webui/home");
                 break;
 
+            case "activate":
+                userDAO.changeUserState(userEmail, true);
+                response.sendRedirect("/webui/home");
+                break;
+
             case "changePassword":
                 // send mail
                 String auto_password = UUID.randomUUID().toString();
