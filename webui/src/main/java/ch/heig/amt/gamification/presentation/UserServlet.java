@@ -57,8 +57,8 @@ public class UserServlet extends HttpServlet {
             case "changePassword":
                 // send mail
                 String auto_password = UUID.randomUUID().toString();
-                userDAO.resetUserPassword(userEmail);
-                userDAO.changeUserPassword(userEmail, auto_password);
+
+                userDAO.changeUserPassword(userEmail, auto_password, true);
                 String subject = "StackOverAMT : change your password !";
                 String message = "Dear customer,\r\n\r\nYour password on stackoveramt.ch has been reset, please login " +
                         "with the following password : " + auto_password + " and set a new password after your next login." +
@@ -150,7 +150,7 @@ public class UserServlet extends HttpServlet {
                         if (!inputError.checkErrors()){
 
                             // set the new password
-                            userDAO.changeUserPassword(email, password1);
+                            userDAO.changeUserPassword(email, password1, false);
                             httpSession.setAttribute("mustChangePassword", false);
                             httpSession.setAttribute("password", password1);
                             //response.sendRedirect("/webui/home");

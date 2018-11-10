@@ -14,6 +14,5 @@ public interface UserDAOLocal {
     public void updateUser(String userToUpdate, User values);
     public void deleteUser(String userToDelete);
     public void changeUserState(String userEmail, boolean state);
-    public void resetUserPassword(String userEmail);
-    public void changeUserPassword(String mail, String password);
+    public void changeUserPassword(String mail, String password, boolean mustChangePassword);
 }

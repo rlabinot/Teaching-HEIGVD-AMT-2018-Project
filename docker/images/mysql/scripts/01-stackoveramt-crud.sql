@@ -65,10 +65,10 @@ DELIMITER //
 DELIMITER ;
 
 DELIMITER //
-	CREATE PROCEDURE changeUserPassword(IN Umail VARCHAR(50), IN Upassword CHAR(64))
+	CREATE PROCEDURE changeUserPassword(IN Umail VARCHAR(50), IN Upassword CHAR(64), IN UmustChangePassword INT(1))
 	BEGIN
 		UPDATE Users
-        SET Users.Upassword=Upassword, Users.UmustChangePassword=0
+        SET Users.Upassword=Upassword, Users.UmustChangePassword=UmustChangePassword
         WHERE Users.Umail LIKE BINARY Umail;
 	END //
 DELIMITER ;
@@ -85,15 +85,6 @@ DELIMITER //
 	BEGIN
 		UPDATE Users
         SET Users.UisActive=UisActive
-        WHERE Users.Umail LIKE BINARY Umail;
-	END //
-DELIMITER ;
-
-DELIMITER //
-	CREATE PROCEDURE resetUserPassword(IN Umail VARCHAR(50))
-	BEGIN
-		UPDATE Users
-        SET Users.UmustChangePassword=1
         WHERE Users.Umail LIKE BINARY Umail;
 	END //
 DELIMITER ;

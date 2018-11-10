@@ -25,8 +25,7 @@ public class UserDAO implements UserDAOLocal {
     private final String UPDATE = "CALL updateUser(?, ?, ?, ?, ?, ?)";
     private final String DELETE = "CALL deleteUser(?)";
     private final String CHANGE_STATE = "CALL changeUserState(?, ?)";
-    private final String RESET = "CALL resetUserPassword(?)";
-    private final String CHANGE_USER_PASSWORD = "CALL changeUserPassword(?, ?)";
+    private final String CHANGE_USER_PASSWORD = "CALL changeUserPassword(?, ?, ?)";
 
 
     @Resource(name = "jdbc/stackoveramt")
@@ -164,24 +163,12 @@ public class UserDAO implements UserDAOLocal {
     }
 
     @Override
-    public void resetUserPassword(String userEmail) {
-        try(Connection connection = dataSource.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(RESET);
-            preparedStatement.setString(1,userEmail);
-            preparedStatement.execute();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void changeUserPassword(String mail, String password) {
+    public void changeUserPassword(String mail, String password, boolean mustChangePassword) {
         try(Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_USER_PASSWORD);
             preparedStatement.setString(1,mail);
             preparedStatement.setString(2, DigestUtils.sha256Hex(password));
+            preparedStatement.setBoolean(3, mustChangePassword);
             preparedStatement.execute();
 
         } catch (SQLException e) {
