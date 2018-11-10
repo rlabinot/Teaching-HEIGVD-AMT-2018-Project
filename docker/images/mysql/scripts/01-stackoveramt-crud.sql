@@ -6,12 +6,16 @@ DROP PROCEDURE IF EXISTS readAllUser;
 DROP PROCEDURE IF EXISTS userLogin;
 DROP PROCEDURE IF EXISTS updateUser;
 DROP PROCEDURE IF EXISTS deleteUser;
+DROP PROCEDURE IF EXISTS resetUserPassword;
+DROP PROCEDURE IF EXISTS changeUserPassword;
+DROP PROCEDURE IF EXISTS changeUserState;
 DROP PROCEDURE IF EXISTS createOldPassword;
 DROP PROCEDURE IF EXISTS readOldPasswordFromUser;
 DROP PROCEDURE IF EXISTS deleteOldPasswordFromUser;
 DROP PROCEDURE IF EXISTS createApplication;
 DROP PROCEDURE IF EXISTS readApplication;
 DROP PROCEDURE IF EXISTS readApplicationFromUser;
+DROP PROCEDURE IF EXISTS readApplicationFromUserOffset;
 DROP PROCEDURE IF EXISTS updateApplication;
 DROP PROCEDURE IF EXISTS deleteApplication;
 DROP PROCEDURE IF EXISTS deleteAllApplicationFromUser;
@@ -166,7 +170,7 @@ DELIMITER ;
 DELIMITER //
 	CREATE PROCEDURE deleteApplication(IN id INT(10), IN RefUmail VARCHAR(50))
 	BEGIN
-		DELETE FROM Applications WHERE Applications.Aid LIKE id Applications.RefUmail LIKE RefUmail;
+		DELETE FROM Applications WHERE Applications.Aid LIKE id AND Applications.RefUmail LIKE RefUmail;
 	END //
 DELIMITER ; 
 
