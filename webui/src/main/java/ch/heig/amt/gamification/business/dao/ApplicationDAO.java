@@ -19,8 +19,8 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";
     private final String READ = "CALL readApplication(?)";
     private final String READ_FROM_USER = "CALL readApplicationFromUser(?)";
-    private final String UPDATE = "CALL updateApplication(?, ?, ?)";
-    private final String DELETE = "CALL deleteApplication(?)";
+    private final String UPDATE = "CALL updateApplication(?, ?, ?, ?)";
+    private final String DELETE = "CALL deleteApplication(?, ?)";
     private final String DELETE_All_APPLICATION_FROM_USER = "CALL deleteAllApplicationFromUser(?)";
 
     @Resource(name = "jdbc/stackoveramt")
@@ -119,12 +119,13 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
-    public void updateApplication(int appId, String name, String description) {
+    public void updateApplication(int appId, String name, String description, String email) {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setInt(1, appId);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, description);
+            preparedStatement.setString(4, email);
             preparedStatement.execute();
 
         } catch (SQLException e) {
@@ -135,10 +136,11 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
-    public void deleteApplication(int appId) {
+    public void deleteApplication(int appId, String email) {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
             preparedStatement.setInt(1, appId);
+            preparedStatement.setString(2, email);
             preparedStatement.execute();
 
         } catch (SQLException e) {

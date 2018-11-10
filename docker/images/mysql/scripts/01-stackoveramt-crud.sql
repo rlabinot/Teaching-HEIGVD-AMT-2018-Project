@@ -155,18 +155,18 @@ DELIMITER //
 DELIMITER ; 
 
 DELIMITER //
-	CREATE PROCEDURE updateApplication(IN Aid INT(10), IN Aname VARCHAR(50), IN Adescription VARCHAR(150))
+	CREATE PROCEDURE updateApplication(IN Aid INT(10), IN Aname VARCHAR(50), IN Adescription VARCHAR(150), IN RefUmail VARCHAR(50))
 	BEGIN
 		UPDATE Applications
         SET Applications.Aname=Aname, Applications.Adescription=Adescription
-        WHERE Applications.Aid=Aid;
+        WHERE Applications.RefUmail LIKE RefUmail AND Applications.Aid LIKE Aid;
 	END //
 DELIMITER ; 
 
 DELIMITER //
-	CREATE PROCEDURE deleteApplication(IN id INT(10))
+	CREATE PROCEDURE deleteApplication(IN id INT(10), IN RefUmail VARCHAR(50))
 	BEGIN
-		DELETE FROM Applications WHERE Applications.Aid LIKE id;
+		DELETE FROM Applications WHERE Applications.Aid LIKE id Applications.RefUmail LIKE RefUmail;
 	END //
 DELIMITER ; 
 
