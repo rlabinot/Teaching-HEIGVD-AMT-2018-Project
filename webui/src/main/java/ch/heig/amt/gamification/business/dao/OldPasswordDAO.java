@@ -44,8 +44,8 @@ public class OldPasswordDAO implements OldPasswordDAOLocal {
         ArrayList<OldPassword> oldPasswords = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection()){
-
             PreparedStatement preparedStatement = connection.prepareStatement(READ_ALL);
+            preparedStatement.setString(1, email);
             ResultSet rs =  preparedStatement.executeQuery();
 
             while (rs.next()) {
