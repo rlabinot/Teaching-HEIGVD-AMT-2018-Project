@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label for="password" class="col-md-12">New password</label>
                             <div class="col-md-12">
-                                <input id="inputPassword" type="password" class="form-control form-control-line" name="password" id="password">
+                                <input id="inputPassword" type="password" class="form-control form-control-line" name="password">
                                 <c:if test="${inputError.emptyPassword}">
                                     <span>${inputError.emptyFieldMessage}</span>
                                 </c:if>
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label for="password2" class="col-md-12">Confirm new password</label>
                             <div class="col-md-12">
-                                <input id="inputNewPassword" type="password" class="form-control form-control-line" name="password2" id="password2">
+                                <input id="inputNewPassword" type="password" class="form-control form-control-line" name="password2">
                                 <c:if test="${inputError.emptyPassword}">
                                     <span>${inputError.emptyFieldMessage}</span>
                                 </c:if>
