@@ -10,7 +10,7 @@ public interface ApplicationDAOLocal {
     public void createApplication(Application application);
     public Application readApplication(int appID);
     public ArrayList<Application> readApplicationFromUser(String email);
-    public void updateApplication(int appId, Application values);
+    public void updateApplication(int appId, String name, String description);
     public void deleteApplication(int appId);
     public void deleteAllApplicationFromUser(String email);
 }
