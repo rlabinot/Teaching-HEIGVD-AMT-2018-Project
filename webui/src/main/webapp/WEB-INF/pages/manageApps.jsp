@@ -1,5 +1,4 @@
 <%@include file="includes/header.jsp" %>
-
     <%@include file="includes/leftNavbar.jsp" %>
 
     <!-- Page Content -->
