@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="col-md-12">Password</label>
+                                <label for="inputPassword" class="col-md-12">Password</label>
                                 <div class="col-md-12">
                                     <input id="inputPassword" type="password" class="form-control form-control-line" name="password">
                                     <c:if test="${inputError.wrongLogin}">
