@@ -7,6 +7,7 @@ import ch.heig.amt.gamification.business.dao.OldPasswordDAOLocal;
 import ch.heig.amt.gamification.business.dao.UserDAOLocal;
 import ch.heig.amt.gamification.model.InputError;
 import ch.heig.amt.gamification.model.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.ejb.EJB;
 import javax.mail.MessagingException;
@@ -143,8 +144,8 @@ public class UserServlet extends HttpServlet {
 
                         List oldPasswords = oldPasswordDAO.readAllOldPasswordFromUser(email);
                         // add UUID password in the old pwd list
-                        oldPasswords.add(password);
-                        inputError.setPasswordReused(oldPasswordDAO.readAllOldPasswordFromUser(email).contains(password1));
+                        oldPasswords.add(DigestUtils.sha256Hex(password));
+                        inputError.setPasswordReused(oldPasswords.contains(DigestUtils.sha256Hex(password1)));
 
                         // check if the new password is not in the old password list, not in the 1st check for better performance
                         if (!inputError.checkErrors()){
@@ -153,8 +154,8 @@ public class UserServlet extends HttpServlet {
                             userDAO.changeUserPassword(email, password1, false);
                             httpSession.setAttribute("mustChangePassword", false);
                             httpSession.setAttribute("password", password1);
-                            //response.sendRedirect("/webui/home");
-                            request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
+                            response.sendRedirect("/webui/home");
+                            //request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
                         } else {
                             // send error
                             request.setAttribute("inputError", inputError);
