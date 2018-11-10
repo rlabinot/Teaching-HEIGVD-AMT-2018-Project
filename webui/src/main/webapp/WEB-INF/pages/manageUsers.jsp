@@ -38,7 +38,7 @@
 
                                 <c:forEach items="${users}" var="user">
                                     <tr>
-                                        <td>${user.name}</td>
+                                        <td><a href="/webui/user?action=listapp&id=${user.email}">${user.name}</a></td>
                                         <td>${user.email}</td>
                                         <td>
                                             <c:choose>

@@ -8,7 +8,14 @@
             <!-- Top line nav -->
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Manage your apps</h4>
+                    <c:choose>
+                        <c:when test="${isAdmin}">
+                            <h4 class="page-title">${user.name} - ${user.email}</h4>
+                        </c:when>
+                        <c:otherwise>
+                            <h4 class="page-title">Manage your apps</h4>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
             <!-- ./top line -->
@@ -18,8 +25,16 @@
                 <div class="col-sm-12">
                     <div class="white-box">
                         <div class="clearfix">
-                            <h3 class="box-title pull-left  ">Your applications</h3>
-                            <a id="buttonAdd" href="/webui/app" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Add an application</a>
+                            <c:choose>
+                                <c:when test="${isAdmin}">
+                                    <h3 class="box-title pull-left  ">${user.name} applications</h3>
+                                    <a id="buttonAdd" href="/webui/home" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Return to admin panel</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <h3 class="box-title pull-left  ">Your applications</h3>
+                                    <a id="buttonAdd" href="/webui/app" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Add an application</a>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
 
                         <!-- App Tab -->
