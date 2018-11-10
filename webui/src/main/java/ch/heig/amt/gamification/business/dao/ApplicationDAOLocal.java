@@ -8,8 +8,9 @@ import javax.ejb.Local;
 @Local
 public interface ApplicationDAOLocal {
     public void createApplication(Application application);
-    public Application readApplication(int appID);
+    public Application readApplication(String email, int appID);
     public ArrayList<Application> readApplicationFromUser(String email);
+    public ArrayList<Application> readApplicationFromUser(String email, int offset, int size);
     public void updateApplication(int appId, String name, String description);
     public void deleteApplication(int appId);
     public void deleteAllApplicationFromUser(String email);

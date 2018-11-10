@@ -136,7 +136,21 @@ DELIMITER ;
 DELIMITER //
 	CREATE PROCEDURE readApplicationFromUser(IN RefUmail VARCHAR(50))
 	BEGIN
-		SELECT * FROM Applications WHERE Applications.RefUmail LIKE RefUmail;
+		SELECT * 
+		FROM Applications 
+		WHERE Applications.RefUmail 
+		LIKE RefUmail;
+	END //
+DELIMITER ; 
+
+DELIMITER //
+	CREATE PROCEDURE readApplicationFromUserOffset(IN RefUmail VARCHAR(50), IN offset INT(10), IN size INT(10))
+	BEGIN
+		SELECT * 
+		FROM Applications 
+		WHERE Applications.RefUmail 
+		LIKE RefUmail 
+		LIMIT offset, size;
 	END //
 DELIMITER ; 
 

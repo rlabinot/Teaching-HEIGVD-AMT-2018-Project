@@ -44,11 +44,12 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
-    public Application readApplication(int appID) {
+    public Application readApplication(String email, int appID) {
 
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(READ);
-            preparedStatement.setInt(1, appID);
+            preparedStatement.setString(1, email);
+            preparedStatement.setInt(2, appID);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()) {
                 return new Application(
@@ -82,6 +83,32 @@ public class ApplicationDAO implements ApplicationDAOLocal {
                                             rs.getString("AapiKey"),
                                             rs.getString("AapiSecret"),
                                             rs.getString("RefUmail")
+                ));
+            }
+            return appList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<Application> readApplicationFromUser(String email, int offset, int size) {
+        ArrayList<Application> appList = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_FROM_USER);
+            preparedStatement.setString(1, email);
+            preparedStatement.setInt(2, offset);
+            preparedStatement.setInt(3, offset);
+            ResultSet rs =  preparedStatement.executeQuery();
+            while(rs.next()){
+                appList.add(new Application(rs.getInt("Aid"),
+                        rs.getString("Aname"),
+                        rs.getString("Adescription"),
+                        rs.getString("AapiKey"),
+                        rs.getString("AapiSecret"),
+                        rs.getString("RefUmail")
                 ));
             }
             return appList;
