@@ -51,7 +51,7 @@ DELIMITER ;
 DELIMITER //
 	CREATE PROCEDURE userLogin(IN Umail VARCHAR(50), IN Upassword VARCHAR(50))
 	BEGIN
-		SELECT * FROM Users WHERE Users.Umail LIKE Umail AND Users.Upassword LIKE Upassword;
+		SELECT * FROM Users WHERE Users.Umail LIKE BINARY Umail AND Users.Upassword LIKE BINARY Upassword;
 	END //
 DELIMITER ;
 
@@ -60,7 +60,7 @@ DELIMITER //
 	BEGIN
 		UPDATE Users
         SET Users.Uname=Uname, Users.Upassword=Upassword, Users.UisAdmin=UisAdmin, Users.UisActive=UisActive, Users.UmustChangePassword=UmustChangePassword
-        WHERE Users.Umail LIKE Umail;
+        WHERE Users.Umail LIKE BINARY Umail;
 	END //
 DELIMITER ;
 
@@ -69,14 +69,14 @@ DELIMITER //
 	BEGIN
 		UPDATE Users
         SET Users.Upassword=Upassword, Users.UmustChangePassword=0
-        WHERE Users.Umail LIKE Umail;
+        WHERE Users.Umail LIKE BINARY Umail;
 	END //
 DELIMITER ;
 
 DELIMITER //
 	CREATE PROCEDURE deleteUser(IN Umail VARCHAR(50))
 	BEGIN
-		DELETE FROM Users WHERE Users.Umail LIKE Umail;
+		DELETE FROM Users WHERE Users.Umail LIKE BINARY Umail;
 	END //
 DELIMITER ;
 
@@ -85,7 +85,7 @@ DELIMITER //
 	BEGIN
 		UPDATE Users
         SET Users.UisActive=UisActive
-        WHERE Users.Umail LIKE Umail;
+        WHERE Users.Umail LIKE BINARY Umail;
 	END //
 DELIMITER ;
 
@@ -94,7 +94,7 @@ DELIMITER //
 	BEGIN
 		UPDATE Users
         SET Users.UmustChangePassword=1
-        WHERE Users.Umail LIKE Umail;
+        WHERE Users.Umail LIKE BINARY Umail;
 	END //
 DELIMITER ;
 
@@ -110,14 +110,14 @@ DELIMITER ;
 DELIMITER //
 	CREATE PROCEDURE readOldPasswordFromUser(IN OPref VARCHAR(50))
 	BEGIN
-		SELECT * FROM OldPasswords WHERE OPref LIKE OPref;
+		SELECT * FROM OldPasswords WHERE OPref LIKE BINARY OPref;
 	END //
 DELIMITER ;
 
 DELIMITER //
 	CREATE PROCEDURE deleteOldPasswordFromUser(IN OPref VARCHAR(50))
 	BEGIN
-		DELETE FROM OldPasswords WHERE OldPasswords.OPref LIKE OPref;
+		DELETE FROM OldPasswords WHERE OldPasswords.OPref LIKE BINARY OPref;
 	END //
 DELIMITER ;
 
@@ -133,7 +133,7 @@ DELIMITER ;
 DELIMITER //
 	CREATE PROCEDURE readApplication(IN id INT(10), IN RefUmail VARCHAR(50))
 	BEGIN
-		SELECT * FROM Applications WHERE Applications.Aid LIKE id AND Applications.RefUmail LIKE RefUmail;
+		SELECT * FROM Applications WHERE Applications.Aid LIKE BINARY id AND Applications.RefUmail LIKE BINARY RefUmail;
 	END //
 DELIMITER ; 
 
@@ -152,8 +152,7 @@ DELIMITER //
 	BEGIN
 		SELECT * 
 		FROM Applications 
-		WHERE Applications.RefUmail 
-		LIKE RefUmail 
+		WHERE Applications.RefUmail LIKE BINARY RefUmail 
 		LIMIT offset, size;
 	END //
 DELIMITER ; 
@@ -163,21 +162,21 @@ DELIMITER //
 	BEGIN
 		UPDATE Applications
         SET Applications.Aname=Aname, Applications.Adescription=Adescription
-        WHERE Applications.RefUmail LIKE RefUmail AND Applications.Aid LIKE Aid;
+        WHERE Applications.RefUmail LIKE BINARY RefUmail AND Applications.Aid LIKE Aid;
 	END //
 DELIMITER ; 
 
 DELIMITER //
 	CREATE PROCEDURE deleteApplication(IN id INT(10), IN RefUmail VARCHAR(50))
 	BEGIN
-		DELETE FROM Applications WHERE Applications.Aid LIKE id AND Applications.RefUmail LIKE RefUmail;
+		DELETE FROM Applications WHERE Applications.Aid LIKE id AND Applications.RefUmail LIKE BINARY RefUmail;
 	END //
 DELIMITER ; 
 
 DELIMITER //
 	CREATE PROCEDURE deleteAllApplicationFromUser(IN RefUmail VARCHAR(50))
 	BEGIN
-		DELETE FROM Applications WHERE Applications.RefUmail LIKE RefUmail;
+		DELETE FROM Applications WHERE Applications.RefUmail LIKE BINARY RefUmail;
 	END //
 DELIMITER ; 
 

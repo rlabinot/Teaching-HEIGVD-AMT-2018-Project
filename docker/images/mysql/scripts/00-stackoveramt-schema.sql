@@ -14,7 +14,7 @@ CREATE TABLE Users(
   UisActive INT(1) NOT NULL,
   UmustChangePassword INT(1) NOT NULL,
   PRIMARY KEY (Umail)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE OldPasswords(
   OPref VARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE OldPasswords(
   
   PRIMARY KEY (OPref, OPpassword),
   FOREIGN KEY (OPref) REFERENCES Users(Umail)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE Applications(
   Aid INT(10) AUTO_INCREMENT UNIQUE NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE Applications(
   
   PRIMARY KEY (Aid),
   FOREIGN KEY (RefUmail) REFERENCES Users(Umail)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE ActionLogs(
   Lid INT(10) AUTO_INCREMENT UNIQUE NOT NULL,
@@ -44,6 +44,6 @@ CREATE TABLE ActionLogs(
   Laction VARCHAR(50) NOT NULL,
   Ldescription VARCHAR(150) NOT NULL,
   PRIMARY KEY (Lid)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 SET FOREIGN_KEY_CHECKS = 1;
