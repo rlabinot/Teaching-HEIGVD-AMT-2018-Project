@@ -48,10 +48,7 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         HttpSession httpSession;
-
-        // check with db isConnected()
-        // get the user via DB
-        // User user = new User("admin","admin@gmail.com","12345", true,true);
+        InputError error = new InputError();
 
         try {
             User user = userDAO.userLogin(email, password);
@@ -76,11 +73,12 @@ public class LoginServlet extends HttpServlet {
                     }
                 } else {
                     // login not ok because inactive user
+                    error.setInactiveUser(true);
+                    request.setAttribute("inputError", error);
                     request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
                 }
             } else {
                 // login is not ok because wrong credentials, db result is null
-                InputError error = new InputError();
                 error.setWrongLogin(true);
                 request.setAttribute("inputError", error);
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);

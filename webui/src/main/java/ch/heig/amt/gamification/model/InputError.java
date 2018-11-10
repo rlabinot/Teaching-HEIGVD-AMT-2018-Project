@@ -1,6 +1,7 @@
 package ch.heig.amt.gamification.model;
 
 public class InputError {
+    // Messages
     private static final String EMPTY_FIELD_MESSAGE = "Field cannot be empty";
     private static final String WRONG_FORMAT_EMAIL_MESSAGE = "Invalid format for email";
     private static final String WEAK_PASSWORD_MESSAGE = "Password doesn't contain a number, an uppercase and 8 characters without blanks";
@@ -10,6 +11,8 @@ public class InputError {
     private static final String USER_MUST_CHANGE_PASSWORD = "Your password has been reset, please enter a new password";
     private static final String BOTH_PASSWORD_DIFFERENT = "Both passwords should be equal";
     private static final String PASSWORD_REUSED = "You have already used this password, please enter a new password";
+    private static final String INACTIVE_USER_MESSAGE = "Your account has been suspended";
+
 
     // Create user
     private boolean emptyName;
@@ -28,6 +31,7 @@ public class InputError {
 
     // Login
     private boolean wrongLogin;
+    private boolean inactiveUser;
 
     public boolean checkErrors() {
         return emptyName || emptyEmail || wrongFormatEmail || emptyPassword || weakPassword || emptyDescription ||
@@ -82,6 +86,14 @@ public class InputError {
         this.passwordReused = passwordReused;
     }
 
+    public boolean isInactiveUser() {
+        return inactiveUser;
+    }
+
+    public void setInactiveUser(boolean inactiveUser) {
+        this.inactiveUser = inactiveUser;
+    }
+
     // MESSAGES ERRORS GETTEURS
     public String getEmptyFieldMessage() { return EMPTY_FIELD_MESSAGE; }
     public String getWrongFormatEmailMessage() { return WRONG_FORMAT_EMAIL_MESSAGE; }
@@ -92,6 +104,8 @@ public class InputError {
     public String getUserAlreadyRegistered() { return USER_ALREADY_REGISTERED; }
     public String getAppAlreadyRegistered() { return APP_ALREADY_REGISTERED; }
     public String getUserMustChangePassword() { return USER_MUST_CHANGE_PASSWORD; }
-    public static String getBothPasswordDifferent() { return BOTH_PASSWORD_DIFFERENT; }
-    public static String getPasswordReused() { return PASSWORD_REUSED; }
+    public String getBothPasswordDifferent() { return BOTH_PASSWORD_DIFFERENT; }
+    public String getPasswordReused() { return PASSWORD_REUSED; }
+    public String getInactiveUserMessage() { return INACTIVE_USER_MESSAGE; }
+
 }

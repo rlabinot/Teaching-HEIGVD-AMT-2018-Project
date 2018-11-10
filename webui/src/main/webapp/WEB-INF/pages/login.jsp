@@ -38,6 +38,9 @@
                                     <c:if test="${inputError.wrongLogin}">
                                         <span class="errors">${inputError.wrongLoginMessage}</span>
                                     </c:if>
+                                    <c:if test="${inputError.inactiveUser}">
+                                        <span class="errors">${inputError.inactiveUserMessage}</span>
+                                    </c:if>
                                 </div>
                             </div>
 
