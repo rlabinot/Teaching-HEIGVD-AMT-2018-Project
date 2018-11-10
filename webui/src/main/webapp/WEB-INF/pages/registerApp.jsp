@@ -19,7 +19,7 @@
                     <div class="white-box">
 
                         <c:choose>
-                            <c:when test="${app.id}">
+                            <c:when test="${app.id} != null">
                                 <c:set var="path" value="/app?id=${app.id}" />
                                 <c:set var="action" value="Edit" />
                             </c:when>

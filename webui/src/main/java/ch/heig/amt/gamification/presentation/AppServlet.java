@@ -52,36 +52,30 @@ public class AppServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
         String name = request.getParameter("name");
         String description = request.getParameter("description");
-        String apiKey = UUID.randomUUID().toString();
-        String apiSecret = UUID.randomUUID().toString();
+        String apiKey;
+        String apiSecret;
 
         InputError inputError = new InputError();
-        if (name == null || name.trim().equals("")) {
-            inputError.setEmptyName(true);
-        }
-        if (description == null || description.trim().equals("")) {
-            inputError.setEmptyDescription(true);
-        }
-        if (apiKey == null || apiKey.trim().equals("")) {
-            inputError.setEmptyApiKey(true);
-        }
-        if (apiSecret == null || apiSecret.trim().equals("")) {
-            inputError.setEmptyApiSecret(true);
-        }
-
-        request.setAttribute("name", name);
-        request.setAttribute("description", description);
-        request.setAttribute("apiKey", apiKey);
-        request.setAttribute("apiSecret", apiSecret);
+        inputError.setEmptyName( name == null || name.trim().equals("") );
+        inputError.setEmptyDescription( description == null || description.trim().equals("") );
 
         // Check if no errors during all the registration
         if (inputError.checkErrors() == false) {
-            // Add the app to the db.
-            Application appToAdd = new Application(name,description,apiKey,apiSecret,(String) request.getSession().getAttribute("email"));
+            if (id == null) {
+                apiKey = UUID.randomUUID().toString();
+                apiSecret = UUID.randomUUID().toString();
 
-            applicationDAO.createApplication(appToAdd);
+                // Add the app to the db.
+                Application appToAdd = new Application(name, description, apiKey, apiSecret, (String) request.getSession().getAttribute("email"));
+                applicationDAO.createApplication(appToAdd);
+            } else {
+                // Edit the app in the db.
+                applicationDAO.updateApplication(Integer.parseInt(id), name, description);
+            }
+
             response.sendRedirect("/webui/home");
         } else {
             request.setAttribute("inputError", inputError);

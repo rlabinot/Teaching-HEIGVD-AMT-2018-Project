@@ -130,6 +130,7 @@ public class UserServlet extends HttpServlet {
                         // TODO : should I send an error ?
                     }
                     break;
+
                 default:
                     response.sendRedirect("/webui/aksdjlakjd");
             }
