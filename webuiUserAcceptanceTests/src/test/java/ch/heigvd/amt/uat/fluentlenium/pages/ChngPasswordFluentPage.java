@@ -9,7 +9,7 @@ public class ChngPasswordFluentPage extends AbstractWebuiFluentPage {
   private final static String buttonContinue = "#buttonContinue"; // id in the html code
 
   @Override
-  public void isAt() {assertThat(title()).isEqualTo("Change your password");}
+  public void isAt() {assertThat(title()).isEqualTo("Change Password");}
   public void typePassword(String password) { fill(inputPassword).with(password); }
   public void typeNewPassword(String newPassword) { fill(inputNewPassword).with(newPassword); }
   public void clickContinue() { click(buttonContinue); }

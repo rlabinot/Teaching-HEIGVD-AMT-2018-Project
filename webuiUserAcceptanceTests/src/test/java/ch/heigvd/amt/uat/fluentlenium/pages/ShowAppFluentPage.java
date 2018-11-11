@@ -9,7 +9,7 @@ public class ShowAppFluentPage extends AbstractWebuiFluentPage {
 
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Edit your app");
+    assertThat(title()).isEqualTo("Edit App");
   }
   public void clickEdit() {
         click(buttonEdit);

@@ -12,10 +12,11 @@ public class LoginFluentPage extends AbstractWebuiFluentPage {
   private final static String inputEmail = "#inputEmail"; // id in the html code
   private final static String inputPassword = "#inputPassword"; // id in the html code
   private final static String buttonSignin = "#buttonSignIn"; // id in the html code
+  private final static String buttonRegister = "#buttonRegister"; // id in the html code
 
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Login Page");
+    assertThat(title()).isEqualTo("Login");
   }
 
   public void typeEmailAddress(String email) {
@@ -28,6 +29,10 @@ public class LoginFluentPage extends AbstractWebuiFluentPage {
 
   public void clickSignin() {
     click(buttonSignin);
+  }
+
+  public void clickRegister() {
+    click(buttonRegister);
   }
 
   public String getUrl() {

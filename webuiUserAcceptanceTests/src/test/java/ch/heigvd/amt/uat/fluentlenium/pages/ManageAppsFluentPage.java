@@ -11,7 +11,7 @@ public class ManageAppsFluentPage extends AbstractWebuiFluentPage {
 
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Manage your apps");
+    assertThat(title()).isEqualTo("Manage Apps");
   }
   public void clickAdd() {
     click(buttonAdd);

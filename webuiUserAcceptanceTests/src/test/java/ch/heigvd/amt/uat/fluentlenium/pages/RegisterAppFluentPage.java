@@ -10,7 +10,7 @@ public class RegisterAppFluentPage extends AbstractWebuiFluentPage {
 
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Register your app");
+    assertThat(title()).isEqualTo("Register App");
   }
   public void typeName(String name) { fill(inputName).with(name); }
   public void typeDescription(String description) { fill(inputDescription).with(description); }

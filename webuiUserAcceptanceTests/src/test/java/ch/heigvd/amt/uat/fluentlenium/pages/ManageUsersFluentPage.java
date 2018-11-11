@@ -11,7 +11,7 @@ public class ManageUsersFluentPage extends AbstractWebuiFluentPage {
 
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Manage your users");
+    assertThat(title()).isEqualTo("Manage Users");
   }
   public void clickSuspend() {
     click(buttonSuspend);

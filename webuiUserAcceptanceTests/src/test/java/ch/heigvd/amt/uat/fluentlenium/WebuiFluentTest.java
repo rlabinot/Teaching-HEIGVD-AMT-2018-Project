@@ -1,10 +1,6 @@
 package ch.heigvd.amt.uat.fluentlenium;
 
-import ch.heigvd.amt.uat.fluentlenium.pages.BeersFluentPage;
-import ch.heigvd.amt.uat.fluentlenium.pages.CompanyDetailsFluentPage;
-import ch.heigvd.amt.uat.fluentlenium.pages.CorporateInformationFluentPage;
-import ch.heigvd.amt.uat.fluentlenium.pages.HomeFluentPage;
-import ch.heigvd.amt.uat.fluentlenium.pages.LoginFluentPage;
+import ch.heigvd.amt.uat.fluentlenium.pages.*;
 import io.probedock.client.annotations.ProbeTest;
 import org.fluentlenium.adapter.FluentTest;
 import org.junit.Test;
@@ -13,28 +9,21 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.fluentlenium.core.annotation.Page;
 
+import java.util.UUID;
+
 /**
  *
  * @author Olivier Liechti (olivier.liechti@heig-vd.ch)
  */
 public class WebuiFluentTest extends FluentTest {
 
-  private final String baseUrl = "http://localhost:8080/webui";
+  private final String baseUrl = "http://localhost:8080/webui/login";
 
-  @Page
-  public LoginFluentPage loginPage;
-
-  @Page
-  public HomeFluentPage homePage;
-
-  @Page
-  public BeersFluentPage beersPage;
-  
-  @Page
-  public CorporateInformationFluentPage corporateInformationPage;
-  
-  @Page
-  public CompanyDetailsFluentPage companyDetailsPage;
+  @Page public IndexFluentPage indexPage;
+  @Page public LoginFluentPage loginPage;
+  @Page public RegisterUserFluentPage registerUserPage;
+  @Page public ManageAppsFluentPage manageAppsPage;
+  @Page public RegisterAppFluentPage registerAppPage;
 
   /**
   @Page
@@ -44,7 +33,7 @@ public class WebuiFluentTest extends FluentTest {
   @Page
   public LoginFluentPage loginPage;
   @Page
-  public ManageAppsFluentPage manageAppsFluentPage;
+  public manageAppsPage manageAppsPage;
   @Page
   public ManageUsersFluentPage manageUsersFluentPage;
   @Page
@@ -55,6 +44,7 @@ public class WebuiFluentTest extends FluentTest {
   public ShowAppFluentPage showAppFluentPage;
   **/
 
+  /**
   @Test
   @ProbeTest(tags = "WebUI")
   public void itShouldNotBePossibleToSigninWithAnInvalidEmail() {
@@ -90,6 +80,106 @@ public class WebuiFluentTest extends FluentTest {
     companyDetailsPage.isAt();
   }
 
+   **/
+
+
+  @Test
+  @ProbeTest(tags = "WebUI")
+  public void itShouldNotBePossibleToSigninWithAnInvalidEmail() {
+    goTo(baseUrl);
+    loginPage.isAt();
+    loginPage.typeEmailAddress("not a valid email");
+    loginPage.typePassword("any password");
+    loginPage.clickSignin();
+    loginPage.isAt();
+  }
+
+  @Test
+  @ProbeTest(tags = "WebUI")
+  public void itShouldBePossibleToRegister() {
+    goTo(baseUrl);
+    loginPage.isAt();
+    loginPage.clickRegister();
+    registerUserPage.isAt();
+    registerUserPage.typeName("Random");
+    // UUID because we can't register 2 times
+    String username = UUID.randomUUID().toString().substring(0,5);
+    registerUserPage.typeEmail(username + "@stackoveramt.ch");
+    registerUserPage.typePassword("Random123");
+    registerUserPage.clickRegister();
+    loginPage.isAt();
+  }
+
+  @Test
+  @ProbeTest(tags = "WebUI")
+  public void itShouldNotBePossibleToHaveAWeakPassword() {
+    goTo(baseUrl);
+    loginPage.isAt();
+    loginPage.clickRegister();
+    registerUserPage.isAt();
+    registerUserPage.typeName("Random");
+    // UUID because we can't register 2 times
+    String username = UUID.randomUUID().toString().substring(0,5);
+    registerUserPage.typeEmail(username + "@stackoveramt.ch");
+    registerUserPage.typePassword("12345678");
+    registerUserPage.clickRegister();
+    registerUserPage.isAt();
+  }
+
+  @Test
+  @ProbeTest(tags = "WebUI")
+  public void successfulSigninShouldBringUserToHomePage() {
+    goTo(baseUrl);
+    loginPage.isAt();
+    loginPage.typeEmailAddress("user@stackoveramt.ch");
+    loginPage.typePassword("user");
+    loginPage.clickSignin();
+    manageAppsPage.isAt();
+  }
+
+  // TODO : Manage SQL Exception and redirect the page to registerUserPage
+  /**
+  Test
+  @ProbeTest(tags = "WebUI")
+  public void itShouldNotBePossibleToRegisterWithSameUser() {
+    goTo(baseUrl);
+    loginPage.isAt();
+    loginPage.clickRegister();
+    registerUserPage.isAt();
+    registerUserPage.typeName("user");
+    registerUserPage.typeEmail("user@stackoveramt.ch");
+    registerUserPage.typePassword("User12345");
+    registerUserPage.clickRegister();
+    registerUserPage.isAt();
+  }
+  **/
+
+  // TODO : Need to found a way to edit the targeted app because there is one edit button for each app
+  /**
+  @Test
+  @ProbeTest(tags = "WebUI")
+  public void itShouldBePossibleToAddAnAppEditItAndDeleteIt() {
+    goTo(baseUrl);
+    loginPage.isAt();
+    loginPage.typeEmailAddress("user@stackoveramt.ch");
+    loginPage.typePassword("user");
+    loginPage.clickSignin();
+    manageAppsPage.isAt();
+    manageAppsPage.clickAdd();
+    registerAppPage.isAt();
+    registerAppPage.typeName("NewApp");
+    registerAppPage.typeDescription("My NewApp");
+    registerAppPage.clickRegister();
+    manageAppsPage.isAt();
+    manageAppsPage.clickEdit();
+    registerAppPage.typeName("NewAppEdited");
+    registerAppPage.clickRegister();
+    manageAppsPage.isAt();
+    manageAppsPage.clickDelete();
+    manageAppsPage.isAt();
+  }
+   **/
+
   
   @Override
   public WebDriver getDefaultDriver() {
@@ -102,5 +192,8 @@ public class WebuiFluentTest extends FluentTest {
   public String getDefaultBaseUrl() {
     return baseUrl;
   }
+
+
+
   
 }
