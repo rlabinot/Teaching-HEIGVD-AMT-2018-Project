@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        request.setAttribute("pageTitle", "Login");
         String action = request.getParameter("action");
 
         if(action == null) {
@@ -69,18 +69,21 @@ public class LoginServlet extends HttpServlet {
                         response.sendRedirect("/webui/home");
                     } else {
                         // user must change his password
+                        request.setAttribute("pageTitle", "Change Password");
                         request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
                     }
                 } else {
                     // login not ok because inactive user
                     error.setInactiveUser(true);
                     request.setAttribute("inputError", error);
+                    request.setAttribute("pageTitle", "Login");
                     request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
                 }
             } else {
                 // login is not ok because wrong credentials, db result is null
                 error.setWrongLogin(true);
                 request.setAttribute("inputError", error);
+                request.setAttribute("pageTitle", "Login");
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
             }
         } catch (Exception e){

@@ -47,7 +47,7 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input id="buttonSignIn" type="submit" value="Login" class="btn btn-success"/>
-                                    <a class="gap" href="/webui/user">Register</a>
+                                    <a id="buttonRegister" class="gap" href="/webui/user">Register</a>
                                 </div>
                             </div>
                         </form>

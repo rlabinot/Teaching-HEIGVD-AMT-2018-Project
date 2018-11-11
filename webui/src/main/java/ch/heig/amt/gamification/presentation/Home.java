@@ -26,10 +26,12 @@ public class Home extends HttpServlet {
         if (isAdmin == true) {
             // retrieve all users from database and add them to the request
             request.setAttribute("users", userDAO.readAllUser());
+            request.setAttribute("pageTitle", "Manage Users");
             request.getRequestDispatcher("/WEB-INF/pages/manageUsers.jsp").forward(request, response);
         } else {
             // retrieve all apps of a user from database and add them to the request
             request.setAttribute("apps", appDAO.readApplicationFromUser(email));
+            request.setAttribute("pageTitle", "Manage Apps");
             request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
         }
     }

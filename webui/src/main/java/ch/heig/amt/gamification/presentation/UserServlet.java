@@ -44,6 +44,7 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "":
                 if (request.getSession().getAttribute("email") == null) {
+                    request.setAttribute("pageTitle", "Register User");
                     request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
                 } else {
                     response.sendRedirect("/webui/home");
@@ -55,6 +56,7 @@ public class UserServlet extends HttpServlet {
                 List<Application> apps = appDAO.readApplicationFromUser(userEmail);
                 request.setAttribute("user", user);
                 request.setAttribute("apps", apps);
+                request.setAttribute("pageTitle", "Manage App");
                 request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
                 break;
 
@@ -93,7 +95,8 @@ public class UserServlet extends HttpServlet {
                 break;
 
             default:
-                response.sendRedirect("/webui/aksdjlakjd");
+                request.setAttribute("pageTitle", "Error 404");
+                response.sendRedirect("/webui/404");
         }
 
         /* OLD STYLE BACKUP JUST IN CASE TODO: Delete if switch version is accepted
@@ -140,6 +143,7 @@ public class UserServlet extends HttpServlet {
                     response.sendRedirect("/webui/login");
                 } else {
                     request.setAttribute("inputError", inputError);
+                    request.setAttribute("pageTitle", "Register User");
                     request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
                 }
                 break;
@@ -177,10 +181,12 @@ public class UserServlet extends HttpServlet {
                     } else {
                         // send error
                         request.setAttribute("inputError", inputError);
+                        request.setAttribute("pageTitle", "Change Password");
                         request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
                     }
                 } else {
                     request.setAttribute("inputError", inputError);
+                    request.setAttribute("pageTitle", "Change Password");
                     request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
                 }
                 break;

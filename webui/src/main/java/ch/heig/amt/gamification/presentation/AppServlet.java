@@ -27,6 +27,7 @@ public class AppServlet extends HttpServlet {
         action = action == null ? "" : action;
         switch (action) {
             case "":
+                request.setAttribute("pageTitle", "Register App");
                 request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
 
             case "delete":
@@ -40,6 +41,7 @@ public class AppServlet extends HttpServlet {
                     response.sendRedirect("/webui/home");
                 } else {
                     request.setAttribute("app", appToEdit);
+                    request.setAttribute("pageTitle", "Register App");
                     request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
                 }
                 break;
@@ -50,11 +52,13 @@ public class AppServlet extends HttpServlet {
                 if (appToShow == null) {
                     response.sendRedirect("/webui/home");
                 } else {
+                    request.setAttribute("pageTitle", "Show App");
                     request.getRequestDispatcher("/WEB-INF/pages/showApp.jsp").forward(request, response);
                 }
                 break;
 
             default:
+                request.setAttribute("pageTitle", "Error 404");
                 request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
         }
 
@@ -90,6 +94,7 @@ public class AppServlet extends HttpServlet {
             response.sendRedirect("/webui/home");
         } else {
             request.setAttribute("inputError", inputError);
+            request.setAttribute("pageTitle", "Register App");
             request.getRequestDispatcher("/WEB-INF/pages/registerApp.jsp").forward(request, response);
         }
     }

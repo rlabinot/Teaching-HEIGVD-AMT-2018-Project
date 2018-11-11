@@ -65,7 +65,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="submit" value="Register" class="btn btn-success"/>
+                                    <input id="buttonRegister" type="submit" value="Register" class="btn btn-success"/>
                                 </div>
                             </div>
                         </form>
