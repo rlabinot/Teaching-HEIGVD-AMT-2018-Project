@@ -18,6 +18,7 @@ import java.util.UUID;
  */
 public class WebuiFluentTest extends FluentTest {
 
+  // TODO : Change localhost for 192.168.99.100 if using docker-machine
   private final String loginUrl = "http://localhost:8080/webui/login";
   private final String baseUrl = "http://localhost:8080/webui";
 
@@ -159,8 +160,8 @@ public class WebuiFluentTest extends FluentTest {
   
   @Override
   public WebDriver getDefaultDriver() {
-    //return new FirefoxDriver();
-    System.setProperty("webdriver.chrome.driver", "C:/Users/Labinot/Documents/AMT/chromedriver.exe");
+    // Be careful here, the default path is the root path for the driver
+    System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
     return new ChromeDriver();
   }
 
@@ -169,7 +170,4 @@ public class WebuiFluentTest extends FluentTest {
     return baseUrl;
   }
 
-
-
-  
 }
