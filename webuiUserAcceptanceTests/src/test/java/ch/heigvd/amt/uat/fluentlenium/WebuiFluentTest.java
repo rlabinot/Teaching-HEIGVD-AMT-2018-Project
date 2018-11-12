@@ -116,10 +116,7 @@ public class WebuiFluentTest extends FluentTest {
     loginPage.isAt();
   }
 
-
-  // TODO : Manage SQL Exception and redirect the page to registerUserPage
-  /**
-  Test
+  @Test
   @ProbeTest(tags = "WebUI")
   public void itShouldNotBePossibleToRegisterWithSameUser() {
     goTo(loginUrl);
@@ -132,7 +129,6 @@ public class WebuiFluentTest extends FluentTest {
     registerUserPage.clickRegister();
     registerUserPage.isAt();
   }
-  **/
 
   // TODO : Need to found a way to edit the targeted app because there is one edit button for each app
   /**
