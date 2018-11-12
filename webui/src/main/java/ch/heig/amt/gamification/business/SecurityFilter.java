@@ -1,5 +1,6 @@
 package ch.heig.amt.gamification.business;
 
+import ch.heig.amt.gamification.model.InputError;
 import ch.heig.amt.gamification.model.User;
 
 import java.io.IOException;
@@ -29,23 +30,16 @@ public class SecurityFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
+        // we use a whitelist system to define which url are protected or not
         boolean isTargetUrlProtected = true;
         if (path.equals("/")) {
             isTargetUrlProtected = false;
-        } if(path.startsWith("/static")) {
+        } else if(path.startsWith("/static")) {
             isTargetUrlProtected = false;
-        } if (path.startsWith("/login")) {
+        } else if (path.startsWith("/login")) {
             isTargetUrlProtected = false;
-        } if (path.startsWith("/user") && !path.contains("action")) {
+        } else if (path.startsWith("/user") && !path.contains("action")) {
             isTargetUrlProtected = false;
-        } else {
-            /*
-             * Let's imagine that the user has sent a request to /MVCDemo/pages/beers before logging into the
-             * application. In that case, we want to route the user to the login page. If he provides valid
-             * credentials, then we then want to redirect the user to /MVCDemo/pages/beers. In order to do that,
-             * we need to save the target URL
-             */
-            request.setAttribute("targetUrl", path);
         }
 
         /*
@@ -53,7 +47,6 @@ public class SecurityFilter implements Filter {
          * an object (in this case a String) in the HTTP session. We can retrieve it.
          */
         String email = (String) httpRequest.getSession().getAttribute("email");
-        // Boolean isAdmin = (Boolean) httpRequest.getSession().getAttribute("isAdmin");
 
         if (email == null && isTargetUrlProtected) {
             /*
@@ -61,38 +54,37 @@ public class SecurityFilter implements Filter {
              * we display the login page (and interrupt the request processing pipeline).
              */
             httpResponse.sendRedirect("/webui/login");
+
         } else {
-            
-            boolean isAdmin = Boolean.TRUE == httpRequest.getSession().getAttribute("isAdmin");
-            // CHECK IF ADMIN AND GOING TO USER PAGE
-            if (isAdmin && path.startsWith("/manageapps")) {
-                httpResponse.sendRedirect("/webui/manageusers");
-                return;
-            }
 
-            // CHECK IF USER AND GOING TO ADMIN PAGE
-            if (!isAdmin && path.startsWith("/manageusers")) {
-                httpResponse.sendRedirect("/webui/manageapps");
-                return;
-            }
-
-            /*
-            // TODO : check if mustChangePassword == true, in this case redirect to chngPassword.jsp
             boolean mustChangePassword = Boolean.TRUE == httpRequest.getSession().getAttribute("mustChangePassword");
-            if (mustChangePassword) {
-                request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
-                return;
-            }*/
+            boolean isActive= Boolean.TRUE == httpRequest.getSession().getAttribute("isActive");
+            InputError error = new InputError();
 
-            /*
-             * We authorize the access, so we can tell the request processing pipeline to
-             * continue its work.
-             */
-            chain.doFilter(request, response);
-            /*
-             * Here, we could inspect and manipulate the response and its way back to the
-             * client. In this case, we don't have anything to do.
-             */
+            if (!isActive && email != null) {
+                error.setInactiveUser(true);
+                request.setAttribute("inputError", error);
+                request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+
+            } else if (mustChangePassword && email != null) {
+                // the filter should not redirect the action to change pwd
+                if(httpRequest.getMethod().equals("POST")) {
+                    chain.doFilter(request, response);
+                } else {
+                    request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
+                }
+            } else {
+
+                /*
+                 * We authorize the access, so we can tell the request processing pipeline to
+                 * continue its work.
+                 */
+                chain.doFilter(request, response);
+                /*
+                 * Here, we could inspect and manipulate the response and its way back to the
+                 * client. In this case, we don't have anything to do.
+                 */
+            }
         }
 
     }
