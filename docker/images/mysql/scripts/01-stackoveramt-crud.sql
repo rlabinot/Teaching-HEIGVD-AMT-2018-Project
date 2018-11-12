@@ -1,8 +1,10 @@
 USE stackoveramt;
 
+DROP PROCEDURE IF EXISTS countUser;
 DROP PROCEDURE IF EXISTS createUser;
 DROP PROCEDURE IF EXISTS readUser;
 DROP PROCEDURE IF EXISTS readAllUser;
+DROP PROCEDURE IF EXISTS readAllUserOffset;
 DROP PROCEDURE IF EXISTS userLogin;
 DROP PROCEDURE IF EXISTS updateUser;
 DROP PROCEDURE IF EXISTS deleteUser;
@@ -12,6 +14,7 @@ DROP PROCEDURE IF EXISTS changeUserState;
 DROP PROCEDURE IF EXISTS createOldPassword;
 DROP PROCEDURE IF EXISTS readOldPasswordFromUser;
 DROP PROCEDURE IF EXISTS deleteOldPasswordFromUser;
+DROP PROCEDURE IF EXISTS countApplicationFromUser;
 DROP PROCEDURE IF EXISTS createApplication;
 DROP PROCEDURE IF EXISTS readApplication;
 DROP PROCEDURE IF EXISTS readApplicationFromUser;
@@ -26,6 +29,13 @@ DROP PROCEDURE IF EXISTS updateActionLogs;
 DROP PROCEDURE IF EXISTS deleteActionLogs;
 
 /* CRUD over a user */
+DELIMITER //
+	CREATE PROCEDURE countUser()
+	BEGIN
+		SELECT COUNT(*) as "nb" FROM Users;
+	END //
+DELIMITER ;
+
 DELIMITER //
 	CREATE PROCEDURE createUser(IN Umail VARCHAR(50), IN Uname VARCHAR(50), IN Upassword CHAR(64), IN UisAdmin INT(1), IN UisActive INT(1), IN UmustChangePassword INT(1))
 	BEGIN
@@ -45,6 +55,15 @@ DELIMITER //
 	CREATE PROCEDURE readAllUser()
 	BEGIN
 		SELECT * FROM Users;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE readAllUserOffset(IN offset INT(10), IN size INT(10))
+	BEGIN
+		SELECT * 
+		FROM Users
+		LIMIT offset, size;
 	END //
 DELIMITER ;
 
@@ -113,6 +132,13 @@ DELIMITER //
 DELIMITER ;
 
 /* CRUD over an application */
+DELIMITER //
+	CREATE PROCEDURE createApplication(IN Aname VARCHAR(50), IN Adescription VARCHAR(150), IN AapiKey VARCHAR(50), IN AapiSecret VARCHAR(50), IN RefUmail VARCHAR(50))
+	BEGIN
+		SELECT COUNT(*) as "nb" FROM Applications WHERE Applications.RefUmail LIKE BINARY RefUmail;
+	END //
+DELIMITER ; 
+
 DELIMITER //
 	CREATE PROCEDURE createApplication(IN Aname VARCHAR(50), IN Adescription VARCHAR(150), IN AapiKey VARCHAR(50), IN AapiSecret VARCHAR(50), IN RefUmail VARCHAR(50))
 	BEGIN
@@ -208,10 +234,4 @@ DELIMITER //
 	BEGIN
 		DELETE FROM ActionLogs WHERE ActionLogs.Lid LIKE Lid;
 	END //
-DELIMITER ;  
-   
-
-
-
-
-
+DELIMITER ;

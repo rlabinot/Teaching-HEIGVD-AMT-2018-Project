@@ -10,7 +10,7 @@
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <c:choose>
                         <c:when test="${isAdmin}">
-                            <h4 class="page-title">${user.name} - ${user.email}</h4>
+                            <h4 class="page-title">User login: ${user.email}</h4>
                         </c:when>
                         <c:otherwise>
                             <h4 class="page-title">Manage your apps</h4>
@@ -27,7 +27,7 @@
                         <div class="clearfix">
                             <c:choose>
                                 <c:when test="${isAdmin}">
-                                    <h3 class="box-title pull-left  ">${user.name} applications</h3>
+                                    <h3 class="box-title pull-left  ">List of ${user.name}'s applications</h3>
                                     <a id="buttonAdd" href="/webui/home" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Return to admin panel</a>
                                 </c:when>
                                 <c:otherwise>
@@ -46,9 +46,11 @@
                                     <th>Description</th>
                                     <th>API Key</th>
                                     <th>API Secret</th>
-                                    <th>Actions</th>
-                                    <th></th>
-                                    <th></th>
+                                    <c:if test="!${isAdmin}">
+                                        <th>Actions</th>
+                                        <th></th>
+                                        <th></th>
+                                    </c:if>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -59,9 +61,11 @@
                                         <td>${app.description}</td>
                                         <td>${app.apiKey}</td>
                                         <td>${app.apiSecret}</td>
-                                        <td><a id="buttonShow" href="/webui/app?action=show&id=${app.id}">Show</a></td>
-                                        <td><a id="buttonEdit" href="/webui/app?action=edit&id=${app.id}">Edit</a></td>
-                                        <td><a id="buttonDelete" href="/webui/app?action=delete&id=${app.id}">Delete</a></td>
+                                        <c:if test="!${isAdmin}">
+                                            <td><a id="buttonShow" href="/webui/app?action=show&id=${app.id}">Show</a></td>
+                                            <td><a id="buttonEdit" href="/webui/app?action=edit&id=${app.id}">Edit</a></td>
+                                            <td><a id="buttonDelete" href="/webui/app?action=delete&id=${app.id}">Delete</a></td>
+                                        </c:if>
                                     </tr>
                                 </c:forEach>
 
@@ -74,5 +78,4 @@
                 </div>
             </div>
         </div>
-
 <%@include file="includes/footer.jsp" %>

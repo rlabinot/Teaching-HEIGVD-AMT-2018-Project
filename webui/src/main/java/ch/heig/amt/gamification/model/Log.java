@@ -11,6 +11,9 @@ public class Log {
     private String status; // e.g: INFO, SEVERE...
     private String action; // e.g: login, add an application, reset a password...
     private String description;
+    public static final String STATUS_INFO = "INFO";
+    public static final String STATUS_WARNING = "WARNING";
+    public static final String STATUS_SEVERE = "SEVERE";
 
     public Log(String user, Long date, String status, String action, String description) {
         this.user = user;

@@ -21,6 +21,7 @@ public class UserDAO implements UserDAOLocal {
     private final String CREATE = "CALL createUser(?, ?, ?, ?, ?, ?)";
     private final String READ   = "CALL readUser(?)";
     private final String READ_ALL   = "CALL readAllUser()";
+    private final String READ_ALL_OFF   = "CALL readAllUserOffset(?, ?)";
     private final String LOGIN   = "CALL userLogin(?, ?)";
     private final String UPDATE = "CALL updateUser(?, ?, ?, ?, ?, ?)";
     private final String DELETE = "CALL deleteUser(?)";
@@ -77,6 +78,31 @@ public class UserDAO implements UserDAOLocal {
 
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(READ_ALL);
+            ResultSet rs =  preparedStatement.executeQuery();
+            while (rs.next()) {
+                users.add( new User(rs.getString("Uname"),
+                        rs.getString("Umail"),
+                        rs.getString("Upassword"),
+                        rs.getBoolean("UisAdmin"),
+                        rs.getBoolean("UisActive"),
+                        rs.getBoolean("UmustChangePassword")
+                ));
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<User> readAllUser(int offset, int size) {
+        ArrayList<User> users = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_ALL_OFF);
+            preparedStatement.setInt(1, offset);
+            preparedStatement.setInt(2, size);
             ResultSet rs =  preparedStatement.executeQuery();
             while (rs.next()) {
                 users.add( new User(rs.getString("Uname"),

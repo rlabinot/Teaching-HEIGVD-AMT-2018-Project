@@ -8,6 +8,7 @@ import ch.heig.amt.gamification.business.dao.OldPasswordDAOLocal;
 import ch.heig.amt.gamification.business.dao.UserDAOLocal;
 import ch.heig.amt.gamification.model.Application;
 import ch.heig.amt.gamification.model.InputError;
+import ch.heig.amt.gamification.model.OldPassword;
 import ch.heig.amt.gamification.model.User;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -56,11 +57,12 @@ public class UserServlet extends HttpServlet {
                 List<Application> apps = appDAO.readApplicationFromUser(userEmail);
                 request.setAttribute("user", user);
                 request.setAttribute("apps", apps);
-                request.setAttribute("pageTitle", "Manage App");
+                request.setAttribute("pageTitle", "Manage Apps");
                 request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
                 break;
 
             case "delete":
+                oldPasswordDAO.deleteAllOldPasswordFromUser(userEmail);
                 userDAO.deleteUser(userEmail);
                 response.sendRedirect("/webui/home");
                 break;
@@ -139,8 +141,10 @@ public class UserServlet extends HttpServlet {
                 if (inputError.checkErrors() == false) {
                     // Ajout à la DB
                     User userToAdd = new User(name, email, password, false, true, false);
+                    OldPassword oldPassword = new OldPassword(email, password);
                     try {
                         userDAO.createUser(userToAdd);
+                        oldPasswordDAO.createOldPassword(oldPassword);
                         response.sendRedirect("/webui/login");
                     } catch (Exception e) {
                         inputError.setEmailAlreadyInUse(true);
@@ -182,6 +186,20 @@ public class UserServlet extends HttpServlet {
 
                         // set the new password
                         userDAO.changeUserPassword(email, password1, false);
+
+                        // add this password to the list of old passwords
+                        OldPassword old_password = new OldPassword(email, password1);
+                        try {
+                            oldPasswordDAO.createOldPassword(old_password);
+                        } catch (Exception e){
+                            // the tuple (email, password) already exists in the db, then send an error
+                            inputError.setPasswordReused(true);
+                            request.setAttribute("inputError", inputError);
+                            request.setAttribute("pageTitle", "Change Password");
+                            request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
+                        }
+
+                        // change session attributes
                         httpSession.setAttribute("mustChangePassword", false);
                         httpSession.setAttribute("password", password1);
                         response.sendRedirect("/webui/home");
