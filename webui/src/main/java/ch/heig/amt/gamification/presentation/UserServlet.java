@@ -56,7 +56,7 @@ public class UserServlet extends HttpServlet {
                 List<Application> apps = appDAO.readApplicationFromUser(userEmail);
                 request.setAttribute("user", user);
                 request.setAttribute("apps", apps);
-                request.setAttribute("pageTitle", "Manage App");
+                request.setAttribute("pageTitle", "Manage Apps");
                 request.getRequestDispatcher("/WEB-INF/pages/manageApps.jsp").forward(request, response);
                 break;
 
