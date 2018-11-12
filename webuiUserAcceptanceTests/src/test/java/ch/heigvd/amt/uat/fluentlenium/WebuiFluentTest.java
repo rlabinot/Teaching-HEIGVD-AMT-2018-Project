@@ -27,6 +27,8 @@ public class WebuiFluentTest extends FluentTest {
   @Page public RegisterUserFluentPage registerUserPage;
   @Page public ManageAppsFluentPage manageAppsPage;
   @Page public RegisterAppFluentPage registerAppPage;
+  @Page public ErrorFluentPage errorPage;
+
 
   @Test
   @ProbeTest(tags = "WebUI")
@@ -102,6 +104,7 @@ public class WebuiFluentTest extends FluentTest {
       manageAppsPage.isAt();
     }
 
+    // TODO : CAREFUL WITH THESE CLICKS BECAUSE PAGINATION WILL BE UPDATED
     // Navigating with pagination
     manageAppsPage.isAt();
     manageAppsPage.clickNext(); // 10 to 20 apps
@@ -129,6 +132,19 @@ public class WebuiFluentTest extends FluentTest {
     registerUserPage.typePassword("User12345");
     registerUserPage.clickRegister();
     registerUserPage.isAt();
+  }
+
+  @Test
+  @ProbeTest(tags = "WebUI")
+  public void itShouldNotBePossibleToAccessToAdminContentWithAUser() {
+    goTo(loginUrl);
+    loginPage.isAt();
+    loginPage.typeEmailAddress("user@stackoveramt.ch");
+    loginPage.typePassword("user");
+    loginPage.clickSignin();
+    manageAppsPage.isAt();
+    goTo(baseUrl + "/user?action=suspend&id=user@stackoveramt.ch"); // try to suspend user
+    errorPage.isAt();
   }
 
   // TODO : Need to found a way to edit the targeted app because there is one edit button for each app
