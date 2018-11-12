@@ -19,6 +19,7 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";
     private final String READ = "CALL readApplication(?, ?)";
     private final String READ_FROM_USER = "CALL readApplicationFromUser(?)";
+    private final String READ_FROM_USER_OFF = "CALL readApplicationFromUserOffset(?, ?, ?)";
     private final String UPDATE = "CALL updateApplication(?, ?, ?, ?)";
     private final String DELETE = "CALL deleteApplication(?, ?)";
     private final String DELETE_All_APPLICATION_FROM_USER = "CALL deleteAllApplicationFromUser(?)";
@@ -97,10 +98,10 @@ public class ApplicationDAO implements ApplicationDAOLocal {
         ArrayList<Application> appList = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection()){
-            PreparedStatement preparedStatement = connection.prepareStatement(READ_FROM_USER);
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_FROM_USER_OFF);
             preparedStatement.setString(1, email);
             preparedStatement.setInt(2, offset);
-            preparedStatement.setInt(3, offset);
+            preparedStatement.setInt(3, size);
             ResultSet rs =  preparedStatement.executeQuery();
             while(rs.next()){
                 appList.add(new Application(rs.getInt("Aid"),

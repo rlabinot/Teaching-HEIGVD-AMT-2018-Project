@@ -3,6 +3,7 @@ USE stackoveramt;
 DROP PROCEDURE IF EXISTS createUser;
 DROP PROCEDURE IF EXISTS readUser;
 DROP PROCEDURE IF EXISTS readAllUser;
+DROP PROCEDURE IF EXISTS readAllUserOffset;
 DROP PROCEDURE IF EXISTS userLogin;
 DROP PROCEDURE IF EXISTS updateUser;
 DROP PROCEDURE IF EXISTS deleteUser;
@@ -45,6 +46,15 @@ DELIMITER //
 	CREATE PROCEDURE readAllUser()
 	BEGIN
 		SELECT * FROM Users;
+	END //
+DELIMITER ;
+
+DELIMITER //
+	CREATE PROCEDURE readAllUserOffset(IN offset INT(10), IN size INT(10))
+	BEGIN
+		SELECT * 
+		FROM Users
+		LIMIT offset, size;
 	END //
 DELIMITER ;
 
@@ -208,10 +218,4 @@ DELIMITER //
 	BEGIN
 		DELETE FROM ActionLogs WHERE ActionLogs.Lid LIKE Lid;
 	END //
-DELIMITER ;  
-   
-
-
-
-
-
+DELIMITER ;
