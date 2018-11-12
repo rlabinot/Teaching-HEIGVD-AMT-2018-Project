@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
  * possible to issue "clicks" on the navigation menu via the API from any page,
  * without code duplication.
  *
- * @author Olivier Liechti
+ * @author Olivier Liechti and Labinot Rashiti
  */
 public abstract class AbstractWebuiFluentPage extends FluentPage {
 
@@ -22,15 +22,9 @@ public abstract class AbstractWebuiFluentPage extends FluentPage {
    * referenced in the test). Note that there are other types of locators. See:
    * http://www.seleniumhq.org/docs/03_webdriver.jsp#selenium-webdriver-api-commands-and-operations
    */
-  private final static String menuExamples = "menuExamples"; // this is the HTML id of the menu
-  private final static String menuItemGenerateTestData = "menuItemGenerateTestData";
-  private final static String menuItemShowCorporateInformation = "menuItemShowCorporateInformation";
-  private final static String menuItemBeers = "menuItemBeers";
-  private final static String menuItemAJAXPage = "menuItemAJAXPage";
-
-  private final static String menuItemUsers = "menuItemUsers";
-  private final static String menuItemApps = "menuItemApps";
-  private final static String menuItemLogout = "menuItemLogout";
+  private final static String menuItemUsers = "#menuItemUsers";
+  private final static String menuItemApps = "#menuItemApps";
+  private final static String menuItemLogout = "#menuItemLogout";
 
   /**
    * This method illustrates two aspects of the Page Object pattern.
@@ -42,26 +36,6 @@ public abstract class AbstractWebuiFluentPage extends FluentPage {
    * easier to read and more robust (if an HTML ID changes, you only need to
    * change the Page and not all the tests that use it).
    */
-  public void goToBeersPageViaMenu() {
-    click(menuExamples);
-    click(menuItemBeers);
-  }
-
-  public void goToAJAXPageViaMenu() {
-    click(menuExamples);
-    click(menuItemAJAXPage);
-  }
-
-  public void goToGenerateTestDataPageViaMenu() {
-    click(menuExamples);
-    click(menuItemGenerateTestData);
-  }
-
-  public void goToCorporateInformationPageViaMenu() {
-    click(menuExamples);
-    click(menuItemShowCorporateInformation);
-  }
-
   public void goToManageUsersPageViaMenu() {
     click(menuItemUsers);
   }

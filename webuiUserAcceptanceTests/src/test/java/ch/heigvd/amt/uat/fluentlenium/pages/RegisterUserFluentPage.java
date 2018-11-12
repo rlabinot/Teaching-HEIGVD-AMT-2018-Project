@@ -2,6 +2,11 @@ package ch.heigvd.amt.uat.fluentlenium.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * This class is used to test the "Register User" page in the Webui app.
+ *
+ * @author Labinot Rashiti
+ */
 public class RegisterUserFluentPage extends AbstractWebuiFluentPage {
 
   private final static String inputName = "#inputName"; // id in the html code

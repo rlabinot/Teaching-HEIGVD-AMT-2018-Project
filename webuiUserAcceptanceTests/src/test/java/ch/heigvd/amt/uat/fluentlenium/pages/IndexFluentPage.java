@@ -3,9 +3,9 @@ package ch.heigvd.amt.uat.fluentlenium.pages;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * This class is used to test the "Login" page in the MVCDemo app.
+ * This class is used to test the "Login" page in the Webui app.
  *
- * @author Olivier Liechti
+ * @author Labinot Rashiti
  */
 public class IndexFluentPage extends AbstractWebuiFluentPage {
 

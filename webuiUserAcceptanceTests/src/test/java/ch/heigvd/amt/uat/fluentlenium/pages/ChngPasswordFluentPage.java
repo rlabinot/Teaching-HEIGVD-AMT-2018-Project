@@ -2,6 +2,11 @@ package ch.heigvd.amt.uat.fluentlenium.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * This class is used to test the "Change Password" page in the Webui app.
+ *
+ * @author Labinot Rashiti
+ */
 public class ChngPasswordFluentPage extends AbstractWebuiFluentPage {
 
   private final static String inputPassword = "#inputPassword"; // id in the html code

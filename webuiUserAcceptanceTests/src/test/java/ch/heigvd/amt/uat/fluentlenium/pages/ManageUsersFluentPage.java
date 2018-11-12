@@ -2,6 +2,11 @@ package ch.heigvd.amt.uat.fluentlenium.pages;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * This class is used to test the "Manage Users" page in the Webui app.
+ *
+ * @author Labinot Rashiti
+ */
 public class ManageUsersFluentPage extends AbstractWebuiFluentPage {
 
   private final static String buttonSuspend = "#buttonSuspend"; // id in the html code

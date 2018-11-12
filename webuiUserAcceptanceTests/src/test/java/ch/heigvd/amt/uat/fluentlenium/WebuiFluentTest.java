@@ -12,12 +12,14 @@ import org.fluentlenium.core.annotation.Page;
 import java.util.UUID;
 
 /**
+ * This is the file used to list all the tests that will be done.
  *
- * @author Olivier Liechti (olivier.liechti@heig-vd.ch)
+ * @author Labinot Rashiti
  */
 public class WebuiFluentTest extends FluentTest {
 
-  private final String baseUrl = "http://localhost:8080/webui/login";
+  private final String loginUrl = "http://localhost:8080/webui/login";
+  private final String baseUrl = "http://localhost:8080/webui";
 
   @Page public IndexFluentPage indexPage;
   @Page public LoginFluentPage loginPage;
@@ -25,68 +27,10 @@ public class WebuiFluentTest extends FluentTest {
   @Page public ManageAppsFluentPage manageAppsPage;
   @Page public RegisterAppFluentPage registerAppPage;
 
-  /**
-  @Page
-  public ChngPasswordFluentPage chngPasswordFluentPage;
-  @Page
-  public EditAppFluentPage editAppFluentPage;
-  @Page
-  public LoginFluentPage loginPage;
-  @Page
-  public manageAppsPage manageAppsPage;
-  @Page
-  public ManageUsersFluentPage manageUsersFluentPage;
-  @Page
-  public RegisterAppFluentPage registerAppFluentPage;
-  @Page
-  public RegisterUserFluentPage registerUserFluentPage;
-  @Page
-  public ShowAppFluentPage showAppFluentPage;
-  **/
-
-  /**
   @Test
   @ProbeTest(tags = "WebUI")
   public void itShouldNotBePossibleToSigninWithAnInvalidEmail() {
-    goTo(baseUrl);
-    loginPage.isAt();
-    loginPage.typeEmailAddress("not a valid email");
-    loginPage.typePassword("any password");
-    loginPage.clickSignin();
-    loginPage.isAt();
-  }
-
-  @Test
-  @ProbeTest(tags = "WebUI")
-  public void successfulSigninShouldBringUserToHomePage() {
-    goTo(baseUrl);
-    loginPage.isAt();
-    loginPage.typeEmailAddress("a@a.com");
-    loginPage.typePassword("any password");
-    loginPage.clickSignin();
-    homePage.isAt();
-  }
-
-  @Test
-  @ProbeTest(tags = "WebUI")
-  public void itShouldBePossibleToGetDetailsForACompanyAfterSignin() {
-    goTo(corporateInformationPage);
-    loginPage.isAt(); // we have not logged in, so we should be redirected
-    loginPage.typeEmailAddress("a@a.com");
-    loginPage.typePassword("any password");
-    loginPage.clickSignin();
-    corporateInformationPage.isAt(); // we should be redirected toward the original target after signin
-    corporateInformationPage.clickOnFirstCompanyLinkInCompaniesTable();
-    companyDetailsPage.isAt();
-  }
-
-   **/
-
-
-  @Test
-  @ProbeTest(tags = "WebUI")
-  public void itShouldNotBePossibleToSigninWithAnInvalidEmail() {
-    goTo(baseUrl);
+    goTo(loginUrl);
     loginPage.isAt();
     loginPage.typeEmailAddress("not a valid email");
     loginPage.typePassword("any password");
@@ -97,7 +41,7 @@ public class WebuiFluentTest extends FluentTest {
   @Test
   @ProbeTest(tags = "WebUI")
   public void itShouldBePossibleToRegister() {
-    goTo(baseUrl);
+    goTo(loginUrl);
     loginPage.isAt();
     loginPage.clickRegister();
     registerUserPage.isAt();
@@ -113,7 +57,7 @@ public class WebuiFluentTest extends FluentTest {
   @Test
   @ProbeTest(tags = "WebUI")
   public void itShouldNotBePossibleToHaveAWeakPassword() {
-    goTo(baseUrl);
+    goTo(loginUrl);
     loginPage.isAt();
     loginPage.clickRegister();
     registerUserPage.isAt();
@@ -129,7 +73,7 @@ public class WebuiFluentTest extends FluentTest {
   @Test
   @ProbeTest(tags = "WebUI")
   public void successfulSigninShouldBringUserToHomePage() {
-    goTo(baseUrl);
+    goTo(loginUrl);
     loginPage.isAt();
     loginPage.typeEmailAddress("user@stackoveramt.ch");
     loginPage.typePassword("user");
@@ -137,12 +81,48 @@ public class WebuiFluentTest extends FluentTest {
     manageAppsPage.isAt();
   }
 
+  @Test
+  @ProbeTest(tags = "WebUI")
+  public void itShouldBePossibleToAddSomeApps() {
+    goTo(loginUrl);
+    loginPage.isAt();
+    loginPage.typeEmailAddress("user@stackoveramt.ch");
+    loginPage.typePassword("user");
+    loginPage.clickSignin();
+    manageAppsPage.isAt();
+
+    // Adding 25 apps
+    for (int i = 0; i < 25; ++i) {
+      manageAppsPage.clickAdd();
+      registerAppPage.isAt();
+      registerAppPage.typeName("Name" + i);
+      registerAppPage.typeDescription("Description" + i);
+      registerAppPage.clickRegister();
+      manageAppsPage.isAt();
+    }
+
+    // Navigating with pagination
+    manageAppsPage.isAt();
+    manageAppsPage.clickNext(); // 10 to 20 apps
+    manageAppsPage.clickNext(); // 20 to 25 apps
+    manageAppsPage.clickPrevious();
+    manageAppsPage.clickPrevious();
+    manageAppsPage.isAt();
+
+    // logout and check if can access to securised page with goTo
+    manageAppsPage.goToLogoutPageViaMenu();
+    loginPage.isAt();
+    goTo(baseUrl + "/home");
+    loginPage.isAt();
+  }
+
+
   // TODO : Manage SQL Exception and redirect the page to registerUserPage
   /**
   Test
   @ProbeTest(tags = "WebUI")
   public void itShouldNotBePossibleToRegisterWithSameUser() {
-    goTo(baseUrl);
+    goTo(loginUrl);
     loginPage.isAt();
     loginPage.clickRegister();
     registerUserPage.isAt();
@@ -159,7 +139,7 @@ public class WebuiFluentTest extends FluentTest {
   @Test
   @ProbeTest(tags = "WebUI")
   public void itShouldBePossibleToAddAnAppEditItAndDeleteIt() {
-    goTo(baseUrl);
+    goTo(loginUrl);
     loginPage.isAt();
     loginPage.typeEmailAddress("user@stackoveramt.ch");
     loginPage.typePassword("user");
