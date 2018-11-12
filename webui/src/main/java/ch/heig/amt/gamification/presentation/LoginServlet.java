@@ -74,6 +74,7 @@ public class LoginServlet extends HttpServlet {
                     }
                 } else {
                     // login not ok because inactive user
+                    request.getSession().invalidate();
                     error.setInactiveUser(true);
                     request.setAttribute("inputError", error);
                     request.setAttribute("pageTitle", "Login");
@@ -81,6 +82,7 @@ public class LoginServlet extends HttpServlet {
                 }
             } else {
                 // login is not ok because wrong credentials, db result is null
+                request.getSession().invalidate();
                 error.setWrongLogin(true);
                 request.setAttribute("inputError", error);
                 request.setAttribute("pageTitle", "Login");
