@@ -66,6 +66,9 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input id="buttonRegister" type="submit" value="Register" class="btn btn-success"/>
+									<c:if test="${inputError.emailAlreadyInUse}">
+                                        <span class="errors">${inputError.userAlreadyRegistered}</span>
+                                    </c:if>
                                 </div>
                             </div>
                         </form>

@@ -139,8 +139,16 @@ public class UserServlet extends HttpServlet {
                 if (inputError.checkErrors() == false) {
                     // Ajout à la DB
                     User userToAdd = new User(name, email, password, false, true, false);
-                    userDAO.createUser(userToAdd);
-                    response.sendRedirect("/webui/login");
+                    try {
+                        userDAO.createUser(userToAdd);
+                        response.sendRedirect("/webui/login");
+                    } catch (Exception e) {
+                        inputError.setEmailAlreadyInUse(true);
+                        request.setAttribute("inputError", inputError);
+                        request.setAttribute("pageTitle", "Register User");
+                        request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
+
+                    }
                 } else {
                     request.setAttribute("inputError", inputError);
                     request.setAttribute("pageTitle", "Register User");
