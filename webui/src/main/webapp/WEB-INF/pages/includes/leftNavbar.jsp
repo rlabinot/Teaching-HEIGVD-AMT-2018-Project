@@ -4,12 +4,12 @@
             <c:choose>
                 <c:when test="${isAdmin}">
                     <li style="padding: 10px 0 0;">
-                        <a id="menuItemApps" href="/webui/home" class="waves-effect"><i class="fa fa-users fa-fw" aria-hidden="true"></i><span class="hide-menu">Users</span></a>
+                        <a id="menuItemUsers" href="/webui/home" class="waves-effect"><i class="fa fa-users fa-fw" aria-hidden="true"></i><span class="hide-menu">Users</span></a>
                     </li>
                 </c:when>
                 <c:otherwise>
                     <li style="padding: 10px 0 0;">
-                        <a id="menuItemUsers" href="/webui/home" class="waves-effect"><i class="fa fa-folder-open fa-fw" aria-hidden="true"></i><span class="hide-menu">Applications</span></a>
+                        <a id="menuItemApps" href="/webui/home" class="waves-effect"><i class="fa fa-folder-open fa-fw" aria-hidden="true"></i><span class="hide-menu">Applications</span></a>
                     </li>
                 </c:otherwise>
             </c:choose>
