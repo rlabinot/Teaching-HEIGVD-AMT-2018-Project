@@ -1,14 +1,13 @@
 package ch.heigvd.amt.uat.fluentlenium;
 
 import ch.heigvd.amt.uat.fluentlenium.pages.*;
+import com.github.javafaker.Faker;
 import io.probedock.client.annotations.ProbeTest;
 import org.fluentlenium.adapter.FluentTest;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.fluentlenium.core.annotation.Page;
-
 import java.util.UUID;
 
 /**
@@ -22,7 +21,6 @@ public class WebuiFluentTest extends FluentTest {
   private final String loginUrl = "http://localhost:8080/webui/login";
   private final String baseUrl = "http://localhost:8080/webui";
 
-  @Page public IndexFluentPage indexPage;
   @Page public LoginFluentPage loginPage;
   @Page public RegisterUserFluentPage registerUserPage;
   @Page public ManageAppsFluentPage manageAppsPage;
@@ -98,8 +96,8 @@ public class WebuiFluentTest extends FluentTest {
     for (int i = 0; i < 25; ++i) {
       manageAppsPage.clickAdd();
       registerAppPage.isAt();
-      registerAppPage.typeName("Name" + i);
-      registerAppPage.typeDescription("Description" + i);
+      registerAppPage.typeName(Faker.instance().app().name());
+      registerAppPage.typeDescription("Random description");
       registerAppPage.clickRegister();
       manageAppsPage.isAt();
     }

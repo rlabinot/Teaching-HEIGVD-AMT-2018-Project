@@ -90,6 +90,7 @@ public class SecurityFilter implements Filter {
                     if(!isAdmin){
                         request.setAttribute("pageTitle", "404 Page");
                         request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
+                        return;
                     }
                 }
 
