@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 @Local
 public interface UserDAOLocal {
+    public int countUser();
     public void createUser(User userToCreate);
     public User readUser(String emailToRead);
     public ArrayList<User> readAllUser();

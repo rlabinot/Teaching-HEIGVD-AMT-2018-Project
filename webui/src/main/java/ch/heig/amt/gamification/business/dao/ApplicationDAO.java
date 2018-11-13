@@ -16,6 +16,7 @@ import java.util.ArrayList;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class ApplicationDAO implements ApplicationDAOLocal {
+    private final String COUNT = "CALL countApplication(?)";
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";
     private final String READ = "CALL readApplication(?, ?)";
     private final String READ_FROM_USER = "CALL readApplicationFromUser(?)";
@@ -38,6 +39,23 @@ public class ApplicationDAO implements ApplicationDAOLocal {
             preparedStatement.setString(5, application.getUser());
             preparedStatement.execute();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public int countApplication(String email) {
+        int nb = 0;
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(COUNT);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()) {
+                nb = rs.getInt("nb");
+            }
+            return nb;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

@@ -18,6 +18,7 @@ import java.util.ArrayList;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class UserDAO implements UserDAOLocal {
+    private final String COUNT = "CALL countUser(?)";
     private final String CREATE = "CALL createUser(?, ?, ?, ?, ?, ?)";
     private final String READ   = "CALL readUser(?)";
     private final String READ_ALL   = "CALL readAllUser()";
@@ -31,6 +32,23 @@ public class UserDAO implements UserDAOLocal {
 
     @Resource(name = "jdbc/stackoveramt")
     DataSource dataSource;
+
+    @Override
+    public int countUser() {
+        int nb = 0;
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(COUNT);
+            ResultSet rs =  preparedStatement.executeQuery();
+            if(rs.next()) {
+                nb = rs.getInt("nb");
+
+            }
+            return nb;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void createUser(User userToCreate) {
