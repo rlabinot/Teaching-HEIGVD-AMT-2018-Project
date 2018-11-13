@@ -86,12 +86,12 @@ public class LogDAO implements LogDAOLocal{
             throw new RuntimeException(e);
         }
     }
-// IN Lstatus VARCHAR(50), IN Laction VARCHAR(50), IN Ldescription VARCHAR(50)
+
     @Override
     public void updateLog(int idToUpdate, Log values) {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
-            preparedStatement.setInt(1,idToUpdate);
+            preparedStatement.setInt(1, idToUpdate);
             preparedStatement.setString(2, values.getUser());
             preparedStatement.setLong(3, values.getDate());
             preparedStatement.setString(4, values.getStatus());
@@ -108,7 +108,7 @@ public class LogDAO implements LogDAOLocal{
     public void deleteLog(int logId) {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
-            preparedStatement.setInt(1,logId);
+            preparedStatement.setInt(1, logId);
             preparedStatement.execute();
 
         } catch (SQLException e) {
