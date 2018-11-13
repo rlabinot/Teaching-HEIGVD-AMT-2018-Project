@@ -133,7 +133,7 @@ DELIMITER ;
 
 /* CRUD over an application */
 DELIMITER //
-	CREATE PROCEDURE countApplication(IN RefUmail VARCHAR(50))
+	CREATE PROCEDURE countApplicationFromUser(IN RefUmail VARCHAR(50))
 	BEGIN
 		SELECT COUNT(*) as "nb" FROM Applications WHERE Applications.RefUmail LIKE BINARY RefUmail;
 	END //
