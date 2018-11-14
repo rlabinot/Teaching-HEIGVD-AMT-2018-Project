@@ -11,19 +11,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class LogDAO implements LogDAOLocal{
 
+    private final String COUNT = "CALL countActionLogs()";
     private final String CREATE = "CALL createActionLogs(?, ?, ?, ?, ?)";
     private final String READ = "CALL readActionLogs(?)";
     private final String READ_ALL = "CALL readAllActionLogs()";
+    private final String READ_ALL_OFF = "CALL readAllActionLogsOffset(?, ?)";
     private final String UPDATE = "CALL updateActionLogs(?, ?, ?, ?, ?, ?)";
     private final String DELETE = "CALL deleteActionLogs(?)";
 
     @Resource(name="jdbc/stackoveramt")
     DataSource dataSource;
+
+    @Override
+    public int countLog() {
+        int nb = 0;
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(COUNT);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()){
+               nb = rs.getInt("nb");
+            }
+            return nb;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 
     public void createLog(Log log){
 
@@ -69,6 +88,31 @@ public class LogDAO implements LogDAOLocal{
         ArrayList<Log> allLogs = new ArrayList<>();
         try(Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(READ_ALL);
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next()){
+                allLogs.add(new Log(
+                        rs.getInt("Lid"),
+                        rs.getString("Luser"),
+                        rs.getLong("Ltimestamp"),
+                        rs.getString("Lstatus"),
+                        rs.getString("Laction"),
+                        rs.getString("Ldescription")
+                ));
+            }
+            return allLogs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<Log> readAllLog(int offset, int size) {
+        ArrayList<Log> allLogs = new ArrayList<>();
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(READ_ALL_OFF);
+            preparedStatement.setInt(1, offset);
+            preparedStatement.setInt(2, size);
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next()){
                 allLogs.add(new Log(
