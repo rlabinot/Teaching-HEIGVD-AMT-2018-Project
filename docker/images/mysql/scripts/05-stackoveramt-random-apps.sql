@@ -1,6 +1,5 @@
 
-INSERT INTO `Applications` VALUES ('1','sint','Officiis quia molestias neque voluptatem cumque molestiae. Animi consequuntur dolorem tenetur consequuntur consequatur eligendi laborum. Et perferendi','iure','sit','aaliyah.morar@example.net'),
-('2','nostrum','Molestias aut ut neque aliquid cum. Est dolorem totam ullam veritatis vel et quisquam ea. Quibusdam tenetur blanditiis nihil fugiat unde veniam pariat','soluta','praesentium','abe.witting@example.org'),
+INSERT INTO `Applications` VALUES ('2','nostrum','Molestias aut ut neque aliquid cum. Est dolorem totam ullam veritatis vel et quisquam ea. Quibusdam tenetur blanditiis nihil fugiat unde veniam pariat','soluta','praesentium','abe.witting@example.org'),
 ('3','sit','Accusantium ducimus asperiores aut perferendis ab sed. Nulla quos molestiae doloribus. Et est et ea quaerat perspiciatis ea dolor.','sed','numquam','abeahan@example.com'),
 ('4','est','Itaque aut et rerum quod at facere doloribus. Aut nisi quia nam aut aliquid modi. Eos aspernatur ipsam soluta ipsum minus autem.','consequatur','est','abeer@example.com'),
 ('5','enim','Ad facilis maxime nesciunt voluptatem voluptatem vitae autem. Omnis sit voluptatum modi voluptate. Velit neque necessitatibus non quam repellendus. Do','ut','rerum','abigale.paucek@example.com'),
