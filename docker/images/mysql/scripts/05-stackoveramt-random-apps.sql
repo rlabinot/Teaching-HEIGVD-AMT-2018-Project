@@ -1,30 +1,3 @@
--- Generation time: Wed, 14 Nov 2018 16:05:54 +0000
--- Host: mysql.hostinger.ro
--- DB name: u574849695_23
-/*!40030 SET NAMES UTF8 */;
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-DROP TABLE IF EXISTS `Applications`;
-CREATE TABLE `Applications` (
-  `Aid` int(10) NOT NULL AUTO_INCREMENT,
-  `Aname` varchar(50) NOT NULL,
-  `Adescription` varchar(150) NOT NULL,
-  `AapiKey` varchar(50) NOT NULL,
-  `AapiSecret` varchar(50) NOT NULL,
-  `RefUmail` varchar(50) NOT NULL,
-  PRIMARY KEY (`Aid`),
-  UNIQUE KEY `Aid` (`Aid`),
-  KEY `RefUmail` (`RefUmail`),
-  CONSTRAINT `Applications_ibfk_1` FOREIGN KEY (`RefUmail`) REFERENCES `Users` (`Umail`)
-) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=latin1;
 
 INSERT INTO `Applications` VALUES ('1','sint','Officiis quia molestias neque voluptatem cumque molestiae. Animi consequuntur dolorem tenetur consequuntur consequatur eligendi laborum. Et perferendi','iure','sit','aaliyah.morar@example.net'),
 ('2','nostrum','Molestias aut ut neque aliquid cum. Est dolorem totam ullam veritatis vel et quisquam ea. Quibusdam tenetur blanditiis nihil fugiat unde veniam pariat','soluta','praesentium','abe.witting@example.org'),
@@ -1026,15 +999,4 @@ INSERT INTO `Applications` VALUES ('1','sint','Officiis quia molestias neque vol
 ('998','non','Earum dolorum recusandae quaerat molestias dignissimos incidunt sit. Delectus dicta non et nostrum inventore perferendis dolorem. Beatae corrupti aut ','dolorem','nihil','zsatterfield@example.com'),
 ('999','consequuntur','Aut placeat dignissimos consectetur. Eius aliquam asperiores nihil molestiae. Delectus sed vitae reprehenderit consequuntur veritatis quia omnis eveni','veritatis','cupiditate','zupton@example.net'),
 ('1000','nostrum','Qui ab voluptatem suscipit deleniti animi. Numquam ut illo quas voluptatem omnis. Neque autem minus et. Exercitationem voluptatem eveniet aliquid quos','dolores','excepturi','zwintheiser@example.org'); 
-
-
-
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 

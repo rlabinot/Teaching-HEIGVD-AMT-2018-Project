@@ -1,29 +1,3 @@
--- Generation time: Wed, 14 Nov 2018 16:05:33 +0000
--- Host: mysql.hostinger.ro
--- DB name: u574849695_23
-/*!40030 SET NAMES UTF8 */;
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-DROP TABLE IF EXISTS `ActionLogs`;
-CREATE TABLE `ActionLogs` (
-  `Lid` int(10) NOT NULL AUTO_INCREMENT,
-  `Luser` varchar(50) NOT NULL,
-  `Ltimestamp` bigint(20) NOT NULL,
-  `Lstatus` varchar(50) NOT NULL,
-  `Laction` varchar(50) NOT NULL,
-  `Ldescription` varchar(150) NOT NULL,
-  PRIMARY KEY (`Lid`),
-  UNIQUE KEY `Lid` (`Lid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=latin1;
-
 INSERT INTO `ActionLogs` VALUES ('1','aaliyah.morar@example.net','1124267008','Atque esse illo molestiae corrupti aperiam. Non vi','Dolorem hic nostrum beatae. Aut ad tenetur cupidit','Fugit deleniti ut minima quia. Officia velit quia soluta qui ratione animi. Dignissimos qui sequi totam vitae.'),
 ('2','abe.witting@example.org','930985923','Ad vitae sed voluptatem eius cum natus. Rerum enim','Dolorem ea ut voluptas dolor. Optio dolore et impe','Eveniet consequatur quia iste expedita rem placeat. Alias facere odit odio qui qui pariatur alias placeat. Nulla debitis et occaecati ipsum voluptatem'),
 ('3','abeahan@example.com','104574302','Qui sunt sit dolores eum. Eligendi officiis omnis ','Exercitationem voluptas reprehenderit sed laudanti','Et magnam consequatur qui ea eum molestiae. Voluptates eius amet repellendus velit similique. Explicabo debitis autem ex iure fugiat. Libero dolor et '),
@@ -1024,15 +998,3 @@ INSERT INTO `ActionLogs` VALUES ('1','aaliyah.morar@example.net','1124267008','A
 ('998','zsatterfield@example.com','259378558','Laudantium cumque a quibusdam omnis distinctio non','Distinctio quis ipsa tempora doloremque sed quas e','Quis dignissimos sequi asperiores accusantium doloribus. Quod cupiditate molestias necessitatibus amet ipsa qui aut. Voluptas et omnis eaque nostrum. '),
 ('999','zupton@example.net','927579565','Aspernatur aut tempora sed consequatur ut. Distinc','Tenetur minus voluptatum praesentium quibusdam por','Debitis consectetur magnam quia amet ipsam in vitae. Ipsum illum vitae dolores quam repellat similique. Veniam a laboriosam eveniet in fuga et eos.'),
 ('1000','zwintheiser@example.org','11654392','Facere cumque vel nostrum ut quasi fugit. Veritati','Qui commodi maiores dolorum autem at impedit elige','Quis est libero qui animi consequatur eaque qui. Error culpa doloremque blanditiis qui consequatur ea a fugiat. Ut mollitia in quidem quia quia quis e'); 
-
-
-
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-

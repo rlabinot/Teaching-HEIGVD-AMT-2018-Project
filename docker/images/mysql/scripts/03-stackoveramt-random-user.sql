@@ -1,30 +1,6 @@
--- Generation time: Wed, 14 Nov 2018 16:05:20 +0000
--- Host: mysql.hostinger.ro
--- DB name: u574849695_23
-/*!40030 SET NAMES UTF8 */;
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+USE stackoveramt;
 
-DROP TABLE IF EXISTS `Users`;
-CREATE TABLE `Users` (
-  `Umail` varchar(50) NOT NULL,
-  `Uname` varchar(50) NOT NULL,
-  `Upassword` char(64) NOT NULL,
-  `UisAdmin` int(1) NOT NULL,
-  `UisActive` int(1) NOT NULL,
-  `UmustChangePassword` int(1) NOT NULL,
-  PRIMARY KEY (`Umail`),
-  UNIQUE KEY `Umail` (`Umail`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO `Users` VALUES ('aaliyah.morar@example.net','Prof. Jeremie Leuschke','d9304b4b77763eb7f63c76fce199947c93b5818ece92e3d25054e419fa7033ad','0','1','0'),
+INSERT INTO Users VALUES ('aaliyah.morar@example.net','Prof. Jeremie Leuschke','d9304b4b77763eb7f63c76fce199947c93b5818ece92e3d25054e419fa7033ad','0','1','0'),
 ('abe.witting@example.org','Ashlynn Grimes','807d1a86dd587090cdc26c568c0261e378295eb79de4d33ed7cdce22bcaf49e9','1','0','0'),
 ('abeahan@example.com','Prof. Tyson Marquardt','cf54c23064a210914b72d64e192020f51a3b4016781822f2a5444d28b7d22938','1','0','0'),
 ('abeer@example.com','Vida Hansen','065286bc8cf9c546b44a823fe2c0624ccff50e8bbf73f0e0c1f0f96edabb4cb9','1','1','0'),
@@ -1024,15 +1000,3 @@ INSERT INTO `Users` VALUES ('aaliyah.morar@example.net','Prof. Jeremie Leuschke'
 ('zsatterfield@example.com','Patricia Heaney','9afd519975011239c6f980e2cf9a6022008f4138b64d3989cc66b652cf28888a','1','1','1'),
 ('zupton@example.net','Hosea Wyman PhD','df0263b6e0bf28335934ae5a20b6fc51d54ca3347a3b6e295c5ea0d379b0ff83','0','1','0'),
 ('zwintheiser@example.org','Prof. Darion Cole III','84ae505935fc46fc830a6a86c25d582ceab452b11827f958c5f42ab9c8c3f434','1','1','0'); 
-
-
-
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
