@@ -86,13 +86,11 @@ public class LogFilter implements Filter {
             action = "undefined";
         }
 
-        Log request_log = new Log(remoteUser, System.currentTimeMillis(), Log.STATUS_INFO, action, description);
+        Log request_log = new Log(remoteUser, System.currentTimeMillis(), "request", action, description);
 
         logDAO.createLog(request_log);
 
-        filterConfigObj.getServletContext().log("\nRequest : \nLoggedUser: " + remoteUser +
-                "\nAction: " + action +
-                "\nDescription" + description);
+        filterConfigObj.getServletContext().log(request_log.toString());
 
         try {
             status = String.valueOf(httpResponse.getStatus());
@@ -106,13 +104,12 @@ public class LogFilter implements Filter {
             server = "";
         }
 
-        Log response_log = new Log("Server" + server, System.currentTimeMillis(), Log.STATUS_INFO,
+        Log response_log = new Log(server, System.currentTimeMillis(), "response",
                 "server response", "Code : " + status);
 
         logDAO.createLog(response_log);
 
-        filterConfigObj.getServletContext().log(server + "\nResponse :" +
-                "\nStatus: " + status);
+        filterConfigObj.getServletContext().log(response_log.toString());
 
     }
 }

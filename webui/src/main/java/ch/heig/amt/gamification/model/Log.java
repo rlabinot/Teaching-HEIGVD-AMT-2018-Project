@@ -31,6 +31,15 @@ public class Log {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "User='" + user +
+                "\ndate=" + date +
+                "\nstatus='" + status +
+                "\naction='" + action +
+                "\ndescription='" + description;
+    }
+
     public int getId() {
         return id;
     }

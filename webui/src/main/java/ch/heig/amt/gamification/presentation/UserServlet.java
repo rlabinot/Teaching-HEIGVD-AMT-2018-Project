@@ -77,7 +77,7 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect("/webui/home");
                 break;
 
-            case "changePassword":
+            case "resetPassword":
                 // send mail
                 String auto_password = UUID.randomUUID().toString();
 

@@ -44,12 +44,15 @@
                                     <span>${inputError.weakPasswordMessage}</span>
                                 </c:if>
                             </div>
+                            <c:if test="${inputError.passwordReused}">
+                                <span class="errors">${inputError.passwordReusedMessage}</span>
+                            </c:if>
+                        </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <input id="buttonContinue" type="submit" value="Continue" class="btn btn-success"/>
-                            </div>
                         </div>
                     </form>
                     <!-- ./form -->

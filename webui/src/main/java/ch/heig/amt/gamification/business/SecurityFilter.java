@@ -65,7 +65,6 @@ public class SecurityFilter implements Filter {
              * we display the login page (and interrupt the request processing pipeline).
              */
             httpResponse.sendRedirect("/webui/login");
-
         } else {
 
             boolean mustChangePassword = Boolean.TRUE == httpSession.getAttribute("mustChangePassword");
@@ -76,33 +75,33 @@ public class SecurityFilter implements Filter {
                 error.setInactiveUser(true);
                 request.setAttribute("inputError", error);
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+                return;
 
             } else if (mustChangePassword && email != null) {
                 // the filter should not redirect the action to change pwd
                 if(path.startsWith("/user") && action.equals("changePassword")) {
+                    // the expected behaviour, let the request go through
                     chain.doFilter(request, response);
                 } else {
                     request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
                 }
             } else {
                 // check if admin privilege is needed
-                if(path.startsWith("/user") && !non_admin_actions.contains(action)){
-                    if(!isAdmin){
-                        request.setAttribute("pageTitle", "404 Page");
-                        request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
-                        return;
-                    }
-                }
+                if(path.startsWith("/user") && !non_admin_actions.contains(action) && !isAdmin){
+                    request.setAttribute("pageTitle", "404 Page");
+                    request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
+                } else {
 
-                /*
-                 * We authorize the access, so we can tell the request processing pipeline to
-                 * continue its work.
-                 */
-                chain.doFilter(request, response);
-                /*
-                 * Here, we could inspect and manipulate the response and its way back to the
-                 * client. In this case, we don't have anything to do.
-                 */
+                    /*
+                     * We authorize the access, so we can tell the request processing pipeline to
+                     * continue its work.
+                     */
+                    chain.doFilter(request, response);
+                    /*
+                     * Here, we could inspect and manipulate the response and its way back to the
+                     * client. In this case, we don't have anything to do.
+                     */
+                }
             }
         }
 

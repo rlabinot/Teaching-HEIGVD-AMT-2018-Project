@@ -105,7 +105,7 @@ public class InputError {
     public String getAppAlreadyRegistered() { return APP_ALREADY_REGISTERED; }
     public String getUserMustChangePassword() { return USER_MUST_CHANGE_PASSWORD; }
     public String getBothPasswordDifferent() { return BOTH_PASSWORD_DIFFERENT; }
-    public String getPasswordReused() { return PASSWORD_REUSED; }
+    public String getPasswordReusedMessage() { return PASSWORD_REUSED; }
     public String getInactiveUserMessage() { return INACTIVE_USER_MESSAGE; }
     public String getUserPasswordReset() {return USER_PASSWORD_RESET;}
 }

@@ -80,7 +80,7 @@
                                             </c:otherwise>
                                         </c:choose>
 
-                                        <td><a id="buttonResetPassword" href="/webui/user?action=changePassword&id=${user.email}">Reset password</a></td>
+                                        <td><a id="buttonResetPassword" href="/webui/user?action=resetPassword&id=${user.email}">Reset password</a></td>
                                         <td><a id="buttonDelete" href="/webui/user?action=delete&id=${user.email}">Delete</a></td>
                                     </tr>
                                 </c:forEach>
