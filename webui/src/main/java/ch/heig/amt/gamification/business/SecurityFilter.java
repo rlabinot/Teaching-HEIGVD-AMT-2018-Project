@@ -71,12 +71,13 @@ public class SecurityFilter implements Filter {
             boolean isActive= Boolean.TRUE == httpSession.getAttribute("isActive");
             InputError error = new InputError();
 
+            // if a logged non-active user try to access anything, redirect to login.jsp
             if (!isActive && email != null) {
                 error.setInactiveUser(true);
                 request.setAttribute("inputError", error);
                 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
-                return;
 
+            // if a logged user must change his password
             } else if (mustChangePassword && email != null) {
                 // the filter should not redirect the action to change pwd
                 if(path.startsWith("/user") && action.equals("changePassword")) {
@@ -85,23 +86,33 @@ public class SecurityFilter implements Filter {
                 } else {
                     request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
                 }
-            } else {
-                // check if admin privilege is needed
-                if(path.startsWith("/user") && !non_admin_actions.contains(action) && !isAdmin){
-                    request.setAttribute("pageTitle", "404 Page");
-                    request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
-                } else {
 
-                    /*
-                     * We authorize the access, so we can tell the request processing pipeline to
-                     * continue its work.
-                     */
-                    chain.doFilter(request, response);
-                    /*
-                     * Here, we could inspect and manipulate the response and its way back to the
-                     * client. In this case, we don't have anything to do.
-                     */
-                }
+            // if a non admin try to access the user servlet with a protected action
+            } else if(path.startsWith("/user") && !non_admin_actions.contains(action) && !isAdmin) {
+                request.setAttribute("pageTitle", "404 Page1");
+                request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
+
+            // if a admin try to access the app servlet
+            } else if (path.startsWith("/app") && isAdmin) {
+                request.setAttribute("pageTitle", "404 Page2");
+                request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
+
+            // if a non admin try to access the log servlet
+            } else if (path.startsWith("/log") && !path.startsWith("/login") && !isAdmin) {
+                request.setAttribute("pageTitle", "404 Page3");
+                request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
+            } else {
+
+                /*
+                 * We authorize the access, so we can tell the request processing pipeline to
+                 * continue its work.
+                 */
+                chain.doFilter(request, response);
+                /*
+                 * Here, we could inspect and manipulate the response and its way back to the
+                 * client. In this case, we don't have anything to do.
+                 */
+
             }
         }
 
