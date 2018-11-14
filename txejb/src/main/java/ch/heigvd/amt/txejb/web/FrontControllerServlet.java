@@ -1,8 +1,8 @@
 package ch.heigvd.amt.txejb.web;
 
-import ch.heigvd.amt.txejb.model.Car;
-import ch.heigvd.amt.txejb.services.OrderServiceLocal;
-import ch.heigvd.amt.txejb.services.TireDAOLocal;
+import ch.heigvd.amt.txejb.model.User;
+import ch.heigvd.amt.txejb.services.ApplicationDAOLocal;
+import ch.heigvd.amt.txejb.services.UserDAOLocal;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -14,27 +14,28 @@ import java.io.IOException;
 @WebServlet(name = "FrontControllerServlet", urlPatterns = "/front")
 public class FrontControllerServlet extends javax.servlet.http.HttpServlet {
 
-  @EJB
-  OrderServiceLocal orderService;
 
   @EJB
-  TireDAOLocal tireDAO;
+  UserDAOLocal userDAOLocal;
+
+  @EJB
+  ApplicationDAOLocal applicationDAOLocal;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    long numberOfTiresBefore = -1;
-    long numberOfTiresAfter = -1;
+    long numberOfUserBefore = -1;
+    long numberOfUserAfter = -1;
 
     try {
-      numberOfTiresBefore = tireDAO.count();
-      Car car = orderService.orderCar("John");
-
-      response.getWriter().println(car);
+      numberOfUserBefore = userDAOLocal.countUser();
+      User user1 = new User();
+      userDAOLocal.createUser(user1);
+      response.getWriter().println(user1);
     } catch (Exception e) {
       response.getWriter().println("There was a problem while manufacturing the car or its parts");
     } finally {
-      numberOfTiresAfter = tireDAO.count();
-      response.getWriter().println(String.format("Number of tires before: %d", numberOfTiresBefore));
-      response.getWriter().println(String.format("Number of tires after: %d", numberOfTiresAfter));
+      numberOfUserAfter = userDAOLocal.countUser();
+      response.getWriter().println(String.format("Number of tires before: %d", numberOfUserBefore));
+      response.getWriter().println(String.format("Number of tires after: %d", numberOfUserAfter));
     }
   }
 }
