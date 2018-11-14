@@ -89,17 +89,17 @@ public class SecurityFilter implements Filter {
 
             // if a non admin try to access the user servlet with a protected action
             } else if(path.startsWith("/user") && !non_admin_actions.contains(action) && !isAdmin) {
-                request.setAttribute("pageTitle", "404 Page1");
+                request.setAttribute("pageTitle", "404 Page");
                 request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
 
             // if a admin try to access the app servlet
             } else if (path.startsWith("/app") && isAdmin) {
-                request.setAttribute("pageTitle", "404 Page2");
+                request.setAttribute("pageTitle", "404 Page");
                 request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
 
             // if a non admin try to access the log servlet
             } else if (path.startsWith("/log") && !path.startsWith("/login") && !isAdmin) {
-                request.setAttribute("pageTitle", "404 Page3");
+                request.setAttribute("pageTitle", "404 Page");
                 request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
             } else {
 
