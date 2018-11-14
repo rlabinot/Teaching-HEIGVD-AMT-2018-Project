@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @Stateless
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class ApplicationDAO implements ApplicationDAOLocal {
-    private final String COUNT = "CALL countApplication(?)";
+    private final String COUNT = "CALL countApplicationFromUser(?)";
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";
     private final String READ = "CALL readApplication(?, ?)";
     private final String READ_FROM_USER = "CALL readApplicationFromUser(?)";

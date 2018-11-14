@@ -7,7 +7,7 @@
                         <a id="menuItemUsers" href="/webui/home" class="waves-effect"><i class="fa fa-users fa-fw" aria-hidden="true"></i><span class="hide-menu">Users</span></a>
                     </li>
                     <li style="padding: 10px 0 0;">
-                        <a id="menuItemLogs" href="/webui/home" class="waves-effect"><i class="fa fa-users fa-fw" aria-hidden="true"></i><span class="hide-menu">Users</span></a>
+                        <a id="menuItemLogs" href="#" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i><span class="hide-menu">Logs</span></a>
                     </li>
                 </c:when>
                 <c:otherwise>

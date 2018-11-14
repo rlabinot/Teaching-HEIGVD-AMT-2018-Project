@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
 <html lang="en">
 
 <head>
@@ -12,8 +13,6 @@
     <title>${pageTitle}</title>
     <!-- jQuery -->
     <script src="static/vendor/plugins/bower_components/jquery/dist/jquery.min.js"></script>
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="static/vendor/plugins/images/favicon.png">
     <!-- Bootstrap Core CSS -->
@@ -46,7 +45,7 @@
             <c:if test="${isActive}">
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
-                        <a href="/webui/home"> <b class="hidden-xs white">${name}</b> </a>
+                        <a href="/webui/home"> <b class="hidden-xs white username">${name}</b> </a>
                     </li>
                 </ul>
             </c:if>

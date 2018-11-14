@@ -60,3 +60,56 @@ input
     margin-bottom: 10px;
 }
 
+.pager
+{
+    text-align: right;
+    padding: 0 0 30px 0;
+    margin: 0 0 0 0;
+}
+
+.table-responsive .pager
+{
+    padding-bottom: 0;
+}
+
+.black
+{
+    color: #222222;
+
+}
+
+.username
+{
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.flex
+{
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.table-responsive .flex
+{
+    border-top: #dddddd solid 1px;
+    padding-top: 20px;
+
+}
+
+.pager
+{
+    width: 350px;
+}
+
+.option-line
+{
+    display: flex;
+    align-items: flex-start;
+}
+
+#selector
+{
+    margin: 0 10px 0 10px;
+}

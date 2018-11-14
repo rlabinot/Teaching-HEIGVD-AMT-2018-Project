@@ -17,7 +17,11 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="white-box">
-                        <h3 class="box-title">Users list</h3>
+                        <div class="flex">
+                            <h3 class="box-title">Users list</h3>
+                            <%@include file="includes/paginationDisplayer.jsp" %>
+                            <%@include file="includes/pageController.jsp" %>
+                        </div>
 
                         <!-- User tab -->
                         <div class="table-responsive">
@@ -83,6 +87,10 @@
 
                                 </tbody>
                             </table>
+                            <div class="flex">
+                                <%@include file="includes/paginationDisplayer.jsp" %>
+                                <%@include file="includes/pageController.jsp" %>
+                            </div>
                         </div>
                         <!-- ./user-tab -->
 

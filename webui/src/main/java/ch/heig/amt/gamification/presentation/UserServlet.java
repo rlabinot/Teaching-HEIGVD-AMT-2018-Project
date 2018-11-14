@@ -101,19 +101,6 @@ public class UserServlet extends HttpServlet {
                 response.sendRedirect("/webui/404");
         }
 
-        /* OLD STYLE BACKUP JUST IN CASE TODO: Delete if switch version is accepted
-        if(action == null) {
-            if (request.getSession().getAttribute("email") == null) {
-                request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
-            } else {
-                response.sendRedirect("/webui/home");
-            }
-        } else if (action.equals("delete")) {
-            String userEmail = request.getParameter("id");
-            userDAO.deleteUser(userEmail);
-            response.sendRedirect("/webui/home");
-        }
-     */
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -221,89 +208,6 @@ public class UserServlet extends HttpServlet {
                 // redirect to 404 page
                 //response.sendRedirect("/webui/aksdjlakjd");
         }
-
-        /*
-        // base action is registration of the user
-        if(action == null) {
-            // Get posted parameter
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-
-
-            // Check for errors
-            InputError inputError = new InputError();
-            if (name == null || name.trim().equals("")) {
-                inputError.setEmptyName(true);
-            }
-            if (email == null || email.trim().equals("")) {
-                inputError.setEmptyEmail(true);
-            }
-            if (password == null || password.trim().equals("")) {
-                inputError.setEmptyPassword(true);
-            }
-            else {
-
-                if (checkPassword(password) == false) {
-                    inputError.setWeakPassword(true);
-                }
-
-                if (email.indexOf('@') == -1 && !(email == null || email.trim().equals(""))) {
-                    inputError.setWrongFormatEmail(true);
-                }
-
-
-            }
-
-
-            // TODO: Check if the email is not already in use !IMPORTANT
-
-            // check if no errors
-            if (inputError.checkErrors() == false) {
-
-                // Ajout à la DB
-                User userToAdd = new User(name, email, password, false, true, false);
-                userDAO.createUser(userToAdd);
-
-                //
-                response.sendRedirect("/webui/login");
-            } else {
-                request.setAttribute("inputError", inputError);
-                request.getRequestDispatcher("/WEB-INF/pages/registerUser.jsp").forward(request, response);
-            }
-
-        } else if (action == "changePassword") {
-            HttpSession httpSession = request.getSession();
-
-            // define the user parameters
-            String name = httpSession.getAttribute("name").toString();
-            String email = httpSession.getAttribute("email").toString();
-            boolean isAdmin = (boolean) httpSession.getAttribute("isAdmin");
-            boolean isActive = (boolean) httpSession.getAttribute("isActive");
-            String password = httpSession.getAttribute("password").toString();
-
-            // both new given passwords, should be equal
-            String password1 = request.getParameter("password");
-            String password2 = request.getParameter("password2");
-
-            if (password1.equals(password2)){
-
-                // TODO : check if its not an old password
-                // create the user with a new password to update the db
-                User updatedUser = new User(name, email, password1, isAdmin, isActive, false);
-                
-                // update the database
-                userDAO.updateUser(email, updatedUser);
-                httpSession.setAttribute("mustChangePassword", false);
-                response.sendRedirect("/webui/home");
-
-            } else { // both passwords are different
-                request.getRequestDispatcher("/WEB-INF/pages/chngPassword.jsp").forward(request, response);
-                // TODO : should I send an error ?
-            }
-        }
-
-        */
 
     }
 

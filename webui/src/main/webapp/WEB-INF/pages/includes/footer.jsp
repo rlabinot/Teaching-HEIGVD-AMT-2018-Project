@@ -14,34 +14,13 @@
 <!-- Custom Theme JavaScript -->
 <script src="static/vendor/html/js/custom.min.js"></script>
 
-<c:choose>
-    <c:when test="${pageTitle == 'Manage Apps'}">
-        <c:set var = "items" value = "applications"/>
-    </c:when>
-
-    <c:when test="${pageTitle == 'Manage Users'}">
-        <c:set var = "items" value = "users"/>
-    </c:when>
-</c:choose>
-
 <script>
-    $(document).ready( function () {
-        $('#table').DataTable(
+    function run() {
+        var $pageSize = $('#pageSize').val();
+        window.location.assign("${pageContext.request.contextPath}/home?pageSize=" + $pageSize + "&pageIndex=${pageIndex}");
+    }
 
-            {
-                "ordering": false,
-                "language": {
-                    "info": "Showing _START_ to _END_ of _TOTAL_ ${items}",
-                    "infoEmpty": "Showing 0 to 0 of 0 ${items}",
-                    "sEmptyTable": "There isn't any ${items}",
-                    "lengthMenu": "Show _MENU_  ${items}",
-
-                }
-            }
-        );
-    } );
 </script>
-
 </body>
 
 </html>

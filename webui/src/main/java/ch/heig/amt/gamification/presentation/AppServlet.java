@@ -95,7 +95,7 @@ public class AppServlet extends HttpServlet {
                 applicationDAO.updateApplication(Integer.parseInt(id), name, description, userEmail);
             }
 
-            response.sendRedirect("/webui/home");
+            response.sendRedirect("/webui/home?pageIndex=last");
         } else {
             request.setAttribute("inputError", inputError);
             request.setAttribute("pageTitle", "Register App");
