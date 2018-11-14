@@ -35,11 +35,11 @@ Now check the WebuiFluentTest. It contains all the tests that will be launched. 
 
 ![1542137357652](img/webuiTest.png)
 
-This is an typical example of test, because we use maney methods for field component and click component. To make your own tests, you just need to add theses tags and code an similar methods.
+This is an typical example of test, because we use many methods for field component and click component. To make your own tests, you just need to add theses tags and code an similar methods.
 
 ## Deployment
 
-To enjoy theses tests, you just have to do a simple manipulation. You need first to launch the containers with the payara app server, the database and phpmyadmin in one step. This step is to go to the docker/topology/deploy folder and make this command with a docker terminal :
+To enjoy theses tests, you just have to do a simple manipulation. You need first to launch the containers with the payara app server, the database and phpmyadmin in one step. This step is to go to the "docker/topology/deploy" folder and make this command with a docker terminal :
 
 - `docker-compose up --build`
 
