@@ -17,7 +17,7 @@ Currently, we made many simple tests, here they are :
 
 ##Implementation
 
-Before implementing the tests, we need to modelize our webapp and our diffrent pages. Every pages must have an Java class like this example below :
+Before implementing the tests, we need to modelize our webapp and our different pages. Every pages must have an Java class like this example below :
 
 ![1542137357652](img/classPages.png)
 
@@ -51,10 +51,10 @@ Build up the project to have a target and juste click on run to start the fluent
 
 ![1542137357652](img/robot.png)
 
-Notice in this screenshot that the url will be 192.168.99.100 and not localhost. This is because you will launch this from a container and using docker machine.
+Notice in this screenshot that the url will be 192.168.99.100 and not localhost. This is because you will launch this from a container and using docker machine. BE CAREFUL, if you are using another OS than Windows, change the chromedriver path "./chromedriver.exe" and delete the ".exe" part in the WebFluentTest class.
 
 When all the tests are finished, you will have a feedback with all the tests status :
 
 ![1542137357652](img/testsPassed.png)
 
-Everything went well, now you are ready to make tests !
+Everything went well, now you are ready to make some new tests !
