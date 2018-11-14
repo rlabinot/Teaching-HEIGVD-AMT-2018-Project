@@ -46,7 +46,7 @@ public class WebuiFluentTest extends FluentTest {
     loginPage.isAt();
     loginPage.clickRegister();
     registerUserPage.isAt();
-    registerUserPage.typeName("Random");
+    registerUserPage.typeName(Faker.instance().name().firstName());
     // UUID because we can't register 2 times
     String username = UUID.randomUUID().toString().substring(0,5);
     registerUserPage.typeEmail(username + "@stackoveramt.ch");
@@ -62,7 +62,7 @@ public class WebuiFluentTest extends FluentTest {
     loginPage.isAt();
     loginPage.clickRegister();
     registerUserPage.isAt();
-    registerUserPage.typeName("Random");
+    registerUserPage.typeName(Faker.instance().name().firstName());
     // UUID because we can't register 2 times
     String username = UUID.randomUUID().toString().substring(0,5);
     registerUserPage.typeEmail(username + "@stackoveramt.ch");
@@ -96,7 +96,7 @@ public class WebuiFluentTest extends FluentTest {
     for (int i = 0; i < 25; ++i) {
       manageAppsPage.clickAdd();
       registerAppPage.isAt();
-      registerAppPage.typeName(Faker.instance().app().name());
+      registerAppPage.typeName("Application" + i);
       registerAppPage.typeDescription("Random description");
       registerAppPage.clickRegister();
       manageAppsPage.isAt();
@@ -104,11 +104,12 @@ public class WebuiFluentTest extends FluentTest {
 
     // TODO : CAREFUL WITH THESE CLICKS BECAUSE PAGINATION WILL BE UPDATED
     // Navigating with pagination
+    // BE CAREFUL, our webapp display always the end of the list after an add
     manageAppsPage.isAt();
-    manageAppsPage.clickNext(); // 10 to 20 apps
-    manageAppsPage.clickNext(); // 20 to 25 apps
     manageAppsPage.clickPrevious();
     manageAppsPage.clickPrevious();
+    manageAppsPage.clickNext();
+    manageAppsPage.clickNext();
     manageAppsPage.isAt();
 
     // logout and check if can access to securised page with goTo
@@ -145,33 +146,6 @@ public class WebuiFluentTest extends FluentTest {
     errorPage.isAt();
   }
 
-  // TODO : Need to found a way to edit the targeted app because there is one edit button for each app
-  /**
-  @Test
-  @ProbeTest(tags = "WebUI")
-  public void itShouldBePossibleToAddAnAppEditItAndDeleteIt() {
-    goTo(loginUrl);
-    loginPage.isAt();
-    loginPage.typeEmailAddress("user@stackoveramt.ch");
-    loginPage.typePassword("user");
-    loginPage.clickSignin();
-    manageAppsPage.isAt();
-    manageAppsPage.clickAdd();
-    registerAppPage.isAt();
-    registerAppPage.typeName("NewApp");
-    registerAppPage.typeDescription("My NewApp");
-    registerAppPage.clickRegister();
-    manageAppsPage.isAt();
-    manageAppsPage.clickEdit();
-    registerAppPage.typeName("NewAppEdited");
-    registerAppPage.clickRegister();
-    manageAppsPage.isAt();
-    manageAppsPage.clickDelete();
-    manageAppsPage.isAt();
-  }
-   **/
-
-  
   @Override
   public WebDriver getDefaultDriver() {
     // Be careful here, the default path is the root path for the driver

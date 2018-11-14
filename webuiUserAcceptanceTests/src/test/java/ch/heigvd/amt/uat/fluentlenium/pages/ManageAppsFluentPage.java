@@ -13,8 +13,9 @@ public class ManageAppsFluentPage extends AbstractWebuiFluentPage {
   private final static String buttonShow = "#buttonShow"; // id in the html code
   private final static String buttonEdit = "#buttonEdit"; // id in the html code
   private final static String buttonDelete = "#buttonDelete"; // id in the html code
-  private final static String buttonPrevious = "#table_previous"; // id in the html code
-  private final static String buttonNext = "#table_next"; // id in the html code
+  private final static String buttonPrevious = "#buttonPrevious"; // id in the html code
+  private final static String buttonNext = "#buttonNext"; // id in the html code
+
 
   @Override
   public void isAt() {
@@ -32,12 +33,8 @@ public class ManageAppsFluentPage extends AbstractWebuiFluentPage {
   public void clickDelete() {
         click(buttonDelete);
     }
-  public void clickPrevious() {
-    click(buttonPrevious);
-  }
-  public void clickNext() {
-    click(buttonNext);
-  }
+  public void clickPrevious() {find(buttonPrevious).first().click();}
+  public void clickNext() {find(buttonNext).first().click();}
   public String getUrl() {
     return "/home";
   }
