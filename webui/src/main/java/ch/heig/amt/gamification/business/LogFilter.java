@@ -31,6 +31,7 @@ public class LogFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
         HttpSession httpSession = httpRequest.getSession();
+        String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
         // 1) for the request and response, create a log object with the data we can retrieve
         // 2) send the log to the database
@@ -82,8 +83,21 @@ public class LogFilter implements Filter {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (path.startsWith("/login")) {
+            action = "login attempt";
+
+        } else if (path.startsWith("/home") && !remoteUser.equals("undefined")) {
+            if (Boolean.TRUE == httpRequest.getSession().getAttribute("isAdmin")) {
+                action = "view user list";
+            } else {
+                action = "view app list";
+            }
+        } else if (path.startsWith("/app") && !remoteUser.equals("undefined") && action == null) {
+            action = "create new app";
+        } else if (path.startsWith("/user") && remoteUser.equals("undefined") && action == null) {
+            action = "register";
         } else {
-            action = "undefined";
+            action = "-";
         }
 
         Log request_log = new Log(remoteUser, System.currentTimeMillis(), "request", action, description);
@@ -105,7 +119,7 @@ public class LogFilter implements Filter {
         }
 
         Log response_log = new Log(server, System.currentTimeMillis(), "response",
-                "server response", "Code : " + status);
+                "-", "Code : " + status);
 
         logDAO.createLog(response_log);
 
