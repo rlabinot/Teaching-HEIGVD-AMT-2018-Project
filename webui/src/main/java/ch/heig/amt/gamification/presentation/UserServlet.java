@@ -103,8 +103,6 @@ public class UserServlet extends HttpServlet {
                 break;
 
             case "delete":
-                oldPasswordDAO.deleteAllOldPasswordFromUser(userEmail);
-                appDAO.deleteAllApplicationFromUser(userEmail);
                 userDAO.deleteUser(userEmail);
                 response.sendRedirect("/webui/home");
                 break;

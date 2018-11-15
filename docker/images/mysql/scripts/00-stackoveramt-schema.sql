@@ -21,7 +21,7 @@ CREATE TABLE OldPasswords(
   OPpassword CHAR(64) NOT NULL,
   
   PRIMARY KEY (OPref, OPpassword),
-  FOREIGN KEY (OPref) REFERENCES Users(Umail)
+  FOREIGN KEY (OPref) REFERENCES Users(Umail) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE Applications(
@@ -33,7 +33,7 @@ CREATE TABLE Applications(
   RefUmail VARCHAR(50) NOT NULL,
   
   PRIMARY KEY (Aid),
-  FOREIGN KEY (RefUmail) REFERENCES Users(Umail)
+  FOREIGN KEY (RefUmail) REFERENCES Users(Umail) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE ActionLogs(
