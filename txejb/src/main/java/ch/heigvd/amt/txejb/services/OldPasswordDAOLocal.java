@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 @Local
 public interface OldPasswordDAOLocal {
+    public int countOldPassword(String email);
     public void createOldPassword(OldPassword oldPasswordToAdd);
     public ArrayList<OldPassword> readAllOldPasswordFromUser(String email);
     public void deleteAllOldPasswordFromUser(String email);

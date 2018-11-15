@@ -1,7 +1,6 @@
 package ch.heigvd.amt.txejb.services;
 
 import ch.heigvd.amt.txejb.model.OldPassword;
-import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class OldPasswordDAO implements OldPasswordDAOLocal {
 
+    private final String COUNT = "CALL countOldPassword(?)";
     private final String CREATE = "CALL createOldPassword(?, ?)";
     private final String READ_ALL   = "CALL readOldPasswordFromUser(?)";
     private final String DELETE_ALL   = "CALL deleteOldPasswordFromUser(?)";
@@ -26,11 +26,31 @@ public class OldPasswordDAO implements OldPasswordDAOLocal {
     DataSource dataSource;
 
     @Override
+    public int countOldPassword(String email) {
+        int nb = 0;
+        try (Connection connection = dataSource.getConnection()){
+            PreparedStatement preparedStatement = connection.prepareStatement(COUNT);
+            preparedStatement.setString(1, email);
+            ResultSet rs =  preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                nb = rs.getInt("nb");
+            }
+
+            return nb;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void createOldPassword(OldPassword oldPasswordToAdd) {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE);
             preparedStatement.setString(1, oldPasswordToAdd.getEmail());
-            preparedStatement.setString(2, DigestUtils.sha256Hex(oldPasswordToAdd.getPassword()));
+            preparedStatement.setString(2, oldPasswordToAdd.getPassword());
 
             preparedStatement.execute();
 

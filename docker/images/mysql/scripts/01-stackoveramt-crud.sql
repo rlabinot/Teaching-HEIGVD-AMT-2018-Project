@@ -8,9 +8,9 @@ DROP PROCEDURE IF EXISTS readAllUserOffset;
 DROP PROCEDURE IF EXISTS userLogin;
 DROP PROCEDURE IF EXISTS updateUser;
 DROP PROCEDURE IF EXISTS deleteUser;
-DROP PROCEDURE IF EXISTS resetUserPassword;
 DROP PROCEDURE IF EXISTS changeUserPassword;
 DROP PROCEDURE IF EXISTS changeUserState;
+DROP PROCEDURE IF EXISTS countOldPassword;
 DROP PROCEDURE IF EXISTS createOldPassword;
 DROP PROCEDURE IF EXISTS readOldPasswordFromUser;
 DROP PROCEDURE IF EXISTS deleteOldPasswordFromUser;
@@ -109,6 +109,13 @@ DELIMITER //
 DELIMITER ;
 
 /* CRUD over an old password */
+DELIMITER //
+	CREATE PROCEDURE countOldPassword(IN OPref VARCHAR(50))
+	BEGIN
+		SELECT COUNT(*) as "nb" FROM OldPasswords WHERE OldPasswords.OPref LIKE BINARY OPref;
+	END //
+DELIMITER ; 
+
 DELIMITER //
 	CREATE PROCEDURE createOldPassword(IN OPref VARCHAR(50), IN OPpassword CHAR(64))
 	BEGIN

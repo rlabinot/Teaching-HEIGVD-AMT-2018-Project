@@ -1,0 +1,14 @@
+ch\heigvd\amt\txejb\model\Application.class
+ch\heigvd\amt\txejb\services\OldPasswordDAO.class
+ch\heigvd\amt\txejb\model\OldPassword.class
+ch\heigvd\amt\txejb\services\LogDAO.class
+ch\heigvd\amt\txejb\services\UserDAOLocal.class
+ch\heigvd\amt\txejb\services\LogDAOLocal.class
+ch\heigvd\amt\txejb\services\ApplicationDAO.class
+ch\heigvd\amt\txejb\model\InputError.class
+ch\heigvd\amt\txejb\services\ApplicationDAOLocal.class
+ch\heigvd\amt\txejb\model\Log.class
+ch\heigvd\amt\txejb\services\OldPasswordDAOLocal.class
+ch\heigvd\amt\txejb\services\UserDAO.class
+ch\heigvd\amt\txejb\model\User.class
+ch\heigvd\amt\txejb\web\FrontControllerServlet.class

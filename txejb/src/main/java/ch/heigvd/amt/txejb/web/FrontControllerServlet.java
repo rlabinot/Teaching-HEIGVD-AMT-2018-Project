@@ -1,7 +1,7 @@
 package ch.heigvd.amt.txejb.web;
 
-import ch.heigvd.amt.txejb.model.User;
 import ch.heigvd.amt.txejb.services.ApplicationDAOLocal;
+import ch.heigvd.amt.txejb.services.OldPasswordDAOLocal;
 import ch.heigvd.amt.txejb.services.UserDAOLocal;
 
 import javax.ejb.EJB;
@@ -21,21 +21,42 @@ public class FrontControllerServlet extends javax.servlet.http.HttpServlet {
   @EJB
   ApplicationDAOLocal applicationDAOLocal;
 
+  @EJB
+  OldPasswordDAOLocal oldPasswordDAOLocal;
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     long numberOfUserBefore = -1;
     long numberOfUserAfter = -1;
+    long numberOfAppsBefore = -1;
+    long numberOfAppsAfter = -1;
+    long numberOfPasswordBefore = -1;
+    long numberOfPasswordAfter = -1;
 
     try {
       numberOfUserBefore = userDAOLocal.countUser();
-      User user1 = new User();
-      userDAOLocal.createUser(user1);
-      response.getWriter().println(user1);
+      numberOfAppsBefore = applicationDAOLocal.countApplication("user@stackoveramt.ch");
+      numberOfPasswordBefore = oldPasswordDAOLocal.countOldPassword("user@stackoveramt.ch");
+
+      response.getWriter().println("We want to delete an user.");
+
+      oldPasswordDAOLocal.deleteAllOldPasswordFromUser("user@stackoveramt.ch");
+      applicationDAOLocal.deleteAllApplicationFromUser("user@stackoveramt.ch");
+      userDAOLocal.deleteUser("user@stackoveramt.ch");
+
+      response.getWriter().println("The user has been deleted");
     } catch (Exception e) {
       response.getWriter().println("There was a problem while manufacturing the car or its parts");
     } finally {
       numberOfUserAfter = userDAOLocal.countUser();
-      response.getWriter().println(String.format("Number of tires before: %d", numberOfUserBefore));
-      response.getWriter().println(String.format("Number of tires after: %d", numberOfUserAfter));
+      numberOfAppsAfter = applicationDAOLocal.countApplication("user@stackoveramt.ch");
+      numberOfPasswordAfter = oldPasswordDAOLocal.countOldPassword("user@stackoveramt.ch");
+
+      response.getWriter().println(String.format("Number of Users before: %d", numberOfUserBefore));
+      response.getWriter().println(String.format("Number of Users after: %d", numberOfUserAfter));
+      response.getWriter().println(String.format("Number of Apps before: %d", numberOfAppsBefore));
+      response.getWriter().println(String.format("Number of Apps after: %d", numberOfAppsAfter));
+      response.getWriter().println(String.format("Number of Passwords before: %d", numberOfPasswordBefore));
+      response.getWriter().println(String.format("Number of Passwords after: %d", numberOfPasswordAfter));
     }
   }
 }

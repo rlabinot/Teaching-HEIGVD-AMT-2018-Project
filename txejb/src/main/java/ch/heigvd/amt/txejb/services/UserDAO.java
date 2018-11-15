@@ -1,7 +1,7 @@
 package ch.heigvd.amt.txejb.services;
 
 import ch.heigvd.amt.txejb.model.User;
-import org.apache.commons.codec.digest.DigestUtils;
+
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class UserDAO implements UserDAOLocal {
     private final String COUNT = "CALL countUser()";
     private final String CREATE = "CALL createUser(?, ?, ?, ?, ?, ?)";
@@ -56,7 +56,7 @@ public class UserDAO implements UserDAOLocal {
             PreparedStatement preparedStatement = connection.prepareStatement(CREATE);
             preparedStatement.setString(1, userToCreate.getEmail());
             preparedStatement.setString(2, userToCreate.getName());
-            preparedStatement.setString(3, DigestUtils.sha256Hex(userToCreate.getPassword()));
+            preparedStatement.setString(3, userToCreate.getPassword());
             preparedStatement.setBoolean(4, userToCreate.isAdmin());
             preparedStatement.setBoolean(5, userToCreate.isActive());
             preparedStatement.setBoolean(6, userToCreate.getMustChangePassword());
@@ -143,7 +143,7 @@ public class UserDAO implements UserDAOLocal {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(LOGIN);
             preparedStatement.setString(1, emailToRead);
-            preparedStatement.setString(2, DigestUtils.sha256Hex(password));
+            preparedStatement.setString(2, password);
             ResultSet rs =  preparedStatement.executeQuery();
             if(rs.next()) {
                 return new User(rs.getString("Uname"),
@@ -166,7 +166,7 @@ public class UserDAO implements UserDAOLocal {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE);
             preparedStatement.setString(1, userToUpdate);
             preparedStatement.setString(2, values.getName());
-            preparedStatement.setString(3, DigestUtils.sha256Hex(values.getPassword()));
+            preparedStatement.setString(3, values.getPassword());
             preparedStatement.setBoolean(4, values.isAdmin());
             preparedStatement.setBoolean(5, values.isActive());
             preparedStatement.setBoolean(6, values.getMustChangePassword());
@@ -181,9 +181,12 @@ public class UserDAO implements UserDAOLocal {
     @Override
     public void deleteUser(String userToDelete) {
         try(Connection connection = dataSource.getConnection()){
+
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
             preparedStatement.setString(1,userToDelete);
             preparedStatement.execute();
+
+            throw new RuntimeException("Denied");
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -211,7 +214,7 @@ public class UserDAO implements UserDAOLocal {
         try(Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_USER_PASSWORD);
             preparedStatement.setString(1,mail);
-            preparedStatement.setString(2, DigestUtils.sha256Hex(password));
+            preparedStatement.setString(2, password);
             preparedStatement.setBoolean(3, mustChangePassword);
             preparedStatement.execute();
 
