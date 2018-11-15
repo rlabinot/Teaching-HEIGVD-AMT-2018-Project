@@ -28,8 +28,19 @@
                             <div class="addapp">
                             <c:choose>
                                 <c:when test="${isAdmin}">
-                                    <h3 class="box-title pull-left">List of ${user.name}'s applications</h3>
-                                    <a id="buttonAdd" href="/webui/home" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Return to admin panel</a>
+                                    <div class="option-line">
+                                        <h3 class="box-title">Show</h3>
+                                        <div id="selector">
+                                            <select id="pageSize" onchange="run()">
+                                                <option <c:if test="${pageSize == 10}">selected</c:if> value="10">10</option>
+                                                <option <c:if test="${pageSize == 20}">selected</c:if> value="20">20</option>
+                                                <option <c:if test="${pageSize == 50}">selected</c:if> value="50">50</option>
+                                                <option <c:if test="${pageSize == 100}">selected</c:if> value="100">100</option>
+                                            </select>
+                                        </div>
+                                        <h3 class="box-title">${user.name}'s applications</h3>
+                                        <a id="buttonAdd" href="/webui/home" class="btn pull-left m-l-20 btn-rounded btn-outline waves-effect waves-light btn-success">Return to admin panel</a>
+                                    </div>
                                 </c:when>
                                 <c:otherwise>
                                     <div class="option-line">
@@ -85,6 +96,11 @@
                                         </c:if>
                                     </tr>
                                 </c:forEach>
+                                <c:if test="${pageCount == 0}">
+                                    <tr>
+                                        <td>You have no applications, feel free to add one !</td>
+                                    </tr>
+                                </c:if>
                                 </tbody>
 
                             </table>

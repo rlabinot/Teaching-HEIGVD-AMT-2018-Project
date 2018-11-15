@@ -47,8 +47,9 @@ public class Home extends HttpServlet {
             }
         }
 
+
         // To avoid url wrong pageIndex and pageSize injection
-        if (pageIndex * pageSize + 1 > itemCount || pageIndex < 0 || pageSize < 0)
+        if ((pageIndex * pageSize + 1 > itemCount && itemCount != 0)|| pageIndex < 0 || pageSize < 0)
         {
             // Avoid negative pageSize
             response.sendRedirect( "/webui/home?pageSize=10&pageIndex=0");

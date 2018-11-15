@@ -17,7 +17,17 @@
 <script>
     function run() {
         var $pageSize = $('#pageSize').val();
-        window.location.assign("${pageContext.request.contextPath}/home?pageSize=" + $pageSize + "&pageIndex=${pageIndex}");
+        <c:choose>
+            <c:when test="${pageTitle == 'Logs Page'}">
+                window.location.assign("${pageContext.request.contextPath}/log?pageSize=" + $pageSize + "&pageIndex=${pageIndex}");
+            </c:when>
+            <c:when test="${(pageTitle == 'Manage Apps') && (isAdmin)}">
+                window.location.assign("${pageContext.request.contextPath}/user?action=listapp&id=${user.email}&pageSize=" + $pageSize + "&pageIndex=${pageIndex}");
+            </c:when>
+            <c:otherwise>
+                window.location.assign("${pageContext.request.contextPath}/home?pageSize=" + $pageSize + "&pageIndex=${pageIndex}");
+            </c:otherwise>
+        </c:choose>
     }
 
 </script>

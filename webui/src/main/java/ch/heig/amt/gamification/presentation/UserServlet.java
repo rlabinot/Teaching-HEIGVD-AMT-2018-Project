@@ -53,8 +53,49 @@ public class UserServlet extends HttpServlet {
                 break;
 
             case "listapp":
+                int pageSize;
+                try {
+                    pageSize = Integer.parseInt(request.getParameter("pageSize"));
+                } catch (NumberFormatException e) {
+                    pageSize = 10;
+                }
+
+                int itemCount = appDAO.countApplication(userEmail);
+                int pageCount = (itemCount + pageSize - 1) / pageSize;
+
+
+                int pageIndex = 0;
+                String param = request.getParameter("pageIndex");
+                try {
+                    pageIndex = Integer.parseInt(param);
+                } catch (NumberFormatException e) {
+                        pageIndex = 0;
+                }
+
+
+                // To avoid url wrong pageIndex and pageSize injection
+                if ((pageIndex * pageSize + 1 > itemCount && itemCount != 0)|| pageIndex < 0 || pageSize < 0)
+                {
+                    // Avoid negative pageSize
+                    response.sendRedirect( "/webui/user?action=listapp&id=" + userEmail + "&pageSize=10&pageIndex=0");
+                    return;
+                }
+
+                // Get the page displayer info
+                request.setAttribute("pageCount", pageCount);
+                request.setAttribute("pageIndex", pageIndex);
+                request.setAttribute("pageSize", pageSize);
+
+
+                // Get all the rightful links
+                String baseUrl = "/user?action=listapp&id="+ userEmail + "&pageSize=" + pageSize + "&pageIndex=";
+                request.setAttribute("firstPageLink", baseUrl + "0");
+                request.setAttribute("lastPageLink", baseUrl + (pageCount - 1));
+                request.setAttribute("prevPageLink", baseUrl + Math.max(0, pageIndex - 1));
+                request.setAttribute("nextPageLink", baseUrl + Math.min(pageIndex + 1, pageCount - 1));
+
                 User user = userDAO.readUser(userEmail);
-                List<Application> apps = appDAO.readApplicationFromUser(userEmail);
+                List<Application> apps = appDAO.readApplicationFromUser(userEmail, pageIndex * pageSize, pageSize);
                 request.setAttribute("user", user);
                 request.setAttribute("apps", apps);
                 request.setAttribute("pageTitle", "Manage Apps");
@@ -62,8 +103,6 @@ public class UserServlet extends HttpServlet {
                 break;
 
             case "delete":
-                oldPasswordDAO.deleteAllOldPasswordFromUser(userEmail);
-                appDAO.deleteAllApplicationFromUser(userEmail);
                 userDAO.deleteUser(userEmail);
                 response.sendRedirect("/webui/home");
                 break;
@@ -98,8 +137,7 @@ public class UserServlet extends HttpServlet {
                 break;
 
             default:
-                request.setAttribute("pageTitle", "Error 404");
-                response.sendRedirect("/webui/404");
+                request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
         }
 
     }
@@ -206,8 +244,7 @@ public class UserServlet extends HttpServlet {
                 break;
 
             default:
-                // redirect to 404 page
-                //response.sendRedirect("/webui/aksdjlakjd");
+                request.getRequestDispatcher("/WEB-INF/pages/404.jsp").forward(request, response);
         }
 
     }
