@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
+@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class ApplicationDAO implements ApplicationDAOLocal {
     private final String COUNT = "CALL countApplicationFromUser(?)";
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";

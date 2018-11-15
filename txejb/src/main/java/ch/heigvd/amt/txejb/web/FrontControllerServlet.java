@@ -2,6 +2,7 @@ package ch.heigvd.amt.txejb.web;
 
 import ch.heigvd.amt.txejb.services.ApplicationDAOLocal;
 import ch.heigvd.amt.txejb.services.OldPasswordDAOLocal;
+import ch.heigvd.amt.txejb.services.TransactionalContextLocal;
 import ch.heigvd.amt.txejb.services.UserDAOLocal;
 
 import javax.ejb.EJB;
@@ -24,6 +25,9 @@ public class FrontControllerServlet extends javax.servlet.http.HttpServlet {
   @EJB
   OldPasswordDAOLocal oldPasswordDAOLocal;
 
+  @EJB
+  TransactionalContextLocal transactionalContextLocal;
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     long numberOfUserBefore = -1;
     long numberOfUserAfter = -1;
@@ -32,24 +36,23 @@ public class FrontControllerServlet extends javax.servlet.http.HttpServlet {
     long numberOfPasswordBefore = -1;
     long numberOfPasswordAfter = -1;
 
+    String user = "user@stackoveramt.ch";
     try {
       numberOfUserBefore = userDAOLocal.countUser();
-      numberOfAppsBefore = applicationDAOLocal.countApplication("user@stackoveramt.ch");
-      numberOfPasswordBefore = oldPasswordDAOLocal.countOldPassword("user@stackoveramt.ch");
+      numberOfAppsBefore = applicationDAOLocal.countApplication(user);
+      numberOfPasswordBefore = oldPasswordDAOLocal.countOldPassword(user);
 
       response.getWriter().println("We want to delete an user.");
 
-      oldPasswordDAOLocal.deleteAllOldPasswordFromUser("user@stackoveramt.ch");
-      applicationDAOLocal.deleteAllApplicationFromUser("user@stackoveramt.ch");
-      userDAOLocal.deleteUser("user@stackoveramt.ch");
+      transactionalContextLocal.deleteUser(user);
 
       response.getWriter().println("The user has been deleted");
     } catch (Exception e) {
-      response.getWriter().println("There was a problem while manufacturing the car or its parts");
+      response.getWriter().println("There was a problem while deleting this user.");
     } finally {
       numberOfUserAfter = userDAOLocal.countUser();
-      numberOfAppsAfter = applicationDAOLocal.countApplication("user@stackoveramt.ch");
-      numberOfPasswordAfter = oldPasswordDAOLocal.countOldPassword("user@stackoveramt.ch");
+      numberOfAppsAfter = applicationDAOLocal.countApplication(user);
+      numberOfPasswordAfter = oldPasswordDAOLocal.countOldPassword(user);
 
       response.getWriter().println(String.format("Number of Users before: %d", numberOfUserBefore));
       response.getWriter().println(String.format("Number of Users after: %d", numberOfUserAfter));
