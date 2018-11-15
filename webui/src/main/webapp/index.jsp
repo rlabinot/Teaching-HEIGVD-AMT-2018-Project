@@ -21,8 +21,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="white-box">
-                        <h3 class="box-title">How it works</h3>
-                        <p>Bla vla bla</p>
+                        <h2><b>Teaching-HEIGVD-AMT-2018-Project</b></h2><br>
+                        <h3>Welcome !<br><br>
+                            This web application is the first part of a gamification engine project, you can find its official repository <a href="">here</a>.<br>
+                            The basic functions are the following :<br>
+                            - As a simple user you can register, log in and add/edit/delete your applications. The web application will give you an API Key and an API Secret.<br>
+                            - As an admin you can manage the website. An admin has the possibility to suspend users, look at their applications, reset their password or check the logs of the web application.<br>
+                            The project is working with a Payara application server and a MySQL database maintained with PHPMyAdmin.</h3>
                     </div>
                 </div>
             </div>
