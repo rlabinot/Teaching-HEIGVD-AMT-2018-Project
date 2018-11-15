@@ -18,7 +18,18 @@
                 <div class="col-sm-12">
                     <div class="white-box">
                         <div class="flex">
-                            <h3 class="box-title">Users list</h3>
+                            <div class="option-line">
+                                <h3 class="box-title">Show</h3>
+                                <div id="selector">
+                                    <select id="pageSize" onchange="run()">
+                                        <option <c:if test="${pageSize == 10}">selected</c:if> value="10">10</option>
+                                        <option <c:if test="${pageSize == 20}">selected</c:if> value="20">20</option>
+                                        <option <c:if test="${pageSize == 50}">selected</c:if> value="50">50</option>
+                                        <option <c:if test="${pageSize == 100}">selected</c:if> value="100">100</option>
+                                    </select>
+                                </div>
+                                <h3 class="box-title">users</h3>
+                            </div>
                             <%@include file="includes/paginationDisplayer.jsp" %>
                             <%@include file="includes/pageController.jsp" %>
                         </div>
