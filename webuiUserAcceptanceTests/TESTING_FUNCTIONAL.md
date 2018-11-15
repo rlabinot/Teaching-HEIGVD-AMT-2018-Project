@@ -51,7 +51,13 @@ Build up the project to have a target and juste click on run to start the fluent
 
 ![1542137357652](img/robot.png)
 
-Notice in this screenshot that the url will be 192.168.99.100 and not localhost. This is because you will launch this from a container and using docker machine. BE CAREFUL, if you are using another OS than Windows, change the chromedriver path "./chromedriver.exe" and delete the ".exe" part in the WebFluentTest class.
+Notice in this screenshot that the url will be 192.168.99.100 and not localhost. This is because you will launch this from a container and using docker machine. 
+
+![1542137357652](img/localhost.png)
+
+BE CAREFUL, if you are using another OS than Windows, change the chromedriver path "./chromedriver.exe" and delete the ".exe" part in the WebFluentTest class.
+
+![1542137357652](img/driver.png)
 
 When all the tests are finished, you will have a feedback with all the tests status :
 
