@@ -16,7 +16,11 @@ This project is the first part of a **gamification engine**. You can find the gl
 ## Deployment
 
 You can easily deploy the project with the help of the Docker Compose technology. Simply follow these steps :
-1) Be sure to have [**Docker Compose**](https://docs.docker.com/compose/install/) installed on your machine
+1) Be sure to have **[Docker Compose](https://docs.docker.com/compose/install/)** and **[maven](https://maven.apache.org/install.html)** installed on your machine
 2) Clone the current repo
-3) Go the docker/topologies/deploy and type docker-compose up --build
-4) Open your favorite browser and enter localhost:8080
+3) Generate the webui.war with maven with the command `mvn clean install`
+4) Use the following command to copy the war to the right folder. 
+ `mv webui/target/webui.war docker/images/payara/applications/webui.war`
+5) Go the **docker/topologies/deploy** and type `docker-compose up --build`
+6) Open your favorite browser and enter *docker_ip_address*:8080/webui
+7) Enjoy your visit
