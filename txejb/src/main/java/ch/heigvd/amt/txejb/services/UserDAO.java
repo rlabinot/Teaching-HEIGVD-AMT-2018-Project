@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class UserDAO implements UserDAOLocal {
     private final String COUNT = "CALL countUser()";
     private final String CREATE = "CALL createUser(?, ?, ?, ?, ?, ?)";
@@ -179,6 +178,7 @@ public class UserDAO implements UserDAOLocal {
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void deleteUser(String userToDelete) {
         try(Connection connection = dataSource.getConnection()){
 

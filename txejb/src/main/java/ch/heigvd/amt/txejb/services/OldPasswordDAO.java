@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class OldPasswordDAO implements OldPasswordDAOLocal {
 
     private final String COUNT = "CALL countOldPassword(?)";
@@ -84,6 +83,7 @@ public class OldPasswordDAO implements OldPasswordDAOLocal {
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void deleteAllOldPasswordFromUser(String email) {
 
         try (Connection connection = dataSource.getConnection()){

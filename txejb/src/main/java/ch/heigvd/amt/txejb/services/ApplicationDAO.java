@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Stateless
-@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 public class ApplicationDAO implements ApplicationDAOLocal {
     private final String COUNT = "CALL countApplicationFromUser(?)";
     private final String CREATE = "CALL createApplication(?,?,?,?,?)";
@@ -169,6 +168,7 @@ public class ApplicationDAO implements ApplicationDAOLocal {
     }
 
     @Override
+    @TransactionAttribute(TransactionAttributeType.SUPPORTS)
     public void deleteAllApplicationFromUser(String email) {
         try (Connection connection = dataSource.getConnection()){
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_All_APPLICATION_FROM_USER);

@@ -42,24 +42,25 @@ public class FrontControllerServlet extends javax.servlet.http.HttpServlet {
       numberOfAppsBefore = applicationDAOLocal.countApplication(user);
       numberOfPasswordBefore = oldPasswordDAOLocal.countOldPassword(user);
 
-      response.getWriter().println("We want to delete an user.");
+      response.getWriter().println("We want to delete an user.\n");
 
       transactionalContextLocal.deleteUser(user);
 
-      response.getWriter().println("The user has been deleted");
+      response.getWriter().println("The user has been deleted\n");
     } catch (Exception e) {
-      response.getWriter().println("There was a problem while deleting this user.");
+      response.getWriter().println(e.getMessage());
+      response.getWriter().println("There was a problem while deleting this user.\n");
     } finally {
       numberOfUserAfter = userDAOLocal.countUser();
       numberOfAppsAfter = applicationDAOLocal.countApplication(user);
       numberOfPasswordAfter = oldPasswordDAOLocal.countOldPassword(user);
 
-      response.getWriter().println(String.format("Number of Users before: %d", numberOfUserBefore));
-      response.getWriter().println(String.format("Number of Users after: %d", numberOfUserAfter));
-      response.getWriter().println(String.format("Number of Apps before: %d", numberOfAppsBefore));
-      response.getWriter().println(String.format("Number of Apps after: %d", numberOfAppsAfter));
-      response.getWriter().println(String.format("Number of Passwords before: %d", numberOfPasswordBefore));
-      response.getWriter().println(String.format("Number of Passwords after: %d", numberOfPasswordAfter));
+      response.getWriter().println(String.format("Number of Users before: %d\n", numberOfUserBefore));
+      response.getWriter().println(String.format("Number of Users after: %d\n", numberOfUserAfter));
+      response.getWriter().println(String.format("Number of Apps before: %d\n", numberOfAppsBefore));
+      response.getWriter().println(String.format("Number of Apps after: %d\n", numberOfAppsAfter));
+      response.getWriter().println(String.format("Number of Passwords before: %d\n", numberOfPasswordBefore));
+      response.getWriter().println(String.format("Number of Passwords after: %d\n", numberOfPasswordAfter));
     }
   }
 }
