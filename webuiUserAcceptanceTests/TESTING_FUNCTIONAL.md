@@ -63,4 +63,4 @@ When all the tests are finished, you will have a feedback with all the tests sta
 
 ![1542137357652](img/testsPassed.png)
 
-Everything went well, now you are ready to make some new tests !
+Everything went well, now you are ready to make some new tests ! Also, don't forget to do a "docker-compose down" to shut down the containers when you want to end the WebUI experience.
