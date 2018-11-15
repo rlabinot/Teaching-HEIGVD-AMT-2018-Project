@@ -85,6 +85,11 @@
                                         </c:if>
                                     </tr>
                                 </c:forEach>
+                                <c:if test="${pageCount == 0}">
+                                    <tr>
+                                        <td>You have no applications, feel free to add one !</td>
+                                    </tr>
+                                </c:if>
                                 </tbody>
 
                             </table>

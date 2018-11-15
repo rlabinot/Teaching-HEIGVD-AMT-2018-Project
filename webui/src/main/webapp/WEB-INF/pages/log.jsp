@@ -58,6 +58,11 @@
                                     <td>${log.description}</td>
                                 </tr>
                             </c:forEach>
+                            <c:if test="${pageCount == 0}">
+                                <tr>
+                                    <td>There are no logs at the moment</td>
+                                </tr>
+                            </c:if>
 
                             </tbody>
                         </table>

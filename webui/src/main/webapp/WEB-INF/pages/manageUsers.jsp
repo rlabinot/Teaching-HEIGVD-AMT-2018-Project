@@ -95,6 +95,11 @@
                                         <td><a id="buttonDelete" href="/webui/user?action=delete&id=${user.email}">Delete</a></td>
                                     </tr>
                                 </c:forEach>
+                                <c:if test="${pageCount == 0}">
+                                    <tr>
+                                        <td>There are no users ! Your app suck...</td>
+                                    </tr>
+                                </c:if>
 
                                 </tbody>
                             </table>
