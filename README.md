@@ -5,7 +5,7 @@ Welcome to our project !
 
 We are currently building a gamification engine. The project is still on his way but we are proud to show you what you can already do.
 
-This project contains a web application where you can register and log in as a developer and add/edit/delete your applications. The web application will give you an API Key and an API Secret.
+This project contains a web application where you can register and log in as a developer and add/edit/delete your applications. The web application will give you an API Key and an API Secret. The base admin account is the following : admin@stackoveramt.ch with the password admin.
 
 It is possible to manage the website if you log in as an admin. An admin has the possibility to suspend users, look at their applications, reset their password or check the logs of the web application.
 
