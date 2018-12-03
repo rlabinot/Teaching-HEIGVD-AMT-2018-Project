@@ -1,0 +1,14 @@
+ch\heig\amt\gamification\configuration\HomeController.class
+ch\heig\amt\gamification\Swagger2SpringBoot$ExitException.class
+ch\heig\amt\gamification\entities\FruitEntity.class
+ch\heig\amt\gamification\api\model\Fruit.class
+ch\heig\amt\gamification\api\endpoints\FruitsApiController.class
+ch\heig\amt\gamification\api\util\ApiOriginFilter.class
+ch\heig\amt\gamification\repositories\FruitRepository.class
+ch\heig\amt\gamification\api\exceptions\ApiException.class
+ch\heig\amt\gamification\api\exceptions\NotFoundException.class
+ch\heig\amt\gamification\RFC3339DateFormat.class
+ch\heig\amt\gamification\Swagger2SpringBoot.class
+ch\heig\amt\gamification\configuration\SwaggerDocumentationConfig.class
+ch\heig\amt\gamification\api\FruitsApi.class
+ch\heig\amt\gamification\api\util\ApiResponseMessage.class

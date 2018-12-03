@@ -1,0 +1,13 @@
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\RFC3339DateFormat.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\FruitEntity.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\exceptions\NotFoundException.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\util\ApiOriginFilter.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\Swagger2SpringBoot.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\configuration\HomeController.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\util\ApiResponseMessage.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\FruitsApi.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\configuration\SwaggerDocumentationConfig.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\endpoints\FruitsApiController.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\FruitRepository.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\exceptions\ApiException.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\model\Fruit.java
