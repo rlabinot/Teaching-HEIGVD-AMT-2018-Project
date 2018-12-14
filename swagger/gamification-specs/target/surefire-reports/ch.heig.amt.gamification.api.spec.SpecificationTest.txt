@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: ch.heig.amt.gamification.api.spec.SpecificationTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 2, Skipped: 1, Time elapsed: 0.911 sec <<< FAILURE!
-When I POST it to the /fruits endpoint(Scenario: create a fruit)  Time elapsed: 0.003 sec  <<< ERROR!
+Tests run: 5, Failures: 0, Errors: 2, Skipped: 1, Time elapsed: 1.439 sec <<< FAILURE!
+When I POST it to the /fruits endpoint(Scenario: create a fruit)  Time elapsed: 0.006 sec  <<< ERROR!
 java.lang.IllegalArgumentException: unexpected url: null/fruits
 	at com.squareup.okhttp.Request$Builder.url(Request.java:163)
 	at ch.heig.amt.gamification.ApiClient.buildCall(ApiClient.java:1080)
@@ -11,7 +11,7 @@ java.lang.IllegalArgumentException: unexpected url: null/fruits
 	at ch.heig.amt.gamification.api.spec.steps.CreationSteps.i_POST_it_to_the_fruits_endpoint(CreationSteps.java:48)
 	at ✽.When I POST it to the /fruits endpoint(creation.feature:8)
 
-Scenario: create a fruit  Time elapsed: 0.004 sec  <<< ERROR!
+Scenario: create a fruit  Time elapsed: 0.006 sec  <<< ERROR!
 java.lang.IllegalArgumentException: unexpected url: null/fruits
 	at com.squareup.okhttp.Request$Builder.url(Request.java:163)
 	at ch.heig.amt.gamification.ApiClient.buildCall(ApiClient.java:1080)

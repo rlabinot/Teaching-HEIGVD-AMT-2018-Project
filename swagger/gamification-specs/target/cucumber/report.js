@@ -22,7 +22,7 @@ formatter.match({
   "location": "CreationSteps.there_is_a_Fruits_server()"
 });
 formatter.result({
-  "duration": 217819413,
+  "duration": 489755811,
   "status": "passed"
 });
 formatter.scenario({
@@ -52,14 +52,14 @@ formatter.match({
   "location": "CreationSteps.i_have_a_fruit_payload()"
 });
 formatter.result({
-  "duration": 122894,
+  "duration": 413174,
   "status": "passed"
 });
 formatter.match({
   "location": "CreationSteps.i_POST_it_to_the_fruits_endpoint()"
 });
 formatter.result({
-  "duration": 13868118,
+  "duration": 21769834,
   "error_message": "java.lang.IllegalArgumentException: unexpected url: null/fruits\r\n\tat com.squareup.okhttp.Request$Builder.url(Request.java:163)\r\n\tat ch.heig.amt.gamification.ApiClient.buildCall(ApiClient.java:1080)\r\n\tat ch.heig.amt.gamification.api.DefaultApi.createFruitCall(DefaultApi.java:112)\r\n\tat ch.heig.amt.gamification.api.DefaultApi.createFruitWithHttpInfo(DefaultApi.java:135)\r\n\tat ch.heig.amt.gamification.api.spec.steps.CreationSteps.i_POST_it_to_the_fruits_endpoint(CreationSteps.java:48)\r\n\tat ✽.When I POST it to the /fruits endpoint(creation.feature:8)\r\n",
   "status": "failed"
 });

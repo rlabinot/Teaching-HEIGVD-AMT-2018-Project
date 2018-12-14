@@ -25,7 +25,7 @@
 
 package ch.heig.amt.gamification;
 
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2018-12-03T17:35:12.263+01:00")
+@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2018-12-14T09:42:57.084+01:00")
 public class Pair {
     private String name = "";
     private String value = "";

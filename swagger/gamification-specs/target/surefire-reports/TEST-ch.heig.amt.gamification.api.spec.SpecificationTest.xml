@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="ch.heig.amt.gamification.api.spec.SpecificationTest" time="0.013" errors="2" skipped="1">
+<testsuite tests="5" failures="0" name="ch.heig.amt.gamification.api.spec.SpecificationTest" time="0.025" errors="2" skipped="1">
   <properties>
     <property name="idea.version" value="2018.2.4"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -49,7 +49,7 @@
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="fr"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="java.version" value="1.8.0_91"/>
     <property name="java.ext.dirs" value="C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_91\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_91\jre\classes"/>
@@ -62,9 +62,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase classname="Scenario: create a fruit" name="Given there is a Fruits server" time="0.002"/>
+  <testcase classname="Scenario: create a fruit" name="Given there is a Fruits server" time="0.003"/>
   <testcase classname="Scenario: create a fruit" name="Given I have a fruit payload" time="0"/>
-  <testcase classname="Scenario: create a fruit" name="When I POST it to the /fruits endpoint" time="0.003">
+  <testcase classname="Scenario: create a fruit" name="When I POST it to the /fruits endpoint" time="0.006">
     <error message="unexpected url: null/fruits" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: unexpected url: null/fruits
 	at com.squareup.okhttp.Request$Builder.url(Request.java:163)
 	at ch.heig.amt.gamification.ApiClient.buildCall(ApiClient.java:1080)
@@ -74,7 +74,7 @@
 	at ✽.When I POST it to the /fruits endpoint(creation.feature:8)
 </error>
   </testcase>
-  <testcase classname="Scenario: create a fruit" name="Scenario: create a fruit" time="0.004">
+  <testcase classname="Scenario: create a fruit" name="Scenario: create a fruit" time="0.006">
     <error message="unexpected url: null/fruits" type="java.lang.IllegalArgumentException">java.lang.IllegalArgumentException: unexpected url: null/fruits
 	at com.squareup.okhttp.Request$Builder.url(Request.java:163)
 	at ch.heig.amt.gamification.ApiClient.buildCall(ApiClient.java:1080)
@@ -84,7 +84,7 @@
 	at ✽.When I POST it to the /fruits endpoint(creation.feature:8)
 </error>
   </testcase>
-  <testcase classname="Scenario: create a fruit" name="Then I receive a 201 status code" time="0.004">
+  <testcase classname="Scenario: create a fruit" name="Then I receive a 201 status code" time="0.01">
     <skipped/>
   </testcase>
 </testsuite>
