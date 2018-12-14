@@ -1,6 +1,5 @@
 package ch.heig.amt.gamification.repositories;
 
-import ch.heig.amt.gamification.entities.FruitEntity;
 import org.springframework.data.repository.CrudRepository;
 
 /**
