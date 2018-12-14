@@ -2,18 +2,14 @@ package ch.heig.amt.gamification.api.endpoints;
 
 import ch.heig.amt.gamification.api.BadgesApi;
 import ch.heig.amt.gamification.api.model.Badge;
-import ch.heig.amt.gamification.entities.BadgeEntity;
 import ch.heig.amt.gamification.repositories.BadgeRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-07-26T19:36:34.802Z")
