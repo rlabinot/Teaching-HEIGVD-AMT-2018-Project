@@ -10,8 +10,8 @@ webui/.mvn/timing.properties
 webui/.idea/
 webui/webui.iml
 .idea/
-
-
+swagger/spring-server/target
+swagger/gamification-specs/target
 
 
 
