@@ -11,5 +11,12 @@ webui/.idea/
 webui/webui.iml
 .idea/
 
+
+swagger/spring-server/target/
+
+
+
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/webui/.mvn/wrapper/maven-wrapper.jar
+
+!/swagger/full-project/.idea
