@@ -162,12 +162,14 @@ definitions:
   Badge:
     type: object
     properties:
+      badgeId :
+        type: integer
       badgeName:
         type: string
   PointScale:
     type: object
     properties:
-      PointScaleName:
+      pointScaleName:
         type: string
       counter:
         type: integer
