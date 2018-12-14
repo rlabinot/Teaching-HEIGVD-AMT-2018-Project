@@ -1,6 +1,5 @@
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\RuleEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\model\PointScale.java
-C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\FruitEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\exceptions\NotFoundException.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\PointScaleRepository.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\util\ApiOriginFilter.java
@@ -23,6 +22,5 @@ C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\sp
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\configuration\HomeController.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\BadgeEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\EventRepository.java
-C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\FruitRepository.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\EventEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\exceptions\ApiException.java

@@ -14,11 +14,9 @@ ch\heig\amt\gamification\api\model\Badge.class
 ch\heig\amt\gamification\entities\RuleEntity.class
 ch\heig\amt\gamification\api\endpoints\BadgesApiController.class
 ch\heig\amt\gamification\api\PointScalesApi.class
-ch\heig\amt\gamification\entities\FruitEntity.class
 ch\heig\amt\gamification\api\util\ApiOriginFilter.class
 ch\heig\amt\gamification\entities\EventEntity.class
 ch\heig\amt\gamification\repositories\PointScaleRepository.class
-ch\heig\amt\gamification\repositories\FruitRepository.class
 ch\heig\amt\gamification\api\exceptions\NotFoundException.class
 ch\heig\amt\gamification\RFC3339DateFormat.class
 ch\heig\amt\gamification\Swagger2SpringBoot.class
