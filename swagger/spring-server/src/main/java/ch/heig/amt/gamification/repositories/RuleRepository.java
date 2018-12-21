@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by Labinot Rashiti on 14/12/18.
  */
-public interface RuleRepository extends CrudRepository<RuleEntity, Long>{
+public interface RuleRepository extends CrudRepository<RuleEntity, String>{
 
 }

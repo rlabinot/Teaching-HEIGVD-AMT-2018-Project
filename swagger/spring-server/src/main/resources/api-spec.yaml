@@ -155,7 +155,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/PointScale'
+              $ref: '#/definitions/Rule'
 
 
 definitions:
