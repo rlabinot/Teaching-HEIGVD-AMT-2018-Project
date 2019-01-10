@@ -11,6 +11,7 @@ ch\heig\amt\gamification\api\endpoints\PointScalesApiController.class
 ch\heig\amt\gamification\api\endpoints\RulesApiController.class
 ch\heig\amt\gamification\configuration\SwaggerDocumentationConfig.class
 ch\heig\amt\gamification\api\model\Badge.class
+ch\heig\amt\gamification\api\endpoints\EventsApiController.class
 ch\heig\amt\gamification\entities\RuleEntity.class
 ch\heig\amt\gamification\api\endpoints\BadgesApiController.class
 ch\heig\amt\gamification\api\PointScalesApi.class
@@ -21,6 +22,7 @@ ch\heig\amt\gamification\api\exceptions\NotFoundException.class
 ch\heig\amt\gamification\RFC3339DateFormat.class
 ch\heig\amt\gamification\Swagger2SpringBoot.class
 ch\heig\amt\gamification\api\model\Rule.class
+ch\heig\amt\gamification\api\EventsApi.class
 ch\heig\amt\gamification\repositories\BadgeRepository.class
 ch\heig\amt\gamification\entities\PointScaleEntity.class
 ch\heig\amt\gamification\api\model\PointScale.class

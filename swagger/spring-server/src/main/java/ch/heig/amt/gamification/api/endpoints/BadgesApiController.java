@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -26,19 +27,28 @@ public class BadgesApiController implements BadgesApi {
 
     @Override
     public ResponseEntity<Object> createBadge(@ApiParam(value = "", required = true) @Valid @RequestBody Badge badge) {
+        // Registration of the badge as an entity
         BadgeEntity newBadgeEntity = toBadgeEntity(badge);
         badgeRepository.save(newBadgeEntity);
-        int id = newBadgeEntity.getBadgeId();
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newBadgeEntity.getBadgeId()).toUri();
+        // Get the badge and build the response content of this badge from his new link with id
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(newBadgeEntity.getBadgeId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @Override
-    public ResponseEntity<Object> deleteBadge(Integer badgeId) {
+    public ResponseEntity<Object> deleteBadge(@PathVariable Integer badgeId) {
         BadgeEntity badgeEntity = badgeRepository.findOne(badgeId);
+
+        // Checking if existing badge
+        if (badgeEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // delete badge and send no content as response
         badgeRepository.delete(badgeEntity);
-        return null;
+        return ResponseEntity.noContent().build();
     }
 
     @Override
@@ -46,17 +56,33 @@ public class BadgesApiController implements BadgesApi {
         for (BadgeEntity badgeEntity : badgeRepository.findAll()) {
             badgeRepository.delete(badgeEntity);
         }
-        return null;
+        return ResponseEntity.noContent().build();
     }
 
     @Override
-    public ResponseEntity<Object> editBadge(Integer badgeId) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Badge> getBadge(Integer badgeId) {
+    public ResponseEntity<Object> editBadge(@RequestBody Badge badge, @PathVariable Integer badgeId) {
         BadgeEntity badgeEntity = badgeRepository.findOne(badgeId);
+
+        // Checking if existing badge
+        if (badgeEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // edit badge and send no content as response
+        badge.setBadgeName(badge.getBadgeName());
+        badgeRepository.save(toBadgeEntity(badge));
+        return ResponseEntity.accepted().build();
+    }
+
+    @Override
+    public ResponseEntity<Badge> getBadge(@PathVariable Integer badgeId) {
+        BadgeEntity badgeEntity = badgeRepository.findOne(badgeId);
+
+        // Checking if existing badge
+        if (badgeEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity.ok(toBadge(badgeEntity));
     }
 
@@ -71,12 +97,14 @@ public class BadgesApiController implements BadgesApi {
 
     public BadgeEntity toBadgeEntity(Badge badge) {
         BadgeEntity entity = new BadgeEntity();
+        entity.setBadgeId(badge.getBadgeId());
         entity.setBadgeName(badge.getBadgeName());
         return entity;
     }
 
     private Badge toBadge(BadgeEntity entity) {
         Badge badge = new Badge();
+        badge.setBadgeId((entity.getBadgeId()));
         badge.setBadgeName(entity.getBadgeName());
         return badge;
     }

@@ -3,8 +3,7 @@ package ch.heig.amt.gamification.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class EventEntity implements Serializable {
@@ -12,8 +11,7 @@ public class EventEntity implements Serializable {
     private String eventType;
 
     private int userId;
-    private Timestamp timestamp;
-    private ArrayList<String> properties;
+    //private List<String> eventProperties;
 
     public String getEventType() {
         return eventType;
@@ -31,19 +29,13 @@ public class EventEntity implements Serializable {
         this.userId = userId;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+
+    // TODO: Be careful using list because it makes entityManagerFactory Exception, still a mystery
+    /**public List<String> getEventProperties() {
+        return eventProperties;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public ArrayList<String> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(ArrayList<String> properties) {
-        this.properties = properties;
-    }
+    public void setEventProperties(List<String> eventProperties) {
+        this.eventProperties = eventProperties;
+    }*/
 }

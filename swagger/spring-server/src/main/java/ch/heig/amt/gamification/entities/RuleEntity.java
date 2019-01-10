@@ -9,7 +9,7 @@ public class RuleEntity implements Serializable {
     @Id
     private String ruleName;
 
-    private String badgeName;
+    private int badgeId;
     private String pointScale;
     private String eventTrigger;
 
@@ -21,12 +21,12 @@ public class RuleEntity implements Serializable {
         this.ruleName = ruleName;
     }
 
-    public String getBadgeName() {
-        return badgeName;
+    public int getBadgeId() {
+        return badgeId;
     }
 
-    public void setBadgeName(String badgeName) {
-        this.badgeName = badgeName;
+    public void setBadgeId(int badgeId) {
+        this.badgeId = badgeId;
     }
 
     public String getPointScale() {

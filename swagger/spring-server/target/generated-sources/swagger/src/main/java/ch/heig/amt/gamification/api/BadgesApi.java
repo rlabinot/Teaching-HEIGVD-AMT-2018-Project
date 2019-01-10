@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import javax.validation.constraints.*;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-07T16:35:12.037+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-10T14:12:27.802+01:00")
 
 @Api(value = "badges", description = "the badges API")
 public interface BadgesApi {
@@ -53,7 +53,8 @@ public interface BadgesApi {
     @RequestMapping(value = "/badges/{badgeId}",
         produces = { "application/json" }, 
         method = RequestMethod.PUT)
-    ResponseEntity<Object> editBadge(@ApiParam(value = "ID of the requested badge",required=true ) @PathVariable("badgeId") Integer badgeId);
+    ResponseEntity<Object> editBadge(@ApiParam(value = "badge with his new content" ,required=true ) @RequestBody Badge badge,
+        @ApiParam(value = "ID of the requested badge",required=true ) @PathVariable("badgeId") Integer badgeId);
 
 
     @ApiOperation(value = "", notes = "get a specific badge of my application", response = Badge.class, tags={  })

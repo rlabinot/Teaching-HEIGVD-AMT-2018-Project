@@ -9,14 +9,14 @@ import javax.validation.constraints.*;
 /**
  * Rule
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-07T16:35:12.037+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-10T14:12:27.802+01:00")
 
 public class Rule   {
   @JsonProperty("ruleName")
   private String ruleName = null;
 
   @JsonProperty("badgeId")
-  private String badgeId = null;
+  private Integer badgeId = null;
 
   @JsonProperty("pointScale")
   private String pointScale = null;
@@ -42,7 +42,7 @@ public class Rule   {
     this.ruleName = ruleName;
   }
 
-  public Rule badgeId(String badgeId) {
+  public Rule badgeId(Integer badgeId) {
     this.badgeId = badgeId;
     return this;
   }
@@ -52,11 +52,11 @@ public class Rule   {
    * @return badgeId
   **/
   @ApiModelProperty(value = "")
-  public String getBadgeId() {
+  public Integer getBadgeId() {
     return badgeId;
   }
 
-  public void setBadgeId(String badgeId) {
+  public void setBadgeId(Integer badgeId) {
     this.badgeId = badgeId;
   }
 

@@ -1,12 +1,15 @@
 package ch.heig.amt.gamification.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
 public class BadgeEntity implements Serializable {
     @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int badgeId;
 
     private String badgeName;

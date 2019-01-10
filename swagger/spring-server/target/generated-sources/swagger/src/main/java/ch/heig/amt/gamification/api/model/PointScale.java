@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 /**
  * PointScale
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-07T16:35:12.037+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-10T14:12:27.802+01:00")
 
 public class PointScale   {
   @JsonProperty("pointScaleName")

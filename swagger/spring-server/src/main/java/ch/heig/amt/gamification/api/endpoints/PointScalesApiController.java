@@ -1,9 +1,7 @@
 package ch.heig.amt.gamification.api.endpoints;
 
 import ch.heig.amt.gamification.api.PointScalesApi;
-import ch.heig.amt.gamification.api.model.Badge;
 import ch.heig.amt.gamification.api.model.PointScale;
-import ch.heig.amt.gamification.entities.BadgeEntity;
 import ch.heig.amt.gamification.entities.PointScaleEntity;
 import ch.heig.amt.gamification.repositories.PointScaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +19,11 @@ public class PointScalesApiController implements PointScalesApi {
 
     @Override
     public ResponseEntity<Object> createPointScale(PointScale pointScale) {
+        // Registration of the pointScale as an entity
         PointScaleEntity newPointScaleEntity = toPointScaleEntity(pointScale);
         pointScaleRepository.save(newPointScaleEntity);
-        String id = newPointScaleEntity.getPointScaleName();
 
+        // Get the pointScale and build the response content of this pointScale from his new link with id
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newPointScaleEntity.getPointScaleName()).toUri();
         return ResponseEntity.created(location).build();
@@ -42,13 +41,14 @@ public class PointScalesApiController implements PointScalesApi {
     public PointScaleEntity toPointScaleEntity(PointScale pointScale) {
         PointScaleEntity entity = new PointScaleEntity();
         entity.setPointScaleName(pointScale.getPointScaleName());
+        entity.setCounter(pointScale.getCounter());
         return entity;
     }
 
     private PointScale toPointScale(PointScaleEntity entity) {
         PointScale pointScale = new PointScale();
         pointScale.setPointScaleName(entity.getPointScaleName());
+        pointScale.setCounter(entity.getCounter());
         return pointScale;
     }
-
 }

@@ -24,10 +24,11 @@ public class RulesApiController implements RulesApi {
 
     @Override
     public ResponseEntity<Object> createRule(Rule rule) {
+        // Registration of the rule as an entity
         RuleEntity newRuleEntity = toRuleEntity(rule);
         ruleRepository.save(newRuleEntity);
-        String id = newRuleEntity.getRuleName();
 
+        // Get the rule and build the response content of this rule from his new link with id
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(newRuleEntity.getRuleName()).toUri();
         return ResponseEntity.created(location).build();
@@ -42,15 +43,21 @@ public class RulesApiController implements RulesApi {
         return ResponseEntity.ok(rules);
     }
 
-    public RuleEntity toRuleEntity(Rule pointScale) {
+    public RuleEntity toRuleEntity(Rule rule) {
         RuleEntity entity = new RuleEntity();
-        entity.setRuleName(pointScale.getRuleName());
+        entity.setRuleName(rule.getRuleName());
+        entity.setBadgeId(rule.getBadgeId());
+        entity.setEventTrigger(rule.getEventTrigger());
+        entity.setPointScale(rule.getPointScale());
         return entity;
     }
 
     private Rule toRule(RuleEntity entity) {
         Rule rule = new Rule();
         rule.setRuleName(entity.getRuleName());
+        rule.setBadgeId(entity.getBadgeId());
+        rule.setEventTrigger(entity.getEventTrigger());
+        rule.setPointScale(entity.getPointScale());
         return rule;
     }
 }
