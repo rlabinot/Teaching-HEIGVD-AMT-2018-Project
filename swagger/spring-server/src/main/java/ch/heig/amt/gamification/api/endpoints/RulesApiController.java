@@ -48,7 +48,7 @@ public class RulesApiController implements RulesApi {
         entity.setRuleName(rule.getRuleName());
         entity.setBadgeId(rule.getBadgeId());
         entity.setEventTrigger(rule.getEventTrigger());
-        entity.setPointScale(rule.getPointScale());
+        //entity.setPointScale(rule.getPointScale());
         return entity;
     }
 
@@ -57,7 +57,7 @@ public class RulesApiController implements RulesApi {
         rule.setRuleName(entity.getRuleName());
         rule.setBadgeId(entity.getBadgeId());
         rule.setEventTrigger(entity.getEventTrigger());
-        rule.setPointScale(entity.getPointScale());
+        //rule.setPointScale(entity.getPointScale());
         return rule;
     }
 }

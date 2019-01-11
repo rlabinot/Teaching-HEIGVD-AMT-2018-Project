@@ -46,8 +46,6 @@ public class EventsApiController implements EventsApi {
     public EventEntity toEventEntity(Event event) {
             EventEntity entity = new EventEntity();
             entity.setEventType(event.getEventType());
-            //entity.setEventProperties(event.getEventProperties());
-            entity.setUserId(event.getUserId());
         return entity;
     }
 
@@ -55,7 +53,7 @@ public class EventsApiController implements EventsApi {
         Event event = new Event();
         event.setEventType(entity.getEventType());
         //event.setEventProperties(entity.getEventProperties());
-        event.setUserId(entity.getUserId());
+        //event.setUserId(entity.getUserId());
         return event;
     }
 }
