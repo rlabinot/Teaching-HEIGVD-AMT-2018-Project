@@ -1,9 +1,6 @@
 package ch.heig.amt.gamification.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -11,8 +8,10 @@ public class BadgeEntity implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
     private int badgeId;
-
     private String badgeName;
+
+    @ManyToOne
+    private ApplicationEntity application;
 
     public int getBadgeId() {
         return badgeId;
@@ -29,4 +28,13 @@ public class BadgeEntity implements Serializable {
     public void setBadgeName(String badgeName) {
         this.badgeName = badgeName;
     }
+
+    public ApplicationEntity getApplication() {
+        return application;
+    }
+
+    public void setApplication(ApplicationEntity application) {
+        this.application = application;
+    }
+
 }

@@ -2,6 +2,7 @@ package ch.heig.amt.gamification.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 @Entity
@@ -10,8 +11,17 @@ public class RuleEntity implements Serializable {
     private String ruleName;
 
     private int badgeId;
-    private String pointScale;
     private String eventTrigger;
+
+    @ManyToOne
+    private ApplicationEntity application;
+    @ManyToOne
+    private BadgeEntity badge;
+    @ManyToOne
+    private PointScaleEntity pointScale;
+    @ManyToOne
+    private RewardEntity reward;;
+
 
     public String getRuleName() {
         return ruleName;
@@ -29,19 +39,43 @@ public class RuleEntity implements Serializable {
         this.badgeId = badgeId;
     }
 
-    public String getPointScale() {
-        return pointScale;
-    }
-
-    public void setPointScale(String pointScale) {
-        this.pointScale = pointScale;
-    }
-
     public String getEventTrigger() {
         return eventTrigger;
     }
 
     public void setEventTrigger(String eventTrigger) {
         this.eventTrigger = eventTrigger;
+    }
+
+    public ApplicationEntity getApplication() {
+        return application;
+    }
+
+    public void setApplication(ApplicationEntity application) {
+        this.application = application;
+    }
+
+    public BadgeEntity getBadge() {
+        return badge;
+    }
+
+    public void setBadge(BadgeEntity badge) {
+        this.badge = badge;
+    }
+
+    public PointScaleEntity getPointScale() {
+        return pointScale;
+    }
+
+    public void setPointScale(PointScaleEntity pointScale) {
+        this.pointScale = pointScale;
+    }
+
+    public RewardEntity getReward() {
+        return reward;
+    }
+
+    public void setReward(RewardEntity reward) {
+        this.reward = reward;
     }
 }
