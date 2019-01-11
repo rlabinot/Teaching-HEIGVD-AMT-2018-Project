@@ -8,6 +8,7 @@ ch\heig\amt\gamification\api\model\Event.class
 ch\heig\amt\gamification\api\exceptions\ApiException.class
 ch\heig\amt\gamification\api\RulesApi.class
 ch\heig\amt\gamification\api\endpoints\PointScalesApiController.class
+META-INF\swagger-spring.kotlin_module
 ch\heig\amt\gamification\api\endpoints\RulesApiController.class
 ch\heig\amt\gamification\configuration\SwaggerDocumentationConfig.class
 ch\heig\amt\gamification\api\model\Badge.class
