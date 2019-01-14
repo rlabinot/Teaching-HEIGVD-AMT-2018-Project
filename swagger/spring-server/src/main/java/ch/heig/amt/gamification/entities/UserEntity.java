@@ -2,6 +2,7 @@ package ch.heig.amt.gamification.entities;
 
 import javax.persistence.*;
 
+@Entity
 public class UserEntity {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)

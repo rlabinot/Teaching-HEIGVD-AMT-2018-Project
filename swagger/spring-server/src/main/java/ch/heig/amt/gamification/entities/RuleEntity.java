@@ -20,7 +20,7 @@ public class RuleEntity implements Serializable {
     @ManyToOne
     private PointScaleEntity pointScale;
     @ManyToOne
-    private RewardEntity reward;;
+    private RewardEntity reward;
 
 
     public String getRuleName() {

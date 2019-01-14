@@ -11,7 +11,7 @@ import javax.validation.constraints.*;
 /**
  * Event
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-11T11:34:00.541+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2019-01-14T16:24:30.542+01:00")
 
 public class Event   {
   @JsonProperty("eventType")

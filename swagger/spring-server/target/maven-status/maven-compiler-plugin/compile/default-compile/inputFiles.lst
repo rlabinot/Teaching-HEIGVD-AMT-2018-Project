@@ -1,5 +1,6 @@
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\RuleEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\model\PointScale.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\PointRewardEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\endpoints\EventsApiController.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\exceptions\NotFoundException.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\PointScaleRepository.java
@@ -7,10 +8,13 @@ C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\sp
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\endpoints\PointScalesApiController.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\BadgesApi.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\model\Event.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\UserEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\BadgeRepository.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\PointScalesApi.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\util\ApiResponseMessage.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\RuleRepository.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\ApplicationEntity.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\BadgeRewardEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\configuration\SwaggerDocumentationConfig.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\RulesApi.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\RFC3339DateFormat.java
@@ -23,6 +27,7 @@ C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\sp
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\target\generated-sources\swagger\src\main\java\ch\heig\amt\gamification\api\model\Rule.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\configuration\HomeController.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\BadgeEntity.java
+C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\RewardEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\repositories\EventRepository.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\entities\EventEntity.java
 C:\Users\Labinot\Documents\AMT\Labos\Teaching-HEIGVD-AMT-2018-Project\swagger\spring-server\src\main\java\ch\heig\amt\gamification\api\exceptions\ApiException.java

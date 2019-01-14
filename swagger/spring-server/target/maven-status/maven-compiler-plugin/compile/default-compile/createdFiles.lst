@@ -1,4 +1,5 @@
 ch\heig\amt\gamification\configuration\HomeController.class
+ch\heig\amt\gamification\entities\UserEntity.class
 ch\heig\amt\gamification\Swagger2SpringBoot$ExitException.class
 ch\heig\amt\gamification\api\BadgesApi.class
 ch\heig\amt\gamification\entities\BadgeEntity.class
@@ -8,14 +9,16 @@ ch\heig\amt\gamification\api\model\Event.class
 ch\heig\amt\gamification\api\exceptions\ApiException.class
 ch\heig\amt\gamification\api\RulesApi.class
 ch\heig\amt\gamification\api\endpoints\PointScalesApiController.class
-META-INF\swagger-spring.kotlin_module
 ch\heig\amt\gamification\api\endpoints\RulesApiController.class
 ch\heig\amt\gamification\configuration\SwaggerDocumentationConfig.class
 ch\heig\amt\gamification\api\model\Badge.class
 ch\heig\amt\gamification\api\endpoints\EventsApiController.class
+ch\heig\amt\gamification\entities\RewardEntity.class
 ch\heig\amt\gamification\entities\RuleEntity.class
 ch\heig\amt\gamification\api\endpoints\BadgesApiController.class
 ch\heig\amt\gamification\api\PointScalesApi.class
+ch\heig\amt\gamification\entities\BadgeRewardEntity.class
+ch\heig\amt\gamification\entities\PointRewardEntity.class
 ch\heig\amt\gamification\api\util\ApiOriginFilter.class
 ch\heig\amt\gamification\entities\EventEntity.class
 ch\heig\amt\gamification\repositories\PointScaleRepository.class
@@ -27,4 +30,5 @@ ch\heig\amt\gamification\api\EventsApi.class
 ch\heig\amt\gamification\repositories\BadgeRepository.class
 ch\heig\amt\gamification\entities\PointScaleEntity.class
 ch\heig\amt\gamification\api\model\PointScale.class
+ch\heig\amt\gamification\entities\ApplicationEntity.class
 ch\heig\amt\gamification\api\util\ApiResponseMessage.class
