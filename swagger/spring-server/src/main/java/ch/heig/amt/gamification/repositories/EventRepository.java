@@ -6,6 +6,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 /**
  * Created by Labinot Rashiti on 14/12/18.
  */
-public interface EventRepository extends PagingAndSortingRepository<EventEntity, String>{
+public interface EventRepository extends PagingAndSortingRepository<EventEntity, Integer>{
 
 }

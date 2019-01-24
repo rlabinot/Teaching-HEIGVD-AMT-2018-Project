@@ -8,8 +8,9 @@ import java.io.Serializable;
 @Entity
 public class RuleEntity implements Serializable {
     @Id
-    private String ruleName;
+    private int ruleId;
 
+    private String ruleName;
     private int badgeId;
     private String eventTrigger;
 
@@ -22,6 +23,10 @@ public class RuleEntity implements Serializable {
     @ManyToOne
     private RewardEntity reward;
 
+
+    public int getRuleId() { return ruleId; }
+
+    public void setRuleId(int ruleId) { this.ruleId = ruleId; }
 
     public String getRuleName() {
         return ruleName;
@@ -78,4 +83,5 @@ public class RuleEntity implements Serializable {
     public void setReward(RewardEntity reward) {
         this.reward = reward;
     }
+
 }

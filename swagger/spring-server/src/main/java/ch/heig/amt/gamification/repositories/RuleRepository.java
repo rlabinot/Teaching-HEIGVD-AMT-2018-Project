@@ -6,6 +6,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 /**
  * Created by Labinot Rashiti on 14/12/18.
  */
-public interface RuleRepository extends PagingAndSortingRepository<RuleEntity, String>{
+public interface RuleRepository extends PagingAndSortingRepository<RuleEntity, Integer>{
 
 }
