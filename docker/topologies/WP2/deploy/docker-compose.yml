@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:    
+  db:
+    build: ../../../images/WP2/db/
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: apiamt
+      MYSQL_USER: apiamt
+      MYSQL_PASSWORD: apiamt
+      MYSQL_ROOT_PASSWORD: root
+        
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    environment:
+     - PMA_HOST=db
+    restart: always
+    ports:
+     - 8888:80
