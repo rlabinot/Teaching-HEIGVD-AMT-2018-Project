@@ -12,6 +12,8 @@ public class EventEntity implements Serializable {
     private String eventType;
 
     @ManyToOne
+    private  UserEntity user;
+    @ManyToOne
     private ApplicationEntity application;
 
     public int getEventId() {
@@ -44,5 +46,13 @@ public class EventEntity implements Serializable {
 
     public void setApplication(ApplicationEntity application) {
         this.application = application;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }
