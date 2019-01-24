@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-public class RewardEntity implements Serializable {
+public abstract class RewardEntity implements Serializable {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
