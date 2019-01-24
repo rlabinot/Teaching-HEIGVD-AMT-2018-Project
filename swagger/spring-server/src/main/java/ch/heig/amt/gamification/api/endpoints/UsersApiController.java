@@ -29,7 +29,7 @@ public class UsersApiController implements UsersApi {
             required=true) String apiKey) {
         
         List<User> users = new ArrayList<>();
-        for (UserEntity userEntity : userRepository.findAll()) {
+        for (UserEntity userEntity : userRepository.findAllByApplicationApplicationName(apiKey)) {
             users.add(toUser(userEntity));
         }
         return ResponseEntity.ok(users);
@@ -38,7 +38,7 @@ public class UsersApiController implements UsersApi {
     @Override
     public ResponseEntity<User> getUser(String apiKey, Integer id) {
 
-        UserEntity badgeEntity = userRepository.findOne(id);
+        UserEntity badgeEntity = userRepository.findByUserIdAndApplicationApplicationName(id, apiKey);
 
         // Checking if existing badge
         if (badgeEntity == null) {
@@ -51,7 +51,7 @@ public class UsersApiController implements UsersApi {
     @Override
     public ResponseEntity<List<Badge>> getUserBadges(String apiKey, Integer id) {
         List<Badge> badges = new ArrayList<>();
-        for (BadgeEntity badgeEntity : badgeRewardRepository.findBadgeRewardEntitiesByUser_UserId(id)) {
+        for (BadgeEntity badgeEntity : badgeRewardRepository.findBadgeRewardEntitiesByUserUserIdAAndApplicationApplicationName(id, apiKey)) {
             badges.add(BadgesApiController.toBadge(badgeEntity));
         }
         return ResponseEntity.ok(badges);

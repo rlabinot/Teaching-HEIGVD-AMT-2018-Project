@@ -3,6 +3,7 @@ package ch.heig.amt.gamification.api.endpoints;
 import ch.heig.amt.gamification.api.BadgesApi;
 import ch.heig.amt.gamification.api.model.Badge;
 import ch.heig.amt.gamification.api.model.BadgeNoId;
+import ch.heig.amt.gamification.entities.ApplicationEntity;
 import ch.heig.amt.gamification.entities.BadgeEntity;
 import ch.heig.amt.gamification.repositories.BadgeRepository;
 import io.swagger.annotations.ApiParam;
@@ -31,7 +32,9 @@ public class BadgesApiController implements BadgesApi {
     public ResponseEntity<Badge> createBadge(@ApiParam(value = "" ,required=true ) @RequestBody BadgeNoId badge,
                                       @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         // Registration of the badge as an entity
+        ApplicationEntity app = new ApplicationEntity(apiKey);
         BadgeEntity newBadgeEntity = toBadgeEntityNoId(badge);
+        newBadgeEntity.setApplication(app);
         badgeRepository.save(newBadgeEntity);
 
         // Get the badge and build the response content of this badge from his new link with id
@@ -44,7 +47,7 @@ public class BadgesApiController implements BadgesApi {
     public ResponseEntity<Object> deleteBadge(@ApiParam(value = "badge id",required=true ) @PathVariable("id") Integer id,
                                               @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey)
     {
-        BadgeEntity badgeEntity = badgeRepository.findOne(id);
+        BadgeEntity badgeEntity = badgeRepository.findByBadgeIdAndApplicationApplicationName(id, apiKey);
 
         // Checking if existing badge
         if (badgeEntity == null) {
@@ -59,7 +62,7 @@ public class BadgesApiController implements BadgesApi {
     @Override
     public ResponseEntity<Object> deleteAllBadges(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
             required=true) String apiKey) {
-        for (BadgeEntity badgeEntity : badgeRepository.findAll()) {
+        for (BadgeEntity badgeEntity : badgeRepository.findAllByApplicationApplicationName(apiKey)) {
             badgeRepository.delete(badgeEntity);
         }
         return ResponseEntity.noContent().build();
@@ -73,10 +76,12 @@ public class BadgesApiController implements BadgesApi {
         if (toBadgeEntity(badge) == null) {
             return ResponseEntity.notFound().build();
         }
+        ApplicationEntity app = new ApplicationEntity(apiKey);
 
         // edit badge and send no content as response
-        badge.setBadgeName(badge.getBadgeName());
-        badgeRepository.save(toBadgeEntity(badge));
+        BadgeEntity badgeEntity = toBadgeEntity(badge);
+        badgeEntity.setApplication(app);
+        badgeRepository.save(badgeEntity);
         return ResponseEntity.accepted().build();
     }
 
@@ -84,7 +89,7 @@ public class BadgesApiController implements BadgesApi {
     public ResponseEntity<Badge> getBadge(@ApiParam(value = "ID of the requested badge",required=true ) @PathVariable("id") Integer id,
                                    @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
 
-        BadgeEntity badgeEntity = badgeRepository.findOne(id);
+        BadgeEntity badgeEntity = badgeRepository.findByBadgeIdAndApplicationApplicationName(id, apiKey);
 
         // Checking if existing badge
         if (badgeEntity == null) {
@@ -98,7 +103,7 @@ public class BadgesApiController implements BadgesApi {
     public ResponseEntity<List<Badge>> getBadges(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
             required=true) String apiKey) {
         List<Badge> badges = new ArrayList<>();
-        for (BadgeEntity badgeEntity : badgeRepository.findAll()) {
+        for (BadgeEntity badgeEntity : badgeRepository.findAllByApplicationApplicationName(apiKey)) {
             badges.add(toBadge(badgeEntity));
         }
         return ResponseEntity.ok(badges);

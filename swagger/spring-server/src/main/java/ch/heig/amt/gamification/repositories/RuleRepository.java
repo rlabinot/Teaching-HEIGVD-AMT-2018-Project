@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface RuleRepository extends PagingAndSortingRepository<RuleEntity, Integer>{
     List<RuleEntity> findAllByEventTriggerAndApplication_ApplicationName(String eventTrigger, String applicationName);
+    List<RuleEntity> findAllByApplicationApplicationName(String name);
 }

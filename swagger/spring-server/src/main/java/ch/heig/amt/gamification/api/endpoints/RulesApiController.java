@@ -3,6 +3,7 @@ package ch.heig.amt.gamification.api.endpoints;
 import ch.heig.amt.gamification.api.RulesApi;
 import ch.heig.amt.gamification.api.model.Rule;
 import ch.heig.amt.gamification.api.model.RuleNoId;
+import ch.heig.amt.gamification.entities.ApplicationEntity;
 import ch.heig.amt.gamification.entities.RuleEntity;
 import ch.heig.amt.gamification.repositories.RuleRepository;
 import io.swagger.annotations.ApiParam;
@@ -31,7 +32,9 @@ public class RulesApiController implements RulesApi {
     public ResponseEntity<Object> createRule(@ApiParam(value = "" ,required=true ) @RequestBody RuleNoId rule,
                                       @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         // Registration of the rule as an entity
+        ApplicationEntity app = new ApplicationEntity(apiKey);
         RuleEntity newRuleEntity = toRuleEntityNoId(rule);
+        newRuleEntity.setApplication(app);
         ruleRepository.save(newRuleEntity);
 
         // Get the rule and build the response content of this rule from his new link with id
@@ -52,19 +55,22 @@ public class RulesApiController implements RulesApi {
     public ResponseEntity<Object> editRule(@ApiParam(value = "rule with his new content" ,required=true ) @RequestBody Rule rule,
                                     @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         // Checking if existing badge
-        if (toRuleEntity(rule) == null) {
+        RuleEntity ruleEntity = toRuleEntity(rule);
+        if (ruleEntity == null) {
             return ResponseEntity.notFound().build();
         }
+        ApplicationEntity app = new ApplicationEntity(apiKey);
+        ruleEntity.setApplication(app);
+
         // edit badge and send no content as respo
-        rule.setRuleName(rule.getRuleName());
-        ruleRepository.save(toRuleEntity(rule));
+        ruleRepository.save(ruleEntity);
         return ResponseEntity.accepted().build();
     }
 
     @Override
     public ResponseEntity<List<Rule>> getAllRules(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         List<Rule> rules = new ArrayList<>();
-        for (RuleEntity ruleEntity : ruleRepository.findAll()) {
+        for (RuleEntity ruleEntity : ruleRepository.findAllByApplicationApplicationName(apiKey)) {
             rules.add(toRule(ruleEntity));
         }
         return ResponseEntity.ok(rules);

@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface BadgeRepository extends PagingAndSortingRepository<BadgeEntity, Integer>{
     List<BadgeEntity> findAllByApplicationApplicationName(String apiKey);
-    Badge findByBadgeIdAndApplicationApplicationName(int id, String apiKey);
+    BadgeEntity findByBadgeIdAndApplicationApplicationName(int id, String apiKey);
 }
