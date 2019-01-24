@@ -6,6 +6,7 @@ import javax.persistence.ManyToOne;
 public class PointRewardEntity extends RewardEntity {
     @ManyToOne
     private PointScaleEntity pointScale;
+    private int amount;
 
     public PointScaleEntity getPointScale() {
         return pointScale;
@@ -13,6 +14,14 @@ public class PointRewardEntity extends RewardEntity {
 
     public void setPointScale(PointScaleEntity pointScale) {
         this.pointScale = pointScale;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
 
