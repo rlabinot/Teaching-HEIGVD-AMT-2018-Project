@@ -9,7 +9,6 @@ public class PointScaleEntity implements Serializable {
     @GeneratedValue( strategy = GenerationType.AUTO)
     private int pointScaleId;
     private String pointScaleName;
-    private int counter;
 
     @ManyToOne
     private ApplicationEntity application;
@@ -25,15 +24,7 @@ public class PointScaleEntity implements Serializable {
     public void setPointScaleName(String pointScaleName) {
         this.pointScaleName = pointScaleName;
     }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int counter) {
-        this.counter = counter;
-    }
-
+    
     public ApplicationEntity getApplication() {
         return application;
     }
