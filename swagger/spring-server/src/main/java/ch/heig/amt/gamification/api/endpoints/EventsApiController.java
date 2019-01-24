@@ -2,8 +2,13 @@ package ch.heig.amt.gamification.api.endpoints;
 
 import ch.heig.amt.gamification.api.EventsApi;
 import ch.heig.amt.gamification.api.model.Event;
+import ch.heig.amt.gamification.entities.ApplicationEntity;
 import ch.heig.amt.gamification.entities.EventEntity;
+import ch.heig.amt.gamification.entities.RuleEntity;
+import ch.heig.amt.gamification.entities.UserEntity;
+import ch.heig.amt.gamification.repositories.ApplicationRepository;
 import ch.heig.amt.gamification.repositories.EventRepository;
+import ch.heig.amt.gamification.repositories.RuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,12 +26,35 @@ public class EventsApiController implements EventsApi {
     @Autowired
     EventRepository eventRepository;
 
+    @Autowired
+    RuleRepository ruleRepository;
+
+    @Autowired
+    ApplicationRepository applicationRepository;
 
     @Override
     public ResponseEntity<Object> createEvent(Event event) {
-        // Registration of the rule as an entity
+        // Transform the event to an entity and save it for future state rules
         EventEntity newEventEntity = toEventEntity(event);
-        eventRepository.save(newEventEntity);
+
+        // Get the application that send this event
+        ApplicationEntity application = applicationRepository.findByApplicationName(); // TODO
+        if (application == null) {
+            return null;
+        }
+
+        // Get the user which sends the event
+        UserEntity user = newEventEntity.get
+
+
+        // Get the rules that match this event type
+        List<RuleEntity> rules = ruleRepository.findAll(); // TODO
+        if (rules.isEmpty()) {
+            return null;
+        }
+
+
+
 
         // Get the event and build the response content of this event from his new link with id
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
