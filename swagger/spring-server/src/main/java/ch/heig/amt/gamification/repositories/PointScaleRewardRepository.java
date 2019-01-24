@@ -5,5 +5,5 @@ import ch.heig.amt.gamification.entities.PointScaleRewardEntity;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface PointScaleRewardRepository extends PagingAndSortingRepository<PointScaleRewardEntity, Integer> {
-    PointScaleRewardEntity findPointScaleRewardEntityByPointScale_PointScaleNameAndUser_UserId(String pointScaleName, int userId);
+    PointScaleRewardEntity findPointScaleRewardEntityByPointScalePointScaleNameAndUserUserId(String pointScaleName, int userId);
 }

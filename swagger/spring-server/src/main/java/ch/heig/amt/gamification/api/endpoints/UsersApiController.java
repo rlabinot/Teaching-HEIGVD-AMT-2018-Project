@@ -5,6 +5,7 @@ import ch.heig.amt.gamification.api.model.Badge;
 import ch.heig.amt.gamification.api.model.User;
 import ch.heig.amt.gamification.entities.BadgeEntity;
 import ch.heig.amt.gamification.entities.UserEntity;
+import ch.heig.amt.gamification.repositories.ApplicationRepository;
 import ch.heig.amt.gamification.repositories.BadgeRewardRepository;
 import ch.heig.amt.gamification.repositories.UserRepository;
 import io.swagger.annotations.ApiParam;
@@ -21,8 +22,12 @@ public class UsersApiController implements UsersApi {
 
     @Autowired
     UserRepository userRepository;
+
     @Autowired
     BadgeRewardRepository badgeRewardRepository;
+
+    @Autowired
+    ApplicationRepository applicationRepository;
 
     @Override
     public ResponseEntity<List<User>> getAllUsers(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
@@ -51,7 +56,7 @@ public class UsersApiController implements UsersApi {
     @Override
     public ResponseEntity<List<Badge>> getUserBadges(String apiKey, Integer id) {
         List<Badge> badges = new ArrayList<>();
-        for (BadgeEntity badgeEntity : badgeRewardRepository.findBadgeRewardEntitiesByUserUserIdAAndApplicationApplicationName(id, apiKey)) {
+        for (BadgeEntity badgeEntity : badgeRewardRepository.findBadgeRewardEntitiesByUserUserIdAndApplicationApplicationName(id, apiKey)) {
             badges.add(BadgesApiController.toBadge(badgeEntity));
         }
         return ResponseEntity.ok(badges);

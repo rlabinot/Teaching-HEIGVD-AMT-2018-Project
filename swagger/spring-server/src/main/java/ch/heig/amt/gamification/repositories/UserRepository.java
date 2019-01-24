@@ -6,6 +6,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.List;
 
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Integer> {
-    UserEntity findByUserIdAndApplicationApplicationName(int userId, String applicationName);
+    UserEntity findByUserIdAndApplicationApplicationName(int userId, String apiKey);
     List<UserEntity> findAllByApplicationApplicationName(String apiKey);
 }

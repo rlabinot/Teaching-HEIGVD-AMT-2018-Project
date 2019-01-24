@@ -5,6 +5,7 @@ import ch.heig.amt.gamification.api.model.PointScale;
 import ch.heig.amt.gamification.api.model.PointScaleNoId;
 import ch.heig.amt.gamification.entities.ApplicationEntity;
 import ch.heig.amt.gamification.entities.PointScaleEntity;
+import ch.heig.amt.gamification.repositories.ApplicationRepository;
 import ch.heig.amt.gamification.repositories.PointScaleRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +26,15 @@ public class PointScalesApiController implements PointscalesApi {
     @Autowired
     PointScaleRepository pointScaleRepository;
 
+    @Autowired
+    ApplicationRepository applicationRepository;
+
     @Override
     public ResponseEntity<PointScale> createPointScale(@ApiParam(value = "" ,required=true ) @RequestBody PointScaleNoId pointscale,
                                                 @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
                                                         required=true) String apiKey) {
         // Registration of the pointScale as an entity
-        ApplicationEntity app = new ApplicationEntity(apiKey);
+        ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
         PointScaleEntity newPointScaleEntity = toPointScaleEntityNoId(pointscale);
         newPointScaleEntity.setApplication(app);
         pointScaleRepository.save(newPointScaleEntity);
@@ -58,10 +62,11 @@ public class PointScalesApiController implements PointscalesApi {
         if (toPointScaleEntity(pointscale) == null) {
             return ResponseEntity.notFound().build();
         }
-
+        ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
         // edit PointScale and send no content as response
-        pointscale.setPointScaleName(pointscale.getPointScaleName());
-        pointScaleRepository.save(toPointScaleEntity(pointscale));
+        PointScaleEntity pointScaleEntity = toPointScaleEntity(pointscale);
+        pointScaleEntity.setApplication(app);
+        pointScaleRepository.save(pointScaleEntity);
         return ResponseEntity.accepted().build();
     }
 

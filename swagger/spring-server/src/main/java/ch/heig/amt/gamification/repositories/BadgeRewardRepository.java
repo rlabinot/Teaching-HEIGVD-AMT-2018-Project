@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface BadgeRewardRepository extends PagingAndSortingRepository<BadgeRewardEntity, Integer> {
 
-    List<BadgeEntity> findBadgeRewardEntitiesByUserUserIdAAndApplicationApplicationName(int id, String apiKey);
+    List<BadgeEntity> findBadgeRewardEntitiesByUserUserIdAndApplicationApplicationName(int id, String apiKey);
 }
