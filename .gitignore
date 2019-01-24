@@ -19,3 +19,6 @@ swagger/gamification-specs/target
 !/webui/.mvn/wrapper/maven-wrapper.jar
 
 !/swagger/full-project/.idea
+
+#linux stuff
+swagger/spring-server/.directory

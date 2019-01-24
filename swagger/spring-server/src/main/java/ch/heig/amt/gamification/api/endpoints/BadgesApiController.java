@@ -117,7 +117,7 @@ public class BadgesApiController implements BadgesApi {
         return entity;
     }
 
-    private Badge toBadge(BadgeEntity entity) {
+    public static Badge toBadge(BadgeEntity entity) {
         Badge badge = new Badge();
         badge.setBadgeId((entity.getBadgeId()));
         badge.setBadgeName(entity.getBadgeName());
