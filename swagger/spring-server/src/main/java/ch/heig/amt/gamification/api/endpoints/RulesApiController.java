@@ -49,6 +49,19 @@ public class RulesApiController implements RulesApi {
     }
 
     @Override
+    public ResponseEntity<Object> editRule(@ApiParam(value = "rule with his new content" ,required=true ) @RequestBody Rule rule,
+                                    @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
+        // Checking if existing badge
+        if (toRuleEntity(rule) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        // edit badge and send no content as respo
+        rule.setRuleName(rule.getRuleName());
+        ruleRepository.save(toRuleEntity(rule));
+        return ResponseEntity.accepted().build();
+    }
+
+    @Override
     public ResponseEntity<List<Rule>> getAllRules(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         List<Rule> rules = new ArrayList<>();
         for (RuleEntity ruleEntity : ruleRepository.findAll()) {

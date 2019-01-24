@@ -3,7 +3,7 @@ package ch.heig.amt.gamification.api.endpoints;
 import ch.heig.amt.gamification.api.PointscalesApi;
 import ch.heig.amt.gamification.api.model.PointScale;
 import ch.heig.amt.gamification.api.model.PointScaleNoId;
-import ch.heig.amt.gamification.entities.PointScaleEntity;
+import ch.heig.amt.gamification.entities.ApplicationEntity;
 import ch.heig.amt.gamification.entities.PointScaleEntity;
 import ch.heig.amt.gamification.repositories.PointScaleRepository;
 import io.swagger.annotations.ApiParam;
@@ -30,7 +30,9 @@ public class PointScalesApiController implements PointscalesApi {
                                                 @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
                                                         required=true) String apiKey) {
         // Registration of the pointScale as an entity
+        ApplicationEntity app = new ApplicationEntity(apiKey);
         PointScaleEntity newPointScaleEntity = toPointScaleEntityNoId(pointscale);
+        newPointScaleEntity.setApplication(app);
         pointScaleRepository.save(newPointScaleEntity);
 
         // Get the pointScale and build the response content of this pointScale from his new link with id
@@ -43,15 +45,9 @@ public class PointScalesApiController implements PointscalesApi {
     public ResponseEntity<Object> deletePointScale(@ApiParam(value = "pointscale id",required=true ) @PathVariable("id") Integer id,
                                             @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
                                                     required=true) String apiKey) {
-        PointScaleEntity pointScaleEntity = pointScaleRepository.findOne(id);
-
-        // Checking if existing PointScale
-        if (pointScaleEntity == null) {
-            return ResponseEntity.notFound().build();
-        }
 
         // delete PointScale and send no content as response
-        pointScaleRepository.delete(pointScaleEntity);
+        pointScaleRepository.deletePointScaleEntityByPointScaleIdAndApplicationApplicationName(id, apiKey);
         return ResponseEntity.ok().build();
     }
 
@@ -72,7 +68,7 @@ public class PointScalesApiController implements PointscalesApi {
     @Override
     public ResponseEntity<List<PointScale>> getAllPointScales(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         List<PointScale> pointScales = new ArrayList<>();
-        for (PointScaleEntity pointScaleEntity : pointScaleRepository.findAll()) {
+        for (PointScaleEntity pointScaleEntity : pointScaleRepository.findAllByApplicationApplicationName(apiKey)) {
             pointScales.add(toPointScale(pointScaleEntity));
         }
         return ResponseEntity.ok(pointScales);
@@ -81,7 +77,7 @@ public class PointScalesApiController implements PointscalesApi {
     @Override
     public ResponseEntity<PointScale> getPointScale(@ApiParam(value = "ID of the requested pointscale",required=true ) @PathVariable("id") Integer id,
                                              @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
-        PointScaleEntity pointScaleEntity = pointScaleRepository.findOne(id);
+        PointScaleEntity pointScaleEntity = pointScaleRepository.findByPointScaleIdAndApplicationApplicationName(id, apiKey);
 
         // Checking if existing PointScale
         if (pointScaleEntity == null) {

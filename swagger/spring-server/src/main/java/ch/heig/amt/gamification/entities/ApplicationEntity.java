@@ -10,6 +10,11 @@ public class ApplicationEntity implements Serializable{
     private int applicationId;
     private String applicationName;
 
+    public ApplicationEntity(){};
+    public ApplicationEntity(String applicationName) {
+        this.applicationName = applicationName;
+    }
+
     public int getApplicationId() {
         return applicationId;
     }
