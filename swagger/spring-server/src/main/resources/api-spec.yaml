@@ -480,9 +480,3 @@ definitions:
     properties:
       id:
         type: integer
-      email:
-        type: string
-      firstname:
-        type: string
-      lastname:
-        type: string
