@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc9bf3c1-9d6e-484b-992a-a6886feabb34" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/api/endpoints/RulesApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/api/endpoints/RulesApiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/BadgeEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/BadgeEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/EventEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/EventEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/PointScaleEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/PointScaleEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/RuleEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/classes/ch/heig/amt/gamification/entities/RuleEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/BadgesApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/BadgesApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/PointScalesApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/PointScalesApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/RulesApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/RulesApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Badge.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Badge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/PointScale.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/PointScale.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Rule.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Rule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/swagger-spring-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/swagger-spring-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../spring-server/target/swagger-spring-1.0.0.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/target/swagger-spring-1.0.0.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/PointScaleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/PointScaleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/RuleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/RuleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../spring-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../spring-server/src/main/resources/application.properties" afterDir="false" />
     </list>
     <ignored path="full-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,6 +36,53 @@
     <expand />
     <select />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1119901680">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="2" />
+          <entry key="iml" value="1" />
+          <entry key="java" value="45" />
+          <entry key="properties" value="4" />
+          <entry key="swagger-codegen-ignore" value="1" />
+          <entry key="txt" value="1" />
+          <entry key="xml" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="2" />
+          <entry key="IDEA_MODULE" value="1" />
+          <entry key="JAVA" value="45" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Properties" value="4" />
+          <entry key="XML" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="352" />
+          <entry key="properties" value="17" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="352" />
+          <entry key="Properties" value="17" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.open.time.29" value="1" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="full-project">
       <favorite_root url="ch.heig.amt.gamification.api.exceptions.ApiException" module="swagger-spring" type="class" klass="com.intellij.ide.favoritesTreeView.smartPointerPsiNodes.ClassSmartPointerNode" />
@@ -60,11 +90,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/BadgesApiController.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/ApplicationRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="104" column="44" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="44" />
+            <state relative-caret-position="102">
+              <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,28 +103,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/RewardEntity.java">
+        <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/RuleRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/UserEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/RuleEntity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+            <state relative-caret-position="136">
+              <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -105,6 +117,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -164,11 +177,7 @@
         <option value="$PROJECT_DIR$/../fruits-specs/src/test/resources/environment.properties" />
         <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/ch/heig/amt/gamification/api/spec/helpers/Environment.java" />
         <option value="$PROJECT_DIR$/../fruits-specs/src/test/java/ch/heig/amt/gamification/api/spec/steps/CreationSteps.java" />
-        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/EventRepository.java" />
-        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/PointScaleRepository.java" />
-        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/RuleRepository.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/configuration/SwaggerDocumentationConfig.java" />
-        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/BadgeRepository.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/BadgesApiController.java" />
         <option value="$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Event.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/resources/META-INF/additional-spring-configuration-metadata.json" />
@@ -178,14 +187,26 @@
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/PointScaleEntity.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/BadgeEntity.java" />
         <option value="$PROJECT_DIR$/../spring-server/pom.xml" />
-        <option value="$PROJECT_DIR$/../spring-server/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/PointScalesApiController.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/resources/api-spec.yaml" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/RulesApiController.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/UserEntity.java" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/ApplicationEntity.java" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/EventRepository.java" />
         <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/RuleEntity.java" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/BadgeRepository.java" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/PointScaleRepository.java" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/ApplicationRepository.java" />
+        <option value="$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/RuleRepository.java" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -197,6 +218,15 @@
   <component name="MavenProjectNavigator">
     <treeState>
       <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="gamificationSpecification" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="gamificationSpecification" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
           <item name="swagger-spring" type="9519ce18:MavenProjectsStructure$ProjectNode" />
@@ -215,10 +245,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="1944" />
-    <option name="height" value="1044" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -245,6 +274,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -315,25 +345,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="gamification" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="full-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gamification" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="full-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gamification" type="462c0819:PsiDirectoryNode" />
               <item name="entities" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -345,18 +356,10 @@
               <item name="gamification" type="462c0819:PsiDirectoryNode" />
               <item name="repositories" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="full-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="spring-server" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -375,7 +378,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547479773917" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548341859479" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -650,7 +653,7 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="Applet">
+    <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -706,7 +709,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG">
+    <configuration default="true" type="TestNG" factoryName="TestNG">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <properties />
       <listeners />
@@ -714,16 +717,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
+      <predefined_log_file id="idea.log" enabled="true" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
@@ -733,9 +736,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.Execute with Spring Boot" />
       <item itemvalue="Cucumber java.All Features in: fruits-specs" />
       <item itemvalue="Cucumber java.Feature: creation" />
-      <item itemvalue="Spring Boot.Execute with Spring Boot" />
     </list>
     <recent_temporary>
       <list>
@@ -793,11 +796,15 @@
       <workItem from="1547201357555" duration="1991000" />
       <workItem from="1547203778618" duration="44000" />
       <workItem from="1547476875230" duration="2896000" />
+      <workItem from="1548254593248" duration="6702000" />
+      <workItem from="1548294814612" duration="137000" />
+      <workItem from="1548315755632" duration="3646000" />
+      <workItem from="1548337201442" duration="3561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67827000" />
+    <option name="totallyTimeSpent" value="85806000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -809,10 +816,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2728745" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23347548" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -822,7 +829,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7651822" visible="true" weight="0.22735347" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7651822" visible="true" weight="0.29935622" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.65587044" weight="0.011347517" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -840,11 +847,11 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24939272" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Database" order="4" weight="0.32955465" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32942432" />
       <window_info anchor="right" id="Remote Host" order="5" weight="0.32955465" />
       <window_info anchor="right" id="Bean Validation" order="6" weight="0.32955465" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="8" visible="true" weight="0.1442953" />
+      <window_info anchor="right" id="Maven Projects" order="8" weight="0.45575693" />
       <window_info anchor="right" id="Capture Analysis" order="9" />
       <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info anchor="right" id="Maven" order="11" visible="true" weight="0.1902834" />
@@ -852,6 +859,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -867,48 +877,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.3.9.RELEASE/spring-beans-4.3.9.RELEASE.jar!/org/springframework/beans/factory/annotation/Autowired.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="18" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/configuration/HomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.4.RELEASE/spring-data-commons-1.13.4.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.9.RELEASE/spring-web-4.3.9.RELEASE.jar!/org/springframework/http/ResponseEntity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/util/ApiOriginFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/util/ApiResponseMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/exceptions/NotFoundException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -980,13 +948,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_91/src.zip!/java/lang/Override.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_91/src.zip!/java/lang/Override.java" />
     <entry file="file://$PROJECT_DIR$/../spring-server/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1021,9 +983,6 @@
         <state relative-caret-position="-1173" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/.swagger-codegen-ignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/resources/META-INF/additional-spring-configuration-metadata.json" />
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/1.5.4.RELEASE/spring-boot-autoconfigure-1.5.4.RELEASE.jar!/org/springframework/boot/autoconfigure/orm/jpa/JpaBaseConfiguration.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1039,100 +998,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="76" column="13" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="13" />
-          <folding>
-            <element signature="e#1785#1786#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/RuleRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/PointScaleRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/EventRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/target/generated-sources/swagger/src/main/java/ch/heig/amt/gamification/api/model/Event.java" />
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/resources/data.sql" />
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/configuration/SwaggerDocumentationConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="105" column="42" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/BadgeRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" column="79" selection-start-line="8" selection-start-column="68" selection-end-line="8" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/BadgeRewardEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/EventEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/PointRewardEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1143,44 +1014,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/EventsApiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="42" column="33" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/PointScaleEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/PointScalesApiController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="41" column="57" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/ApplicationEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="7" lean-forward="true" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding>
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#365#366#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1193,8 +1030,97 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/RulesApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="54" column="44" selection-start-line="54" selection-start-column="44" selection-end-line="54" selection-end-column="44" />
+        <state relative-caret-position="309">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.4.RELEASE/spring-data-commons-1.13.4.RELEASE.jar!/org/springframework/data/repository/PagingAndSortingRepository.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="85" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.13.4.RELEASE/spring-data-commons-1.13.4.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="13" column="26" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/PointRewardEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/PointScaleEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/EventEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gamification-specs/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1636">
+          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gamification-specs/executableSpecification.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/.swagger-codegen-ignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="105" column="42" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="74" lean-forward="true" selection-start-line="8" selection-start-column="74" selection-end-line="8" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/EventsApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/BadgesApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-942">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1203,39 +1129,81 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/BadgeEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="8" column="51" selection-start-line="8" selection-start-column="51" selection-end-line="8" selection-end-column="51" />
+        <state relative-caret-position="204">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/api/endpoints/BadgesApiController.java">
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/BadgeRewardEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="104" column="44" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/RewardEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        <state relative-caret-position="357">
+          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/UserEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="221">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/ApplicationEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/PointScaleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="100" selection-start-line="11" selection-start-column="100" selection-end-line="11" selection-end-column="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/BadgeRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/EventRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="88" selection-start-line="8" selection-start-column="88" selection-end-line="8" selection-end-column="88" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/entities/RuleEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        <state relative-caret-position="459">
+          <caret line="30" column="29" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/RuleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../spring-server/src/main/java/ch/heig/amt/gamification/repositories/ApplicationRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
