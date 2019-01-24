@@ -13,6 +13,7 @@ public class RuleEntity implements Serializable {
     private String ruleName;
     private int badgeId;
     private String eventTrigger;
+    private int amount;
 
     @ManyToOne
     private ApplicationEntity application;
@@ -84,4 +85,11 @@ public class RuleEntity implements Serializable {
         this.reward = reward;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }
