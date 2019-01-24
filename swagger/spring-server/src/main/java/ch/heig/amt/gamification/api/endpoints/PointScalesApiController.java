@@ -46,9 +46,16 @@ public class PointScalesApiController implements PointscalesApi {
                                             @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
                                                     required=true) String apiKey) {
 
+        PointScaleEntity pointScaleEntity = pointScaleRepository.findByPointScaleIdAndApplicationApplicationName(id, apiKey);
+
+        // Checking if existing PointScale
+        if (pointScaleEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         // delete PointScale and send no content as response
         pointScaleRepository.deletePointScaleEntityByPointScaleIdAndApplicationApplicationName(id, apiKey);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.accepted().build();
     }
 
     @Override
