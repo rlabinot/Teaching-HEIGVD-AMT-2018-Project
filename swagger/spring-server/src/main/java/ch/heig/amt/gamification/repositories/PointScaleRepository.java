@@ -11,6 +11,4 @@ import java.util.List;
  */
 public interface PointScaleRepository extends PagingAndSortingRepository<PointScaleEntity, Integer>{
 
-    List<PointScaleRepository> findAllByPointScaleNameContains(String name);
-
 }
