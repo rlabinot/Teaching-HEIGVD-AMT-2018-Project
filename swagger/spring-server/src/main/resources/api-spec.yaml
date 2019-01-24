@@ -70,6 +70,21 @@ paths:
           description: Badge successfully updated
           schema:
             type: object
+    delete:
+      description: delete all badges
+      operationId: deleteAllBadges
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '204':
+          description: Badges successfully deleted
+          schema:
+            type: object
 
   /badges/{id}:
     get:

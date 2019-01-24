@@ -2,6 +2,7 @@ package ch.heig.amt.gamification.api.endpoints;
 
 import ch.heig.amt.gamification.api.BadgesApi;
 import ch.heig.amt.gamification.api.model.Badge;
+import ch.heig.amt.gamification.api.model.BadgeNoId;
 import ch.heig.amt.gamification.entities.BadgeEntity;
 import ch.heig.amt.gamification.repositories.BadgeRepository;
 import io.swagger.annotations.ApiParam;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -26,9 +28,10 @@ public class BadgesApiController implements BadgesApi {
     BadgeRepository badgeRepository;
 
     @Override
-    public ResponseEntity<Object> createBadge(@ApiParam(value = "", required = true) @Valid @RequestBody Badge badge) {
+    public ResponseEntity<Badge> createBadge(@ApiParam(value = "" ,required=true ) @RequestBody BadgeNoId badge,
+                                      @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         // Registration of the badge as an entity
-        BadgeEntity newBadgeEntity = toBadgeEntity(badge);
+        BadgeEntity newBadgeEntity = toBadgeEntityNoId(badge);
         badgeRepository.save(newBadgeEntity);
 
         // Get the badge and build the response content of this badge from his new link with id
@@ -38,8 +41,10 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<Object> deleteBadge(@PathVariable Integer badgeId) {
-        BadgeEntity badgeEntity = badgeRepository.findOne(badgeId);
+    public ResponseEntity<Object> deleteBadge(@ApiParam(value = "badge id",required=true ) @PathVariable("id") Integer id,
+                                              @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey)
+    {
+        BadgeEntity badgeEntity = badgeRepository.findOne(id);
 
         // Checking if existing badge
         if (badgeEntity == null) {
@@ -48,11 +53,12 @@ public class BadgesApiController implements BadgesApi {
 
         // delete badge and send no content as response
         badgeRepository.delete(badgeEntity);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity<Object> deleteBadges() {
+    public ResponseEntity<Object> deleteAllBadges(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
+            required=true) String apiKey) {
         for (BadgeEntity badgeEntity : badgeRepository.findAll()) {
             badgeRepository.delete(badgeEntity);
         }
@@ -60,11 +66,11 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<Object> editBadge(@RequestBody Badge badge, @PathVariable Integer badgeId) {
-        BadgeEntity badgeEntity = badgeRepository.findOne(badgeId);
+    public ResponseEntity<Object> editBadge(@ApiParam(value = "badge with his new content" ,required=true ) @RequestBody Badge badge,
+                                     @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
 
         // Checking if existing badge
-        if (badgeEntity == null) {
+        if (toBadgeEntity(badge) == null) {
             return ResponseEntity.notFound().build();
         }
 
@@ -75,8 +81,10 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<Badge> getBadge(@PathVariable Integer badgeId) {
-        BadgeEntity badgeEntity = badgeRepository.findOne(badgeId);
+    public ResponseEntity<Badge> getBadge(@ApiParam(value = "ID of the requested badge",required=true ) @PathVariable("id") Integer id,
+                                   @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
+
+        BadgeEntity badgeEntity = badgeRepository.findOne(id);
 
         // Checking if existing badge
         if (badgeEntity == null) {
@@ -87,7 +95,8 @@ public class BadgesApiController implements BadgesApi {
     }
 
     @Override
-    public ResponseEntity<List<Badge>> getBadges() {
+    public ResponseEntity<List<Badge>> getBadges(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
+            required=true) String apiKey) {
         List<Badge> badges = new ArrayList<>();
         for (BadgeEntity badgeEntity : badgeRepository.findAll()) {
             badges.add(toBadge(badgeEntity));
@@ -98,6 +107,12 @@ public class BadgesApiController implements BadgesApi {
     public BadgeEntity toBadgeEntity(Badge badge) {
         BadgeEntity entity = new BadgeEntity();
         entity.setBadgeId(badge.getBadgeId());
+        entity.setBadgeName(badge.getBadgeName());
+        return entity;
+    }
+
+    public BadgeEntity toBadgeEntityNoId(BadgeNoId badge) {
+        BadgeEntity entity = new BadgeEntity();
         entity.setBadgeName(badge.getBadgeName());
         return entity;
     }
