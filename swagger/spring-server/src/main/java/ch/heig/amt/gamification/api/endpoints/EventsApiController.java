@@ -36,11 +36,14 @@ public class EventsApiController implements EventsApi {
     @Autowired
     BadgeRewardRepository badgeRewardRepository;
 
+    @Autowired
+    PointScaleRewardRepository pointScaleRewardRepository;
+
     @Override
     public ResponseEntity<Object> sendEvent(@ApiParam(value = "" ,required=true ) @RequestBody Event event,
                                      @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         // Transform the event to an entity and save it for future state rules
-        EventEntity newEventEntity = toEventEntity(event);
+        EventEntity newEvent = toEventEntity(event);
 
         // Get the application that send this event
         ApplicationEntity application = applicationRepository.findByApplicationName(apiKey);
@@ -49,9 +52,10 @@ public class EventsApiController implements EventsApi {
         }
 
         // Get the user which sends the event (if he doesn't exist => create it)
-        UserEntity user = newEventEntity.getUser();
+        UserEntity user = newEvent.getUser();
         if (userRepository.findByUserIdAndAndApplication_ApplicationName(user.getUserId(), apiKey) == null) {
             user.setApplication(application);
+            userRepository.save(user);
             System.out.println("User " + user.getUserId() + "created");
         }
 
@@ -76,30 +80,33 @@ public class EventsApiController implements EventsApi {
             // Get the pointscales from the rules
             PointScaleEntity pointScale = rule.getPointScale();
             if (pointScale != null) {
-                PointScaleRewardEntity pointScaleReward = new PointScaleRewardEntity();
-                pointScaleReward.setUser(user);
-                pointScaleReward.setPointScale(pointScale);
-                pointScaleReward
+                PointScaleRewardEntity pointScaleReward = pointScaleRewardRepository.findPointScaleRewardEntityByPointScale_PointScaleNameAndUser_UserId(pointScale.getPointScaleName(), user.getUserId());
+                if (pointScaleReward == null) {
+                    pointScaleReward = new PointScaleRewardEntity();
+                    pointScaleReward.setUser(user);
+                    pointScaleReward.setPointScale(pointScale);
+                }
+                pointScaleReward.setAmount(rule.getAmount());
+                pointScaleRewardRepository.save(pointScaleReward);
+                System.out.println("+" + rule.getAmount() + " " + rule.getPointScale() + " added to " + user.getUserId());
             }
         }
 
-        // Get the pointscales from the rules
-
-
-
-
-
-
+        // Save event for state rules purpose
+        newEvent.setUser(user);
+        newEvent.setApplication(application);
+        newEvent.setTimestamp(System.currentTimeMillis());
+        eventRepository.save(newEvent);
 
 
         // Get the event and build the response content of this event from his new link with id
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newEventEntity.getEventType()).toUri();
+                .buildAndExpand(newEvent.getEventType()).toUri();
         return ResponseEntity.created(location).build();
     }
 
     @Override
-    public ResponseEntity<List<Event>> getEvents() {
+    public ResponseEntity<List<Event>> getAllEvents(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         List<Event> events = new ArrayList<>();
         for (EventEntity eventEntity : eventRepository.findAll()) {
             events.add(toEvent(eventEntity));
