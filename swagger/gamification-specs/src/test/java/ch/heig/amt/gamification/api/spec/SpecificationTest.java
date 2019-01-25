@@ -2,7 +2,6 @@ package ch.heig.amt.gamification.api.spec;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -12,6 +11,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(features="src/test/resources/scenarios/", plugin = {"pretty", "html:target/cucumber"})
 public class SpecificationTest {
-
-
+    public SpecificationTest() {
+        System.out.println("Starting the test !!!");
+    }
 }

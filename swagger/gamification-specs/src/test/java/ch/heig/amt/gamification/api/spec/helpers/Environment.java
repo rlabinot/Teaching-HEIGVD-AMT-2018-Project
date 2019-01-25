@@ -12,11 +12,12 @@ import java.util.Properties;
 public class Environment {
 
     private DefaultApi api = new DefaultApi();
+    private final String APPLICATION_NAME = "myApp";
 
     public Environment() throws IOException {
         Properties properties = new Properties();
         properties.load(this.getClass().getClassLoader().getResourceAsStream("environment.properties"));
-        String url = properties.getProperty("io.avalia.fruits.server.url");
+        String url = properties.getProperty("ch.heig.amt.gamification.server.url");
         api.getApiClient().setBasePath(url);
 
     }
@@ -26,4 +27,7 @@ public class Environment {
     }
 
 
+    public String getAPPLICATION_NAME() {
+        return APPLICATION_NAME;
+    }
 }
