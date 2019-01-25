@@ -132,6 +132,7 @@ public class RulesApiController implements RulesApi {
         entity.setBadge(badge);
         PointScaleEntity pointScale = pointScaleRepository.findOne(rule.getPointScaleId());
         entity.setPointScale(pointScale);
+        entity.setAmount(rule.getAmount());
         return entity;
     }
 
@@ -142,6 +143,7 @@ public class RulesApiController implements RulesApi {
         rule.setEventTrigger(entity.getEventTrigger());
         rule.setBadgeId(entity.getBadge().getBadgeId());
         rule.setPointScaleId(entity.getPointScale().getPointScaleId());
+        rule.setAmount(entity.getAmount());
         return rule;
     }
 }
