@@ -21,8 +21,6 @@ public class RuleEntity implements Serializable {
     private BadgeEntity badge;
     @ManyToOne
     private PointScaleEntity pointScale;
-    @ManyToOne
-    private RewardEntity reward;
 
 
     public int getRuleId() { return ruleId; }
@@ -75,14 +73,6 @@ public class RuleEntity implements Serializable {
 
     public void setPointScale(PointScaleEntity pointScale) {
         this.pointScale = pointScale;
-    }
-
-    public RewardEntity getReward() {
-        return reward;
-    }
-
-    public void setReward(RewardEntity reward) {
-        this.reward = reward;
     }
 
     public int getAmount() {
