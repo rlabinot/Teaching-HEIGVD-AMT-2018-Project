@@ -60,6 +60,14 @@ public class RulesApiController implements RulesApi {
     }
 
     @Override
+    public ResponseEntity<Object> deleteAllRules(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
+        for (RuleEntity ruleEntity : ruleRepository.findAllByApplicationApplicationName(apiKey)) {
+            ruleRepository.delete(ruleEntity);
+        }
+        return ResponseEntity.accepted().build();
+    }
+
+    @Override
     public ResponseEntity<Void> deleteRule(@ApiParam(value = "ID of the requested badge",required=true ) @PathVariable("id") Integer id,
                                     @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey){
 
