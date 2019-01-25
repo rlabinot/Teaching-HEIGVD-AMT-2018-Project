@@ -65,7 +65,7 @@ public class PointScalesApiController implements PointscalesApi {
         }
 
         // delete PointScale and send no content as response
-        pointScaleRepository.deletePointScaleEntityByPointScaleIdAndApplicationApplicationName(id, apiKey);
+        pointScaleRepository.delete(pointScaleEntity);
         return ResponseEntity.accepted().build();
     }
 
