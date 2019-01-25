@@ -5,6 +5,7 @@ import ch.heig.amt.gamification.api.model.Rule;
 import ch.heig.amt.gamification.api.model.RuleNoId;
 import ch.heig.amt.gamification.entities.ApplicationEntity;
 import ch.heig.amt.gamification.entities.RuleEntity;
+import ch.heig.amt.gamification.repositories.ApplicationRepository;
 import ch.heig.amt.gamification.repositories.RuleRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +28,17 @@ public class RulesApiController implements RulesApi {
     @Autowired
     RuleRepository ruleRepository;
 
+    @Autowired
+    ApplicationRepository applicationRepository;
 
     @Override
     public ResponseEntity<Object> createRule(@ApiParam(value = "" ,required=true ) @RequestBody RuleNoId rule,
                                       @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         // Registration of the rule as an entity
-        ApplicationEntity app = new ApplicationEntity(apiKey);
+        ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
         RuleEntity newRuleEntity = toRuleEntityNoId(rule);
         newRuleEntity.setApplication(app);
         ruleRepository.save(newRuleEntity);
@@ -48,7 +54,7 @@ public class RulesApiController implements RulesApi {
                                     @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey){
         // Registration of the rule as an entity
         ruleRepository.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.accepted().build();
     }
 
     @Override

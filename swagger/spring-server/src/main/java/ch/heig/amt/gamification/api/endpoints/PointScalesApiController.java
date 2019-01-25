@@ -35,8 +35,15 @@ public class PointScalesApiController implements PointscalesApi {
                                                         required=true) String apiKey) {
         // Registration of the pointScale as an entity
         ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
         PointScaleEntity newPointScaleEntity = toPointScaleEntityNoId(pointscale);
         newPointScaleEntity.setApplication(app);
+        // Control if the badge already exist for this application
+        if (pointScaleRepository.findByPointScaleNameAndApplicationApplicationName(newPointScaleEntity.getPointScaleName(), apiKey) != null) {
+            return ResponseEntity.status(409).build();
+        }
         pointScaleRepository.save(newPointScaleEntity);
 
         // Get the pointScale and build the response content of this pointScale from his new link with id

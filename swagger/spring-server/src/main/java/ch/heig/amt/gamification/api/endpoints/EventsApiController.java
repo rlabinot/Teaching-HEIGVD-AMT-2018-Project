@@ -48,7 +48,7 @@ public class EventsApiController implements EventsApi {
         // Get the application that send this event
         ApplicationEntity application = applicationRepository.findByApplicationName(apiKey);
         if (application == null) {
-            return null;
+            return ResponseEntity.notFound().build();
         }
 
         // Get the user which sends the event (if he doesn't exist => create it)

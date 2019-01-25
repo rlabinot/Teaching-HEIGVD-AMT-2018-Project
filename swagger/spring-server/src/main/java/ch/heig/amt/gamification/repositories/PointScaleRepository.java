@@ -14,6 +14,7 @@ public interface PointScaleRepository extends PagingAndSortingRepository<PointSc
 
     // to change : save,findOne, delete, findAll
     PointScaleEntity findByPointScaleIdAndApplicationApplicationName(int id, String apiKey);
+    PointScaleEntity findByPointScaleNameAndApplicationApplicationName(String pointScaleName, String apikey);
     List<PointScaleEntity> findAllByApplicationApplicationName(String apiKey);
     void deletePointScaleEntityByPointScaleIdAndApplicationApplicationName(Integer id, String apiKey);
 }

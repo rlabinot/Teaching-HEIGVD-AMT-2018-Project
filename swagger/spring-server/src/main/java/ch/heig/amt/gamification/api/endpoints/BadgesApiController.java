@@ -5,6 +5,7 @@ import ch.heig.amt.gamification.api.model.Badge;
 import ch.heig.amt.gamification.api.model.BadgeNoId;
 import ch.heig.amt.gamification.entities.ApplicationEntity;
 import ch.heig.amt.gamification.entities.BadgeEntity;
+import ch.heig.amt.gamification.repositories.ApplicationRepository;
 import ch.heig.amt.gamification.repositories.BadgeRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,23 @@ public class BadgesApiController implements BadgesApi {
     @Autowired
     BadgeRepository badgeRepository;
 
+    @Autowired
+    ApplicationRepository applicationRepository;
+
     @Override
     public ResponseEntity<Badge> createBadge(@ApiParam(value = "" ,required=true ) @RequestBody BadgeNoId badge,
                                       @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
         // Registration of the badge as an entity
-        ApplicationEntity app = new ApplicationEntity(apiKey);
+        ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
         BadgeEntity newBadgeEntity = toBadgeEntityNoId(badge);
         newBadgeEntity.setApplication(app);
+        // Control if the badge already exist for this application
+        if (badgeRepository.findByBadgeNameAndApplicationApplicationName(newBadgeEntity.getBadgeName(), apiKey) != null) {
+            return ResponseEntity.status(409).build();
+        }
         badgeRepository.save(newBadgeEntity);
 
         // Get the badge and build the response content of this badge from his new link with id
@@ -56,7 +67,7 @@ public class BadgesApiController implements BadgesApi {
 
         // delete badge and send no content as response
         badgeRepository.delete(badgeEntity);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.accepted().build();
     }
 
     @Override
@@ -65,7 +76,7 @@ public class BadgesApiController implements BadgesApi {
         for (BadgeEntity badgeEntity : badgeRepository.findAllByApplicationApplicationName(apiKey)) {
             badgeRepository.delete(badgeEntity);
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.accepted().build();
     }
 
     @Override

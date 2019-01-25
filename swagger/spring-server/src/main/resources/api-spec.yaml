@@ -452,16 +452,12 @@ definitions:
         type: integer
       pointScaleName:
         type: string
-      counter:
-        type: integer
 
   PointScaleNoId:
     type: object
     properties:
       pointScaleName:
         type: string
-      counter:
-        type: integer
 
   Rule:
     type: object
