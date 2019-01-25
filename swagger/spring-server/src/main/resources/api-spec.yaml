@@ -429,6 +429,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Badge'
+  /application:
+    post:
+      description: create an application
+      operationId: createApplication
+      consumes:
+      - application/json
+      parameters:
+      - name: application
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Application'
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
 
 definitions:
   Badge:
@@ -505,3 +522,8 @@ definitions:
     properties:
       id:
         type: integer
+  Application:
+    type: object
+    properties:
+      name:
+        type: string
