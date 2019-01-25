@@ -8,4 +8,5 @@ import java.util.List;
 public interface UserRepository extends PagingAndSortingRepository<UserEntity, Integer> {
     UserEntity findByUserIdAndApplicationApplicationName(int userId, String apiKey);
     List<UserEntity> findAllByApplicationApplicationName(String apiKey);
+    UserEntity save(UserEntity u);
 }
