@@ -7,10 +7,10 @@ import java.io.Serializable;
 public class ApplicationEntity implements Serializable{
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
-    private int applicationId;
+    private Integer applicationId;
     private String applicationName;
 
-    public int getApplicationId() {
+    public Integer getApplicationId() {
         return applicationId;
     }
 

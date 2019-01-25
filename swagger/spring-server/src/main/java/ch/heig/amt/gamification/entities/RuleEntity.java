@@ -1,18 +1,17 @@
 package ch.heig.amt.gamification.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 public class RuleEntity implements Serializable {
     @Id
-    private int ruleId;
+    @GeneratedValue( strategy = GenerationType.AUTO)
+    private Integer ruleId;
 
     private String ruleName;
     private String eventTrigger;
-    private int amount;
+    private Integer amount;
 
     @ManyToOne
     private ApplicationEntity application;
@@ -22,9 +21,9 @@ public class RuleEntity implements Serializable {
     private PointScaleEntity pointScale;
 
 
-    public int getRuleId() { return ruleId; }
+    public Integer getRuleId() { return ruleId; }
 
-    public void setRuleId(int ruleId) { this.ruleId = ruleId; }
+    public void setRuleId(Integer ruleId) { this.ruleId = ruleId; }
 
     public String getRuleName() {
         return ruleName;
@@ -70,7 +69,7 @@ public class RuleEntity implements Serializable {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 }

@@ -115,11 +115,21 @@ public class RulesApiController implements RulesApi {
         RuleEntity entity = new RuleEntity();
         entity.setRuleName(rule.getRuleName());
         entity.setEventTrigger(rule.getEventTrigger());
-        BadgeEntity badge = badgeRepository.findOne(rule.getBadgeId());
-        entity.setBadge(badge);
-        PointScaleEntity pointScale = pointScaleRepository.findOne(rule.getPointScaleId());
-        entity.setPointScale(pointScale);
-        entity.setAmount(rule.getAmount());
+        if (rule.getBadgeId() != null) {
+            BadgeEntity badge = badgeRepository.findOne(rule.getBadgeId());
+            entity.setBadge(badge);
+        } else {
+            entity.setBadge(null);
+        }
+        if (rule.getPointScaleId() != null) {
+            PointScaleEntity pointScale = pointScaleRepository.findOne(rule.getPointScaleId());
+            entity.setPointScale(pointScale);
+            entity.setAmount(rule.getAmount());
+        } else {
+            entity.setPointScale(null);
+            entity.setAmount(null);
+        }
+
         return entity;
     }
 

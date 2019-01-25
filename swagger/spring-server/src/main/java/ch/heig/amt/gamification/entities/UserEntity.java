@@ -6,16 +6,16 @@ import javax.persistence.*;
 public class UserEntity {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
-    private int userId;
+    private Integer userId;
 
     @ManyToOne
     private ApplicationEntity application;
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

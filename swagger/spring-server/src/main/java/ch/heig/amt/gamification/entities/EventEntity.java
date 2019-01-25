@@ -7,8 +7,8 @@ import java.io.Serializable;
 public class EventEntity implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
-    private int eventId;
-    private long timestamp;
+    private Integer eventId;
+    private Long timestamp;
     private String eventType;
 
     @ManyToOne
@@ -16,19 +16,19 @@ public class EventEntity implements Serializable {
     @ManyToOne
     private ApplicationEntity application;
 
-    public int getEventId() {
+    public Integer getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(Integer eventId) {
         this.eventId = eventId;
     }
 
-    public long getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -7,15 +7,15 @@ import java.io.Serializable;
 public class PointScaleEntity implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
-    private int pointScaleId;
+    private Integer pointScaleId;
     private String pointScaleName;
 
     @ManyToOne
     private ApplicationEntity application;
 
-    public int getPointScaleId() { return pointScaleId; }
+    public Integer getPointScaleId() { return pointScaleId; }
 
-    public void setPointScaleId(int pointScaleId) { this.pointScaleId = pointScaleId; }
+    public void setPointScaleId(Integer pointScaleId) { this.pointScaleId = pointScaleId; }
 
     public String getPointScaleName() {
         return pointScaleName;

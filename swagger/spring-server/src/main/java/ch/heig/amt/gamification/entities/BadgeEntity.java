@@ -7,13 +7,13 @@ import java.io.Serializable;
 public class BadgeEntity implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
-    private int badgeId;
+    private Integer badgeId;
     private String badgeName;
 
     @ManyToOne
     private ApplicationEntity application;
 
-    public int getBadgeId() {
+    public Integer getBadgeId() {
         return badgeId;
     }
 

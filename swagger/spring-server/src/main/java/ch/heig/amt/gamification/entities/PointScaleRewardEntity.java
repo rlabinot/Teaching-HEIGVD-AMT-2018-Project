@@ -7,13 +7,13 @@ public class PointScaleRewardEntity implements Serializable {
 
     @Id
     @GeneratedValue( strategy = GenerationType.AUTO)
-    private int rewardId;
-    private long timestamp;
+    private Integer rewardId;
+    private Long timestamp;
     private String reason;
 
     @ManyToOne
     private PointScaleEntity pointScale;
-    private int amount = 0;
+    private Integer amount = 0;
 
     @ManyToOne
     private UserEntity user;
@@ -25,19 +25,19 @@ public class PointScaleRewardEntity implements Serializable {
     private EventEntity event;
 
 
-    public int getRewardId() {
+    public Integer getRewardId() {
         return rewardId;
     }
 
-    public void setRewardId(int rewardId) {
+    public void setRewardId(Integer rewardId) {
         this.rewardId = rewardId;
     }
 
-    public long getTimestamp() {
+    public Long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -81,11 +81,11 @@ public class PointScaleRewardEntity implements Serializable {
         this.pointScale = pointScale;
     }
 
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount += amount;
     }
 }
