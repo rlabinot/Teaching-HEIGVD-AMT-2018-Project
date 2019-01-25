@@ -3,8 +3,8 @@ package ch.heig.amt.gamification.api.spec.steps;
 import ch.heig.amt.gamification.ApiException;
 import ch.heig.amt.gamification.ApiResponse;
 import ch.heig.amt.gamification.api.DefaultApi;
-import ch.heig.amt.gamification.api.dto.Badge;
-import ch.heig.amt.gamification.api.dto.BadgeNoId;
+import ch.heig.amt.gamification.api.dto.PointScale;
+import ch.heig.amt.gamification.api.dto.PointScaleNoId;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Olivier Liechti on 27/07/17.
  */
-public class BadgesSteps {
+public class PointScalesSteps {
 
     private Environment environment;
     private DefaultApi api;
@@ -28,13 +28,13 @@ public class BadgesSteps {
     private boolean lastApiCallThrewException;
     private int lastStatusCode;
 
-    private BadgeNoId badgeToInsert;
-    private Badge lastInsertedBadge;
-    private Badge badgeWithId;
-    private List<Badge> lastInsertedBadges = new ArrayList<>();
+    private PointScaleNoId pointScaleToInsert;
+    private PointScale lastInsertedPointScale;
+    private PointScale pointScaleWithId;
+    private List<PointScale> lastInsertedPointScales = new ArrayList<>();
     private int lastInsertedId;
 
-    public BadgesSteps(Environment environment) {
+    public PointScalesSteps(Environment environment) {
         this.environment = environment;
         this.api = environment.getApi();
     }
@@ -46,22 +46,22 @@ public class BadgesSteps {
         return Integer.parseInt(id);
     }
 
-    @Given("^there is a Badges server$")
-    public void there_is_a_Badges_server() throws Throwable {
+    @Given("^there is a PointScales server$")
+    public void there_is_a_PointScales_server() throws Throwable {
         assertNotNull(api);
     }
 
-    @Given("^I have a badge named \\\"([^\\\"]*)\\\"$")
-    public void i_have_a_badge_payload(String arg1) throws Throwable {
-        badgeToInsert = new ch.heig.amt.gamification.api.dto.BadgeNoId();
-        assertNotNull(badgeToInsert);
-        badgeToInsert.setBadgeName(arg1);
+    @Given("^I have a pointScale named \\\"([^\\\"]*)\\\"$")
+    public void i_have_a_pointScale_payload(String arg1) throws Throwable {
+        pointScaleToInsert = new ch.heig.amt.gamification.api.dto.PointScaleNoId();
+        assertNotNull(pointScaleToInsert);
+        pointScaleToInsert.setPointScaleName(arg1);
     }
 
-    @When("^I POST it to the /badges endpoint$")
-    public void i_POST_it_to_the_badges_endpoint() throws Throwable {
+    @When("^I POST it to the /pointScales endpoint$")
+    public void i_POST_it_to_the_pointScales_endpoint() throws Throwable {
         try {
-            lastApiResponse = api.createBadgeWithHttpInfo(badgeToInsert, environment.getAPPLICATION_NAME());
+            lastApiResponse = api.createPointScaleWithHttpInfo(pointScaleToInsert, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -75,11 +75,11 @@ public class BadgesSteps {
 
     }
 
-    @Given("^I GET it from the /badges api with its id$")
-    public void i_GET_it_from_badges_with_its_api_id() throws Throwable {
+    @Given("^I GET it from the /pointScales api with its id$")
+    public void i_GET_it_from_pointScales_with_its_api_id() throws Throwable {
         try {
-            lastApiResponse = api.getBadgeWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
-            lastInsertedBadge = api.getBadge(lastInsertedId, environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getPointScaleWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
+            lastInsertedPointScale = api.getPointScale(lastInsertedId, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -91,10 +91,10 @@ public class BadgesSteps {
         }
     }
 
-    @Given("^I GET a fake badge from the /badges api$")
-    public void i_GET_a_fake_badge_from_badges() throws Throwable {
+    @Given("^I GET a fake pointScale from the /pointScales api$")
+    public void i_GET_a_fake_pointScale_from_pointScales() throws Throwable {
         try {
-            lastApiResponse = api.getBadgeWithHttpInfo(Integer.MAX_VALUE, environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getPointScaleWithHttpInfo(Integer.MAX_VALUE, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -106,16 +106,16 @@ public class BadgesSteps {
         }
     }
 
-    @Then("^I check my badge with the expected one : \\\"([^\\\"]*)\\\"$")
-    public void i_check_my_badge_with_the_expected_one(String arg1) throws Throwable {
-        assertEquals(arg1, lastInsertedBadge.getBadgeName());
+    @Then("^I check my pointScale with the expected one : \\\"([^\\\"]*)\\\"$")
+    public void i_check_my_pointScale_with_the_expected_one(String arg1) throws Throwable {
+        assertEquals(arg1, lastInsertedPointScale.getPointScaleName());
     }
 
-    @Then("^I GET all my badges$")
-    public void i_GET_all_my_badges() throws Throwable {
+    @Then("^I GET all my pointScales$")
+    public void i_GET_all_my_pointScales() throws Throwable {
         try {
-            lastApiResponse = api.getBadgesWithHttpInfo(environment.getAPPLICATION_NAME());
-            lastInsertedBadges = api.getBadges(environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getAllPointScalesWithHttpInfo(environment.getAPPLICATION_NAME());
+            lastInsertedPointScales = api.getAllPointScales(environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -127,15 +127,15 @@ public class BadgesSteps {
         }
     }
 
-    @Then("^I check if my badges are GET : \\\"([^\\\"]*)\\\" and \\\"([^\\\"]*)\\\"$")
-    public void i_check_if_my_badges_are_GET(String arg1, String arg2){
+    @Then("^I check if my pointScales are GET : \\\"([^\\\"]*)\\\" and \\\"([^\\\"]*)\\\"$")
+    public void i_check_if_my_pointScales_are_GET(String arg1, String arg2){
         boolean first = false;
         boolean second = false;
-        for (Badge b : lastInsertedBadges) {
-            if(b.getBadgeName().equals(arg1)){
+        for (PointScale b : lastInsertedPointScales) {
+            if(b.getPointScaleName().equals(arg1)){
                 first = true;
             }
-            if(b.getBadgeName().equals(arg2)){
+            if(b.getPointScaleName().equals(arg2)){
                 second = true;
             }
         }
@@ -143,26 +143,26 @@ public class BadgesSteps {
         assertTrue(second);
     }
 
-    @When("^I PUT a new name to this badge as \\\"([^\\\"]*)\\\"$")
-    public void i_PUT_a_new_name_to_a_badge(String arg1) throws Throwable {
-        badgeWithId = new Badge();
-        badgeWithId.setBadgeName(arg1);
-        badgeWithId.setBadgeId(lastInsertedId);
-        lastApiResponse = api.editBadgeWithHttpInfo(badgeWithId, environment.getAPPLICATION_NAME());
+    @When("^I PUT a new name to this pointScale as \\\"([^\\\"]*)\\\"$")
+    public void i_PUT_a_new_name_to_a_pointScale(String arg1) throws Throwable {
+        pointScaleWithId = new PointScale();
+        pointScaleWithId.setPointScaleName(arg1);
+        pointScaleWithId.setPointScaleId(lastInsertedId);
+        lastApiResponse = api.editPointScaleWithHttpInfo(pointScaleWithId, environment.getAPPLICATION_NAME());
         lastApiCallThrewException = false;
         lastApiException = null;
         lastStatusCode = lastApiResponse.getStatusCode();
     }
 
-    @Then("^I receive a (\\d+) status code for a badge$")
+    @Then("^I receive a (\\d+) status code for the pointScales$")
     public void i_receive_a_status_code(int arg1) throws Throwable {
         assertEquals(arg1, lastStatusCode);
     }
 
-    @When("^I DELETE a badge$")
-    public void i_DELETE_a_badge() throws Throwable {
+    @When("^I DELETE a pointScale$")
+    public void i_DELETE_a_pointScale() throws Throwable {
         try {
-            lastApiResponse = api.deleteBadgeWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
+            lastApiResponse = api.deletePointScaleWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -173,12 +173,12 @@ public class BadgesSteps {
             lastStatusCode = lastApiException.getCode();
         }
     }
-    @Given("^I have at least one badge in the database$")
+    @Given("^I have at least one pointScale in the database$")
     public void i_have_something_in_the_database() throws Throwable {
         try {
-            lastInsertedBadges = api.getBadges(environment.getAPPLICATION_NAME());
-            lastApiResponse = api.getBadgesWithHttpInfo(environment.getAPPLICATION_NAME());
-            assertNotNull(lastInsertedBadges);
+            lastInsertedPointScales = api.getAllPointScales(environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getAllPointScalesWithHttpInfo(environment.getAPPLICATION_NAME());
+            assertNotNull(lastInsertedPointScales);
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -190,26 +190,13 @@ public class BadgesSteps {
         }
     }
 
-    @When("^I DELETE all the badges$")
-    public void i_DELETE_everything() throws Throwable {
-        try {
-            lastApiResponse = api.deleteAllBadgesWithHttpInfo(environment.getAPPLICATION_NAME());
-            lastApiCallThrewException = false;
-            lastApiException = null;
-            lastStatusCode = lastApiResponse.getStatusCode();
-        } catch (ApiException e) {
-            lastApiCallThrewException = true;
-            lastApiResponse = null;
-            lastApiException = e;
-            lastStatusCode = lastApiException.getCode();
-        }
-    }
-    @Then("^There is no badges$")
+
+    @Then("^There is no pointScales$")
     public void The_database_is_empty() throws Throwable {
         try {
-            lastInsertedBadges = api.getBadges(environment.getAPPLICATION_NAME());
-            lastApiResponse = api.getBadgesWithHttpInfo(environment.getAPPLICATION_NAME());
-            assertTrue(lastInsertedBadges.isEmpty());
+            lastInsertedPointScales = api.getAllPointScales(environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getAllPointScalesWithHttpInfo(environment.getAPPLICATION_NAME());
+            assertTrue(lastInsertedPointScales.isEmpty());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
