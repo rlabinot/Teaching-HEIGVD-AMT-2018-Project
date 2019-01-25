@@ -53,6 +53,14 @@ public class PointScalesApiController implements PointscalesApi {
     }
 
     @Override
+    public ResponseEntity<Object> deleteAllPointScales(@ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
+        for (PointScaleEntity pointScaleEntity : pointScaleRepository.findAllByApplicationApplicationName(apiKey)) {
+            pointScaleRepository.delete(pointScaleEntity);
+        }
+        return ResponseEntity.accepted().build();
+    }
+
+    @Override
     public ResponseEntity<Object> deletePointScale(@ApiParam(value = "pointscale id",required=true ) @PathVariable("id") Integer id,
                                             @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey",
                                                     required=true) String apiKey) {
