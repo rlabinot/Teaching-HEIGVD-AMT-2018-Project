@@ -2,7 +2,6 @@ package ch.heig.amt.gamification.api.endpoints;
 
 import ch.heig.amt.gamification.api.EventsApi;
 import ch.heig.amt.gamification.api.model.Event;
-import ch.heig.amt.gamification.api.model.User;
 import ch.heig.amt.gamification.entities.*;
 import ch.heig.amt.gamification.repositories.*;
 import io.swagger.annotations.ApiParam;
