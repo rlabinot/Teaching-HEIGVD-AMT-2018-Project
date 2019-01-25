@@ -462,6 +462,8 @@ definitions:
   Rule:
     type: object
     properties:
+      ruleId:
+        type: integer
       ruleName:
         type: string
       badgeId:
@@ -478,6 +480,8 @@ definitions:
     properties:
       ruleName:
         type: string
+      badgeId:
+        type: integer
       pointScale:
         type: string
       eventTrigger:
