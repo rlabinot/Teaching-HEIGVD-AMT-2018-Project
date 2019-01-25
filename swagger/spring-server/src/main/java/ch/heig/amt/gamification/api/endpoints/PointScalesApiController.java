@@ -48,7 +48,7 @@ public class PointScalesApiController implements PointscalesApi {
 
         // Get the pointScale and build the response content of this pointScale from his new link with id
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newPointScaleEntity.getPointScaleName()).toUri();
+                .buildAndExpand(newPointScaleEntity.getPointScaleId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
