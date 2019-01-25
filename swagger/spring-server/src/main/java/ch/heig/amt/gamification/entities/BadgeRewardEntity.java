@@ -9,7 +9,6 @@ public class BadgeRewardEntity implements Serializable {
     @GeneratedValue( strategy = GenerationType.AUTO)
     private Integer rewardId;
     private Long timestamp;
-    private String reason;
 
     @ManyToOne
     private BadgeEntity badge;
@@ -38,14 +37,6 @@ public class BadgeRewardEntity implements Serializable {
 
     public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
     }
 
     public ApplicationEntity getApplication() {

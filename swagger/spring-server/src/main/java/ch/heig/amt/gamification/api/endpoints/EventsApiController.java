@@ -74,6 +74,8 @@ public class EventsApiController implements EventsApi {
                 badgeReward.setUser(user);
                 badgeReward.setBadge(badge);
                 badgeReward.setApplication(application);
+                badgeReward.setEvent(newEvent);
+                badgeReward.setTimestamp(System.currentTimeMillis());
                 badgeRewardRepository.save(badgeReward);
                 System.out.println("User + " + user.getUserId() + " win " + badge.getBadgeName() + "badge.");
             }
@@ -88,6 +90,8 @@ public class EventsApiController implements EventsApi {
                     pointScaleReward.setPointScale(pointScale);
                 }
                 pointScaleReward.setAmount(rule.getAmount());
+                pointScaleReward.setEvent(newEvent);
+                pointScaleReward.setTimestamp(System.currentTimeMillis());  
                 pointScale.setApplication(application);
                 pointScaleRewardRepository.save(pointScaleReward);
                 System.out.println("+" + rule.getAmount() + " " + rule.getPointScale() + " added to " + user.getUserId());
