@@ -114,7 +114,14 @@ public class RulesApiController implements RulesApi {
     @Override
     public ResponseEntity<Rule> getRule(@ApiParam(value = "",required=true ) @PathVariable("id") Integer id,
                                         @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
-        RuleEntity ruleEntity = ruleRepository.findOne(id);
+
+        RuleEntity ruleEntity = ruleRepository.findByRuleIdAndApplicationApplicationName(id, apiKey);
+
+        // Checking if existing badge
+        if (ruleEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         return ResponseEntity.ok(toRule(ruleEntity));
     }
 
@@ -146,11 +153,20 @@ public class RulesApiController implements RulesApi {
         entity.setRuleId(rule.getRuleId());
         entity.setRuleName(rule.getRuleName());
         entity.setEventTrigger(rule.getEventTrigger());
-        BadgeEntity badge = badgeRepository.findOne(rule.getBadgeId());
-        entity.setBadge(badge);
-        PointScaleEntity pointScale = pointScaleRepository.findOne(rule.getPointScaleId());
-        entity.setPointScale(pointScale);
-        entity.setAmount(rule.getAmount());
+        if (rule.getBadgeId() != null) {
+            BadgeEntity badge = badgeRepository.findOne(rule.getBadgeId());
+            entity.setBadge(badge);
+        } else {
+            entity.setBadge(null);
+        }
+        if (rule.getPointScaleId() != null) {
+            PointScaleEntity pointScale = pointScaleRepository.findOne(rule.getPointScaleId());
+            entity.setPointScale(pointScale);
+            entity.setAmount(rule.getAmount());
+        } else {
+            entity.setPointScale(null);
+            entity.setAmount(null);
+        }
         return entity;
     }
 
@@ -159,9 +175,20 @@ public class RulesApiController implements RulesApi {
         rule.setRuleId(entity.getRuleId());
         rule.setRuleName(entity.getRuleName());
         rule.setEventTrigger(entity.getEventTrigger());
-        rule.setBadgeId(entity.getBadge().getBadgeId());
-        rule.setPointScaleId(entity.getPointScale().getPointScaleId());
-        rule.setAmount(entity.getAmount());
+        if (entity.getPointScale() != null) {
+            rule.setPointScaleId(entity.getPointScale().getPointScaleId());
+            rule.setAmount(entity.getAmount());
+        } else  {
+            rule.setPointScaleId(null);
+            rule.setAmount(null);
+        }
+        if (entity.getBadge() != null) {
+            rule.setBadgeId(entity.getBadge().getBadgeId());
+        } else {
+            rule.setBadgeId(null);
+        }
+
+
         return rule;
     }
 }
