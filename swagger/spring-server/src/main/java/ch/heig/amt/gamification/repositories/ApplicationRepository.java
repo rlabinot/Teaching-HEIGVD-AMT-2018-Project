@@ -5,4 +5,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface ApplicationRepository extends PagingAndSortingRepository<ApplicationEntity, Integer> {
     ApplicationEntity findByApplicationName(String name);
+
 }
