@@ -154,7 +154,7 @@ public class BadgesSteps {
         lastStatusCode = lastApiResponse.getStatusCode();
     }
 
-    @Then("^I receive a (\\d+) status code for a badge$")
+    @Then("^I receive a (\\d+) status code for the badges$")
     public void i_receive_a_status_code(int arg1) throws Throwable {
         assertEquals(arg1, lastStatusCode);
     }

@@ -3,8 +3,8 @@ package ch.heig.amt.gamification.api.spec.steps;
 import ch.heig.amt.gamification.ApiException;
 import ch.heig.amt.gamification.ApiResponse;
 import ch.heig.amt.gamification.api.DefaultApi;
-import ch.heig.amt.gamification.api.dto.PointScale;
-import ch.heig.amt.gamification.api.dto.PointScaleNoId;
+import ch.heig.amt.gamification.api.dto.Rule;
+import ch.heig.amt.gamification.api.dto.RuleNoId;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -15,11 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
-/**
- * Created by Olivier Liechti on 27/07/17.
- */
-public class PointScalesSteps {
+public class RulesSteps {
 
     private Environment environment;
     private DefaultApi api;
@@ -29,13 +25,13 @@ public class PointScalesSteps {
     private boolean lastApiCallThrewException;
     private int lastStatusCode;
 
-    private PointScaleNoId pointScaleToInsert;
-    private PointScale lastInsertedPointScale;
-    private PointScale pointScaleWithId;
-    private List<PointScale> lastInsertedPointScales = new ArrayList<>();
+    private RuleNoId ruleToInsert;
+    private Rule lastInsertedRule;
+    private Rule ruleWithId;
+    private List<Rule> lastInsertedRules = new ArrayList<>();
     private int lastInsertedId;
 
-    public PointScalesSteps(Environment environment) {
+    public RulesSteps(Environment environment) {
         this.environment = environment;
         this.api = environment.getApi();
     }
@@ -46,23 +42,26 @@ public class PointScalesSteps {
         id = id.substring(0,id.length()-1);
         return Integer.parseInt(id);
     }
-
-    @Given("^there is a PointScales server$")
-    public void there_is_a_PointScales_server() throws Throwable {
+    
+    @Given("^there is a Rules server$")
+    public void there_is_a_Rules_server() throws Throwable {
         assertNotNull(api);
     }
-
-    @Given("^I have a pointScale named \\\"([^\\\"]*)\\\"$")
-    public void i_have_a_pointScale_payload(String arg1) throws Throwable {
-        pointScaleToInsert = new ch.heig.amt.gamification.api.dto.PointScaleNoId();
-        assertNotNull(pointScaleToInsert);
-        pointScaleToInsert.setPointScaleName(arg1);
+    @Given("^I have a rule named \"([^\"]*)\" where the trigger is \"([^\"]*)\" and the amount is (\\d+) the badge id is (\\d+) the pointScale is (\\d+)$")
+    public void i_have_a_rule_named_where_the_trigger_is_and_the_amount_is_the_badge_id_is_the_pointScale_is(String arg1, String arg2, int arg3, int arg4, int arg5) throws Throwable {
+        ruleToInsert = new ch.heig.amt.gamification.api.dto.RuleNoId();
+        assertNotNull(ruleToInsert);
+        ruleToInsert.setRuleName(arg1);
+        ruleToInsert.setEventTrigger(arg2);
+        ruleToInsert.setAmount(arg3);
+        ruleToInsert.setBadgeId(arg4);
+        ruleToInsert.setPointScaleId(arg5);
     }
 
-    @When("^I POST it to the /pointScales endpoint$")
-    public void i_POST_it_to_the_pointScales_endpoint() throws Throwable {
+    @When("^I POST it to the /rules endpoint$")
+    public void i_POST_it_to_the_rules_endpoint() throws Throwable {
         try {
-            lastApiResponse = api.createPointScaleWithHttpInfo(pointScaleToInsert, environment.getAPPLICATION_NAME());
+            lastApiResponse = api.createRuleWithHttpInfo(ruleToInsert, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -73,14 +72,18 @@ public class PointScalesSteps {
             lastApiException = e;
             lastStatusCode = lastApiException.getCode();
         }
-
     }
 
-    @Given("^I GET it from the /pointScales api with its id$")
-    public void i_GET_it_from_pointScales_with_its_api_id() throws Throwable {
+    @Then("^I receive a (\\d+) status code for the rules$")
+    public void i_receive_a_status_code_for_the_rules(int arg1) throws Throwable {
+        assertEquals(arg1, lastStatusCode);
+    }
+
+    @When("^I GET it from the /rules api with its id$")
+    public void i_GET_it_from_the_rules_api_with_its_id() throws Throwable {
         try {
-            lastApiResponse = api.getPointScaleWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
-            lastInsertedPointScale = api.getPointScale(lastInsertedId, environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getRuleWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
+            lastInsertedRule = api.getRule(lastInsertedId, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -92,10 +95,11 @@ public class PointScalesSteps {
         }
     }
 
-    @Given("^I GET a fake pointScale from the /pointScales api$")
-    public void i_GET_a_fake_pointScale_from_pointScales() throws Throwable {
+
+    @When("^I GET a fake rule from the /rules api$")
+    public void i_GET_a_fake_rule_from_the_rules_api() throws Throwable {
         try {
-            lastApiResponse = api.getPointScaleWithHttpInfo(Integer.MAX_VALUE, environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getRuleWithHttpInfo(Integer.MAX_VALUE, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -107,16 +111,11 @@ public class PointScalesSteps {
         }
     }
 
-    @Then("^I check my pointScale with the expected one : \\\"([^\\\"]*)\\\"$")
-    public void i_check_my_pointScale_with_the_expected_one(String arg1) throws Throwable {
-        assertEquals(arg1, lastInsertedPointScale.getPointScaleName());
-    }
-
-    @Then("^I GET all my pointScales$")
-    public void i_GET_all_my_pointScales() throws Throwable {
+    @Then("^I GET all my rules$")
+    public void i_GET_all_my_rules() throws Throwable {
         try {
-            lastApiResponse = api.getAllPointScalesWithHttpInfo(environment.getAPPLICATION_NAME());
-            lastInsertedPointScales = api.getAllPointScales(environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getAllRulesWithHttpInfo(environment.getAPPLICATION_NAME());
+            lastInsertedRules = api.getAllRules(environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -128,15 +127,15 @@ public class PointScalesSteps {
         }
     }
 
-    @Then("^I check if my pointScales are GET : \\\"([^\\\"]*)\\\" and \\\"([^\\\"]*)\\\"$")
-    public void i_check_if_my_pointScales_are_GET(String arg1, String arg2){
+    @Then("^I check if my rules are GET : \"([^\"]*)\" and \"([^\"]*)\"$")
+    public void i_check_if_my_rules_are_GET_and(String arg1, String arg2) throws Throwable {
         boolean first = false;
         boolean second = false;
-        for (PointScale b : lastInsertedPointScales) {
-            if(b.getPointScaleName().equals(arg1)){
+        for (Rule b : lastInsertedRules) {
+            if(b.getRuleName().equals(arg1)){
                 first = true;
             }
-            if(b.getPointScaleName().equals(arg2)){
+            if(b.getRuleName().equals(arg2)){
                 second = true;
             }
         }
@@ -144,42 +143,27 @@ public class PointScalesSteps {
         assertTrue(second);
     }
 
-    @When("^I PUT a new name to this pointScale as \\\"([^\\\"]*)\\\"$")
-    public void i_PUT_a_new_name_to_a_pointScale(String arg1) throws Throwable {
-        pointScaleWithId = new PointScale();
-        pointScaleWithId.setPointScaleName(arg1);
-        pointScaleWithId.setPointScaleId(lastInsertedId);
-        lastApiResponse = api.editPointScaleWithHttpInfo(pointScaleWithId, environment.getAPPLICATION_NAME());
+    @When("^I PUT a new name to this rule as \"([^\"]*)\"$")
+    public void i_PUT_a_new_name_to_this_rule_as(String arg1) throws Throwable {
+        ruleWithId = new Rule();
+        ruleWithId.setRuleName(arg1);
+        ruleWithId.setRuleId(lastInsertedId);
+        lastApiResponse = api.editRuleWithHttpInfo(ruleWithId, environment.getAPPLICATION_NAME());
         lastApiCallThrewException = false;
         lastApiException = null;
         lastStatusCode = lastApiResponse.getStatusCode();
     }
 
-    @Then("^I receive a (\\d+) status code for the pointScales$")
-    public void i_receive_a_status_code(int arg1) throws Throwable {
-        assertEquals(arg1, lastStatusCode);
+    @Then("^I check my rule with the expected one : \"([^\"]*)\"$")
+    public void i_check_my_rule_with_the_expected_one(String arg1) throws Throwable {
+        assertEquals(arg1, lastInsertedRule.getRuleName());
     }
 
-    @When("^I DELETE a pointScale$")
-    public void i_DELETE_a_pointScale() throws Throwable {
+
+    @When("^I DELETE a rule$")
+    public void i_DELETE_a_rule() throws Throwable {
         try {
-            lastApiResponse = api.deletePointScaleWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
-            lastApiCallThrewException = false;
-            lastApiException = null;
-            lastStatusCode = lastApiResponse.getStatusCode();
-        } catch (ApiException e) {
-            lastApiCallThrewException = true;
-            lastApiResponse = null;
-            lastApiException = e;
-            lastStatusCode = lastApiException.getCode();
-        }
-    }
-    @Given("^I have at least one pointScale in the database$")
-    public void i_have_something_in_the_database() throws Throwable {
-        try {
-            lastInsertedPointScales = api.getAllPointScales(environment.getAPPLICATION_NAME());
-            lastApiResponse = api.getAllPointScalesWithHttpInfo(environment.getAPPLICATION_NAME());
-            assertNotNull(lastInsertedPointScales);
+            lastApiResponse = api.deleteRuleWithHttpInfo(lastInsertedId, environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -191,13 +175,10 @@ public class PointScalesSteps {
         }
     }
 
-
-    @Then("^There is no pointScales$")
-    public void The_database_is_empty() throws Throwable {
+    @When("^I DELETE all the rules$")
+    public void iDELETEAllTheRules() throws Throwable {
         try {
-            lastInsertedPointScales = api.getAllPointScales(environment.getAPPLICATION_NAME());
-            lastApiResponse = api.getAllPointScalesWithHttpInfo(environment.getAPPLICATION_NAME());
-            assertTrue(lastInsertedPointScales.isEmpty());
+            lastApiResponse = api.deleteAllRulesWithHttpInfo(environment.getAPPLICATION_NAME());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
@@ -209,10 +190,29 @@ public class PointScalesSteps {
         }
     }
 
-    @When("^I DELETE all the pointScales$")
-    public void iDELETEAllThePointScales() throws Throwable {
+    @Given("^I have at least one rule in the database$")
+    public void iHaveAtLeastOneRuleInTheDatabase() throws Throwable {
         try {
-            lastApiResponse = api.deleteAllPointScalesWithHttpInfo(environment.getAPPLICATION_NAME());
+            lastInsertedRules = api.getAllRules(environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getBadgesWithHttpInfo(environment.getAPPLICATION_NAME());
+            assertNotNull(lastInsertedRules);
+            lastApiCallThrewException = false;
+            lastApiException = null;
+            lastStatusCode = lastApiResponse.getStatusCode();
+        } catch (ApiException e) {
+            lastApiCallThrewException = true;
+            lastApiResponse = null;
+            lastApiException = e;
+            lastStatusCode = lastApiException.getCode();
+        }
+    }
+
+    @Then("^There is no rules$")
+    public void thereIsNoRules() throws Throwable {
+        try {
+            lastInsertedRules = api.getAllRules(environment.getAPPLICATION_NAME());
+            lastApiResponse = api.getAllRulesWithHttpInfo(environment.getAPPLICATION_NAME());
+            assertTrue(lastInsertedRules.isEmpty());
             lastApiCallThrewException = false;
             lastApiException = null;
             lastStatusCode = lastApiResponse.getStatusCode();
