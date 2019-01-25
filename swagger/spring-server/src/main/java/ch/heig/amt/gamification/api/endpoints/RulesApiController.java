@@ -4,8 +4,12 @@ import ch.heig.amt.gamification.api.RulesApi;
 import ch.heig.amt.gamification.api.model.Rule;
 import ch.heig.amt.gamification.api.model.RuleNoId;
 import ch.heig.amt.gamification.entities.ApplicationEntity;
+import ch.heig.amt.gamification.entities.BadgeEntity;
+import ch.heig.amt.gamification.entities.PointScaleEntity;
 import ch.heig.amt.gamification.entities.RuleEntity;
 import ch.heig.amt.gamification.repositories.ApplicationRepository;
+import ch.heig.amt.gamification.repositories.BadgeRepository;
+import ch.heig.amt.gamification.repositories.PointScaleRepository;
 import ch.heig.amt.gamification.repositories.RuleRepository;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,12 @@ public class RulesApiController implements RulesApi {
     @Autowired
     ApplicationRepository applicationRepository;
 
+    @Autowired
+    BadgeRepository badgeRepository;
+
+    @Autowired
+    PointScaleRepository pointScaleRepository;
+
     @Override
     public ResponseEntity<Object> createRule(@ApiParam(value = "" ,required=true ) @RequestBody RuleNoId rule,
                                       @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey) {
@@ -52,6 +62,14 @@ public class RulesApiController implements RulesApi {
     @Override
     public ResponseEntity<Void> deleteRule(@ApiParam(value = "ID of the requested badge",required=true ) @PathVariable("id") Integer id,
                                     @ApiParam(value = "" ,required=true ) @RequestHeader(value="apiKey", required=true) String apiKey){
+
+        RuleEntity ruleEntity = ruleRepository.findByRuleIdAndApplicationApplicationName(id, apiKey);
+
+        // Checking if existing badge
+        if (ruleEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+
         // Registration of the rule as an entity
         ruleRepository.delete(id);
         return ResponseEntity.accepted().build();
@@ -97,25 +115,33 @@ public class RulesApiController implements RulesApi {
         RuleEntity entity = new RuleEntity();
         entity.setRuleName(rule.getRuleName());
         entity.setEventTrigger(rule.getEventTrigger());
-        //entity.setPointScale(rule.getPointScale());
+        BadgeEntity badge = badgeRepository.findOne(rule.getBadgeId());
+        entity.setBadge(badge);
+        PointScaleEntity pointScale = pointScaleRepository.findOne(rule.getPointScaleId());
+        entity.setPointScale(pointScale);
+        entity.setAmount(rule.getAmount());
         return entity;
     }
 
     public RuleEntity toRuleEntity(Rule rule) {
         RuleEntity entity = new RuleEntity();
+        entity.setRuleId(rule.getRuleId());
         entity.setRuleName(rule.getRuleName());
-        entity.setBadgeId(rule.getBadgeId());
         entity.setEventTrigger(rule.getEventTrigger());
-        //entity.setPointScale(rule.getPointScale());
+        BadgeEntity badge = badgeRepository.findOne(rule.getBadgeId());
+        entity.setBadge(badge);
+        PointScaleEntity pointScale = pointScaleRepository.findOne(rule.getPointScaleId());
+        entity.setPointScale(pointScale);
         return entity;
     }
 
     private Rule toRule(RuleEntity entity) {
         Rule rule = new Rule();
+        rule.setRuleId(entity.getRuleId());
         rule.setRuleName(entity.getRuleName());
-        rule.setBadgeId(entity.getBadgeId());
         rule.setEventTrigger(entity.getEventTrigger());
-        //rule.setPointScale(entity.getPointScale());
+        rule.setBadgeId(entity.getBadge().getBadgeId());
+        rule.setPointScaleId(entity.getPointScale().getPointScaleId());
         return rule;
     }
 }

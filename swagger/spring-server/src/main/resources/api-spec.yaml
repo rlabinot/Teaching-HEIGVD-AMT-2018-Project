@@ -485,8 +485,8 @@ definitions:
         type: string
       badgeId:
         type: integer
-      pointScale:
-        type: string
+      pointScaleId:
+        type: integer
       eventTrigger:
         type: string
       amount:
@@ -499,8 +499,8 @@ definitions:
         type: string
       badgeId:
         type: integer
-      pointScale:
-        type: string
+      pointScaleId:
+        type: integer
       eventTrigger:
         type: string
       amount:

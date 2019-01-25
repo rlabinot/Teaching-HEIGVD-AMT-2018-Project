@@ -11,7 +11,6 @@ public class RuleEntity implements Serializable {
     private int ruleId;
 
     private String ruleName;
-    private int badgeId;
     private String eventTrigger;
     private int amount;
 
@@ -33,14 +32,6 @@ public class RuleEntity implements Serializable {
 
     public void setRuleName(String ruleName) {
         this.ruleName = ruleName;
-    }
-
-    public int getBadgeId() {
-        return badgeId;
-    }
-
-    public void setBadgeId(int badgeId) {
-        this.badgeId = badgeId;
     }
 
     public String getEventTrigger() {
