@@ -20,9 +20,6 @@ public class PointScaleRewardEntity implements Serializable {
     @ManyToOne
     private ApplicationEntity application;
 
-    @ManyToOne
-    private EventEntity event;
-
 
     public Integer getRewardId() {
         return rewardId;
@@ -54,14 +51,6 @@ public class PointScaleRewardEntity implements Serializable {
 
     public void setUser(UserEntity user) {
         this.user = user;
-    }
-
-    public EventEntity getEvent() {
-        return event;
-    }
-
-    public void setEvent(EventEntity event) {
-        this.event = event;
     }
 
     public PointScaleEntity getPointScale() {
