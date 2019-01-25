@@ -13,6 +13,14 @@ services:
       MYSQL_PASSWORD: apiamt
       MYSQL_ROOT_PASSWORD: root
   
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:4.7
+    environment:
+     - PMA_HOST=db
+    restart: always
+    ports:
+     - 8888:80
+
   spring:
     build: ../../../images/WP2/spring
     restart: always
