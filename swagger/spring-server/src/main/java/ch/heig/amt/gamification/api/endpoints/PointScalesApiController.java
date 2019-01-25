@@ -77,6 +77,9 @@ public class PointScalesApiController implements PointscalesApi {
             return ResponseEntity.notFound().build();
         }
         ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
         // edit PointScale and send no content as response
         PointScaleEntity pointScaleEntity = toPointScaleEntity(pointscale);
         pointScaleEntity.setApplication(app);

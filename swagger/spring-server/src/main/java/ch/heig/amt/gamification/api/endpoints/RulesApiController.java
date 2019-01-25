@@ -65,7 +65,10 @@ public class RulesApiController implements RulesApi {
         if (ruleEntity == null) {
             return ResponseEntity.notFound().build();
         }
-        ApplicationEntity app = new ApplicationEntity(apiKey);
+        ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
         ruleEntity.setApplication(app);
 
         // edit badge and send no content as respo

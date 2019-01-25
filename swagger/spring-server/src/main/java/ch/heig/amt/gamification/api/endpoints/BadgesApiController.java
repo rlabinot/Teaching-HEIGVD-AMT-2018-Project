@@ -87,7 +87,11 @@ public class BadgesApiController implements BadgesApi {
         if (toBadgeEntity(badge) == null) {
             return ResponseEntity.notFound().build();
         }
-        ApplicationEntity app = new ApplicationEntity(apiKey);
+
+        ApplicationEntity app = applicationRepository.findByApplicationName(apiKey);
+        if (app == null) {
+            return ResponseEntity.notFound().build();
+        }
 
         // edit badge and send no content as response
         BadgeEntity badgeEntity = toBadgeEntity(badge);
