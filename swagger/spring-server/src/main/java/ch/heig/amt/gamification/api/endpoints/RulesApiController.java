@@ -45,7 +45,7 @@ public class RulesApiController implements RulesApi {
 
         // Get the rule and build the response content of this rule from his new link with id
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newRuleEntity.getRuleName()).toUri();
+                .buildAndExpand(newRuleEntity.getRuleId()).toUri();
         return ResponseEntity.created(location).build();
     }
 

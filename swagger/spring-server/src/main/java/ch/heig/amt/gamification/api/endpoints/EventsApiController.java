@@ -103,7 +103,7 @@ public class EventsApiController implements EventsApi {
 
         // Get the event and build the response content of this event from his new link with id
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(newEvent.getEventType()).toUri();
+                .buildAndExpand(newEvent.getEventId()).toUri();
         return ResponseEntity.created(location).build();
     }
 
