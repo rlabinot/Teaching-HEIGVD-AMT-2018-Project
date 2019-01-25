@@ -1,49 +1,488 @@
 swagger: '2.0'
 info:
   version: '0.1.0'
-  title: my simple api
-  description: An API to demonstrate Swagger
+  title: Gamification API
+  description: An API to use a gamification system
 host: localhost:8080
 basePath: /api
 schemes:
-  - http
+- http
+- https
 paths:
-  /fruits:
+  /badges:
     post:
-      description: create a fruit
-      operationId: createFruit
+      description: create a badge for my application
+      operationId: createBadge
       consumes:
-        - application/json
+      - application/json
+      produces:
+      - application/json
       parameters:
-        - name: fruit
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/Fruit'
+      - in: body
+        name: badge
+        required: true
+        schema:
+          $ref: '#/definitions/BadgeNoId'
+      - in: header
+        name: apiKey
+        required: true
+        type: string
       responses:
         '201':
-          description: created
+          description: Badge created
           schema:
-            type: object
+            $ref: '#/definitions/Badge'
     get:
-      description: get the list of all fruits
-      operationId: getFruits
+      description: get the list of all badges of my application
+      operationId: getBadges
       produces:
-        - application/json
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
       responses:
         '200':
           description: success
           schema:
             type: array
             items:
-              $ref: '#/definitions/Fruit'
+              $ref: '#/definitions/Badge'
+    put:
+      description: edit a specific badge of my application
+      operationId: editBadge
+      produces:
+      - application/json
+      parameters:
+      - name: badge
+        in: body
+        description: badge with his new content
+        required: true
+        schema:
+          $ref: '#/definitions/Badge'
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Badge successfully updated
+          schema:
+            type: object
+    delete:
+      description: delete all badges
+      operationId: deleteAllBadges
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '204':
+          description: Badges successfully deleted
+          schema:
+            type: object
+
+  /badges/{id}:
+    get:
+      description: get a specific badge of my application
+      operationId: getBadge
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of the requested badge
+        required: true
+        type: integer
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: '#/definitions/Badge'
+    delete:
+      description: delete a specific badge of my application
+      operationId: deleteBadge
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: badge id
+        required: true
+        type: integer
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '204':
+          description: Badge successfully deleted
+          schema:
+            type: object
+
+  /pointscales:
+    post:
+      description: create a point-scale for my application
+      operationId: createPointScale
+      consumes:
+      - application/json
+      parameters:
+      - name: pointscale
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/PointScaleNoId'
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '201':
+          description: created
+          schema:
+            $ref : '#/definitions/PointScale'
+    get:
+      description: get the list of all point-scale of my application
+      operationId: getAllPointScales
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PointScale'
+    put:
+      description: edit a specific pointscale of my application
+      operationId: editPointScale
+      produces:
+      - application/json
+      parameters:
+      - name: pointscale
+        in: body
+        description: pointscale with his new content
+        required: true
+        schema:
+          $ref: '#/definitions/PointScale'
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: PointScale successfully updated
+          schema:
+            type: object
+
+  /pointscales/{id}:
+    get:
+      description: get a specific pointscale of my application
+      operationId: getPointScale
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: ID of the requested pointscale
+        required: true
+        type: integer
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: '#/definitions/PointScale'
+    delete:
+      description: delete a specific pointscale of my application
+      operationId: deletePointScale
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: pointscale id
+        required: true
+        type: integer
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '204':
+          description: Pointscale successfully deleted
+          schema:
+            type: object
+
+  /rules:
+    post:
+      description: create a rule for my application
+      operationId: createRule
+      consumes:
+      - application/json
+      parameters:
+      - name: rule
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/RuleNoId'
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
+    get:
+      description: get the list of all rules of my application
+      operationId: getAllRules
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Rule'
+
+  /rules/{id}:
+    get:
+      description: get a rule
+      operationId: getRule
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        required: true
+        type: integer
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '201':
+          description: created
+          schema:
+            $ref: '#/definitions/Rule'
+    delete:
+      description: delete a specific badge of my application
+      operationId: deleteRule
+      produces:
+      - application/json
+      parameters:
+      - in: path
+        name: id
+        description: ID of the requested badge
+        required: true
+        type: integer
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '204':
+          description: Rule successfully deleted
+
+  /events:
+    post:
+      description: create an event for my application
+      operationId: sendEvent
+      consumes:
+      - application/json
+      parameters:
+      - name: event
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Event'
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
+    get:
+      description: get the list of all events of my application
+      operationId: getAllEvents
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+  /users:
+    get:
+      description: get the list of all users
+      operationId: getAllUsers
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+
+  /users/{id}:
+    get:
+      description: get a user
+      operationId: getUser
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      - name: id
+        in: path
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: success
+          schema:
+            $ref: '#/definitions/User'
+
+  /users/{id}/badges:
+    get:
+      description: get a user's badge array
+      operationId: getUserBadges
+      produces:
+      - application/json
+      parameters:
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      - in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        '200':
+          description: success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Badge'
+
 definitions:
-  Fruit:
+  Badge:
     type: object
     properties:
-      kind:
+      badgeId:
+        type: integer
+      badgeName:
         type: string
-      colour:
+
+  BadgeNoId:
+    type: object
+    properties:
+      badgeName:
         type: string
-      size:
+
+  PointScale:
+    type: object
+    properties:
+      pointScaleId:
+        type: integer
+      pointScaleName:
+        type: string
+      counter:
+        type: integer
+
+  PointScaleNoId:
+    type: object
+    properties:
+      pointScaleName:
+        type: string
+      counter:
+        type: integer
+
+  Rule:
+    type: object
+    properties:
+      ruleName:
+        type: string
+      badgeId:
+        type: integer
+      pointScale:
+        type: string
+      eventTrigger:
+        type: string
+
+  RuleNoId:
+    type: object
+    properties:
+      ruleName:
+        type: string
+      pointScale:
+        type: string
+      eventTrigger:
+        type: string
+
+  Event:
+    type: object
+    properties:
+      eventType:
+        type: string
+      userId:
+        type: integer
+      eventProperties:
+        type: array
+        items:
+          type: string
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+      email:
+        type: string
+      firstname:
+        type: string
+      lastname:
         type: string
