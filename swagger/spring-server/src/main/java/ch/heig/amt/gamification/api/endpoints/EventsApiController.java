@@ -2,6 +2,7 @@ package ch.heig.amt.gamification.api.endpoints;
 
 import ch.heig.amt.gamification.api.EventsApi;
 import ch.heig.amt.gamification.api.model.Event;
+import ch.heig.amt.gamification.api.model.User;
 import ch.heig.amt.gamification.entities.*;
 import ch.heig.amt.gamification.repositories.*;
 import io.swagger.annotations.ApiParam;
@@ -119,14 +120,17 @@ public class EventsApiController implements EventsApi {
     public EventEntity toEventEntity(Event event) {
             EventEntity entity = new EventEntity();
             entity.setEventType(event.getEventType());
+            UserEntity user = new UserEntity();
+            user.setUserId(event.getUserId());
+            entity.setUser(user);
         return entity;
     }
 
     private Event toEvent(EventEntity entity) {
         Event event = new Event();
         event.setEventType(entity.getEventType());
-        //event.setEventProperties(entity.getEventProperties());
-        //event.setUserId(entity.getUserId());
+        // event.setEventProperties(entity.getEventProperties());
+        event.setUserId(entity.getUser().getUserId());
         return event;
     }
 }

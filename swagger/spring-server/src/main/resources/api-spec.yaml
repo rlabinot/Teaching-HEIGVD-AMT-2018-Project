@@ -470,6 +470,8 @@ definitions:
         type: string
       eventTrigger:
         type: string
+      amount:
+        type: integer
 
   RuleNoId:
     type: object
