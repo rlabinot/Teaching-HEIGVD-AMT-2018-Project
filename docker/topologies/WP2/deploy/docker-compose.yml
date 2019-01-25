@@ -12,11 +12,13 @@ services:
       MYSQL_USER: apiamt
       MYSQL_PASSWORD: apiamt
       MYSQL_ROOT_PASSWORD: root
-        
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.7
-    environment:
-     - PMA_HOST=db
+  
+  spring:
+    build: spring
     restart: always
+    depends_on:
+      - db
     ports:
-     - 8888:80
+      - "8080:8080"
+    links:
+      - db
