@@ -39,19 +39,19 @@ Feature: Creation of fruits
     When I POST it to the /badges endpoint
     When I PUT a new name to this badge as "test5"
     When I GET it from the /badges api with its id
-    Then I receive a 204 status code
+    Then I receive a 200 status code
     Then I check my badge with the expected one : "test5"
 
   Scenario: I DELETE a badge
     Given I have a badge named "test6"
     Given I POST it to the /badges endpoint
     When I DELETE it
-    Then I receive a 204 status code
+    Then I receive a 202 status code
 
   Scenario: I DELETE all the badges
     Given I have something in the database
     When I DELETE everything
-    Then I receive a 204 status code
+    Then I receive a 202 status code
     Then The database is empty
     Then I receive a 200 status code
 

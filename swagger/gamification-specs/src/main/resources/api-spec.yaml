@@ -268,6 +268,27 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Rule'
+    put:
+      description: edit a specific rule of my application
+      operationId: editRule
+      produces:
+      - application/json
+      parameters:
+      - name: rule
+        in: body
+        description: rule with his new content
+        required: true
+        schema:
+          $ref: '#/definitions/Rule'
+      - in: header
+        name: apiKey
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Rule successfully updated
+          schema:
+            type: object
 
   /rules/{id}:
     get:
@@ -290,14 +311,14 @@ paths:
           schema:
             $ref: '#/definitions/Rule'
     delete:
-      description: delete a specific badge of my application
+      description: delete a specific rule of my application
       operationId: deleteRule
       produces:
       - application/json
       parameters:
       - in: path
         name: id
-        description: ID of the requested badge
+        description: ID of the requested rule
         required: true
         type: integer
       - in: header
@@ -431,16 +452,12 @@ definitions:
         type: integer
       pointScaleName:
         type: string
-      counter:
-        type: integer
 
   PointScaleNoId:
     type: object
     properties:
       pointScaleName:
         type: string
-      counter:
-        type: integer
 
   Rule:
     type: object
@@ -480,9 +497,3 @@ definitions:
     properties:
       id:
         type: integer
-      email:
-        type: string
-      firstname:
-        type: string
-      lastname:
-        type: string

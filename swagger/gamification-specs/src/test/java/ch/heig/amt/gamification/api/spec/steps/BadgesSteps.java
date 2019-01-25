@@ -146,7 +146,8 @@ public class BadgesSteps {
     @When("^I PUT a new name to this badge as \\\"([^\\\"]*)\\\"$")
     public void i_PUT_a_new_name_to_a_badge(String arg1) throws Throwable {
         badgeWithId = new Badge();
-        badgeToInsert.setBadgeName(arg1);
+        badgeWithId.setBadgeName(arg1);
+        badgeWithId.setBadgeId(lastInsertedId);
         lastApiResponse = api.editBadgeWithHttpInfo(badgeWithId, environment.getAPPLICATION_NAME());
         lastApiCallThrewException = false;
         lastApiException = null;

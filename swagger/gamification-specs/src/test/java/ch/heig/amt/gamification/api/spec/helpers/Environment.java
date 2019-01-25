@@ -12,7 +12,7 @@ import java.util.Properties;
 public class Environment {
 
     private DefaultApi api = new DefaultApi();
-    private final String APPLICATION_NAME = "myApp";
+    private final String APPLICATION_NAME = "123";
 
     public Environment() throws IOException {
         Properties properties = new Properties();
