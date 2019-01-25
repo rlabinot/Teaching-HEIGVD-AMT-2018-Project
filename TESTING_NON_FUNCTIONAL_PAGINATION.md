@@ -1,23 +1,33 @@
-# Teaching-HEIGVD-AMT-2018-Testing-Non-Functional-Pagination
+# Teaching-HEIGVD-AMT-2018-Testing-Non-Functional-Concurrency
 ## Introduction
 
-We chose to compare two different way to implement a pagination system through the admin function that displays the user list with a total of 1000 users. We will call the first implementation v1 and the second v2.
+The idea is to find use where some concurrency issues appear.
+We can imagine these scenarios :
 
-In the first one we send one request to the database to retrieve all users, even if we only display the ten first ones on the web page. However when the client clicks on the next page to see more users, the information is already in memory and then there is no need for further server request.  
-In the second implementation we only load the 10 first users when the client requests the user list, and every time he clicks on next page to see more users we send a requests to the database to retrieve them.
+1) A new user arrives and sends at the same time more than one event. On server side, when a user who is not registered yet in the database arrives, then he will be registered in the database. Then the potential problem is that this user will possibly be registered twice, or more if there are more requests.
+2) More than one event triggering the same stateful rule arrive at the same time. For instance let's imagine a rule where the user earns a shiny badge when his amount of a given pointScale is 10. Then we can have concurrency issues when the pointScale amount goes from 9 to 10.
 
 ## Test with JMeter
-The test consists in 10 clients sending each 50 requests to simply display the main page of the administrator, which is the user list.
 
-Results on v1 :
+1) We tested the following scenario:
+- we start with an empty database
+- we send an api key to the server to be able the send other requests
+- we set 100 threads to send an event with the same user id.
 
-![alt text](./images/t1v1u500.png "test v1")
+![alt text](./images/UserJMeter.png "jmeter")
 
-Result on v2 :
+![alt text](./images/UserTable.png "User table")
 
-![alt text](./images/t1v2u500.png "test v2")
+As we can see there are 7 new users created while only 1 user made the requests. After a few tests we have between 6 and 9 users created.
 
-As we can see a v2 request is around 4 times faster than the v1, and the gap will be even bigger the more user we have in our database.  
+2) We wrote another test doing the following steps :
+- start with an empty database
+- send an api key to the server
+- send a PointScale called headshot
+- then send the following rule stating this : "when a user send an event called headshot he earns +1 on his scalepoint reward headshot"
+- finally send 500 threaded events headshot from the same user and check if he actually has 500 on the headshot reward scalepoint counter. After having ran the test a few times we have seen that the actual number of headshot reward scalepoint goes from 20 to 50.
 
-There is however one more point to consider, which is the page change. In the first implementation, all the data is in the client memory after the first request. This means that the speed of a page change is only limited by the speed of javascript which depends on the client machine.  
-In the second implementation every page change consists on the same server request which, as we have seen previously, takes in average 16ms. Finally we could add that the tests have been done in local, in a real life implementation we would have to deal with the network speed for every request.
+![alt text](./images/JMeter2.png "User table")
+![alt text](./images/JMeter3.png "User table")
+
+Since we have more writing than reading, we tried to apply a pessimistic strategy. It's slower than the optimistic strategy but we don't need to manage exceptions. However we weren't actually able to implement one of these strategy.
